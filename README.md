@@ -1,4 +1,4 @@
-<h1>Sistema de Gerenciamento de Escalas 12x36 (Em desenvolvimento)</h1>
+<h1>Sistema de Gerenciamento de Escalas 12x36</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-in%20development-orange" alt="status">
