@@ -26,7 +26,6 @@ O **Sistema de Gerenciamento de Escalas 12x36** foi desenvolvido para auxiliar i
 - **Frontend**: HTML5, CSS3, Bootstrap
 - **Backend**: PHP 7.4
 - **Banco de Dados**: MySQL 5.7.31
-- **Relatórios**: mPDF para geração de PDFs
 
 ## 📂 Estrutura do Projeto
 
