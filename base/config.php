@@ -1,5 +1,5 @@
 <?php
-	define('DB_NAME', 'siscrud');
+	define('DB_NAME', 'sisescala');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
 	define('DB_HOST', 'localhost');

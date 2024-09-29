@@ -15,12 +15,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Copiando estrutura do banco de dados para siscrud
-DROP DATABASE IF EXISTS `siscrud`;
-CREATE DATABASE IF NOT EXISTS `siscrud` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */;
-USE `siscrud`;
+-- Copiando estrutura do banco de dados para sisescala
+DROP DATABASE IF EXISTS `sisescala`;
+CREATE DATABASE IF NOT EXISTS `sisescala` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */;
+USE `sisescala`;
 
--- Copiando estrutura para tabela siscrud.aluno
+-- Copiando estrutura para tabela sisescala.aluno
 DROP TABLE IF EXISTS `aluno`;
 CREATE TABLE IF NOT EXISTS `aluno` (
   `matricula` int(11) NOT NULL AUTO_INCREMENT,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `aluno` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela siscrud.endereco
+-- Copiando estrutura para tabela sisescala.endereco
 DROP TABLE IF EXISTS `endereco`;
 CREATE TABLE IF NOT EXISTS `endereco` (
   `id_end` int(11) NOT NULL AUTO_INCREMENT,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `endereco` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela siscrud.funcionario
+-- Copiando estrutura para tabela sisescala.funcionario
 DROP TABLE IF EXISTS `funcionario`;
 CREATE TABLE IF NOT EXISTS `funcionario` (
   `id_func` int(11) NOT NULL AUTO_INCREMENT,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela siscrud.substituicao
+-- Copiando estrutura para tabela sisescala.substituicao
 DROP TABLE IF EXISTS `substituicao`;
 CREATE TABLE IF NOT EXISTS `substituicao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `substituicao` (
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela siscrud.usuario
+-- Copiando estrutura para tabela sisescala.usuario
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
