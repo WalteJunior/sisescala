@@ -18,10 +18,10 @@
     $resultado = mysqli_query($con, $sql);
 
     if($resultado){
-        header('Location: \siscrud/index.php?page=lista_alu&msg=2');
+        header('Location: \sisescala/index.php?page=lista_alu&msg=2');
         mysqli_close($con);
     }else{
-        header('Location: \siscrud/index.php?page=lista_alu&msg=4');
+        header('Location: \sisescala/index.php?page=lista_alu&msg=4');
         mysqli_close($con);
     }
 ?>

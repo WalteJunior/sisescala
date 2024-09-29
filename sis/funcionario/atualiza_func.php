@@ -27,10 +27,10 @@
     $resul_end = mysqli_query($con, $sql2);
 
     if($resul_func && $resul_end){
-        header('Location: \siscrud/index.php?page=lista_func&msg=2');
+        header('Location: \sisescala/index.php?page=lista_func&msg=2');
         mysqli_close($con);
     }else{
-        header('Location: \siscrud/index.php?page=lista_func&msg=4');
+        header('Location: \sisescala/index.php?page=lista_func&msg=4');
         mysqli_close($con);
     }
 
