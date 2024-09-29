@@ -17,4 +17,6 @@
         header('Location: \sisescala/index.php?page=lista_sub&msg=4');
         mysqli_close($con);
     }
+
+    // Teste se funcionou
 ?>
