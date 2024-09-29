@@ -46,10 +46,23 @@ $row = mysqli_fetch_array($sql);
 				<label for="cargo">Cargo</label>
 				<select class="form-control" name="cargo_func">
 					<?php
-					if ($row["cargo_func"] == "OP")
-						echo '<option selected="selected" value="OP">Operador</option><option value="TC">Tecnico</option>';
-					else
-						echo '<option value="OP">Operador</option><option selected="selected" value="TC">Tecnico</option>';
+					switch($row["cargo_func"]){
+						case "OP":
+							echo '<option selected="selected" value="OP">Operador</option><option value="TC">Tecnico</option>
+							<option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
+						break;
+
+						case "TC":
+							echo '<option value="OP">Operador</option><option selected="selected" value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
+						break;
+						
+						case "AX":
+							echo '<option value="OP">Operador</option><option value="TC">Tecnico</option><option selected="selected" value="AX">Auxiliar</option><option value="INSP">Inspetor</option>';
+						break;
+
+						case "INSP":
+							echo '<option value="OP">Operador</option><option value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option selected="selected" value="INSP">Inspetor</option>';
+					}
 					?>
 				</select>
 			</div>

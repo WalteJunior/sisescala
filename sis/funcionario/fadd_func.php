@@ -43,6 +43,8 @@
 					<option> --------- </option>
 					<option value="OP">Operador</option>
 					<option value="TC">Técnico</option>
+					<option value="AX">Auxiliar</option>
+					<option value="INSP">Inspetor</option>
 				</select>
 			</div>
 		</div>
