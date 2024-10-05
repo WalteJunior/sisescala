@@ -19,7 +19,7 @@
   <!-- sidebar -->
   <div class="sidebar close">
     <?php
-      include "base/sidebar1.php";
+      include "base/sidebar.php";
     ?>
   </div>
   
