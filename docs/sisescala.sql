@@ -2,7 +2,7 @@
 -- Servidor:                     127.0.0.1
 -- Versão do servidor:           10.4.32-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
--- HeidiSQL Versão:              12.6.0.6765
+-- HeidiSQL Versão:              12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   KEY `nivel` (`nivel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.usuarios: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.usuarios: ~1 rows (aproximadamente)
 INSERT INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`) VALUES
 	(8, 'Walter', 'prodgerente', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'aaaaaaaa@gmail.com', 3, 1, '2024-10-05 00:00:00');
 
