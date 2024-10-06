@@ -1,6 +1,6 @@
 ﻿<?php
 
-$id_func                    =$_POST['id_func'];
+$id_func                    = $_POST['id_func'];
 $nome_func                  = $_POST["nome_func"];
 $telefone_func              = $_POST["telefone_func"];
 $email_func                 = $_POST["email_func"];
@@ -29,15 +29,15 @@ $estado_end                 = $_POST["estado_end"];
             $resul_end = mysqli_query($con, $sql_end);
             if ($resul_end) {
                 // Se funcionário e endereco cadastrar
-                header('Location: /sisescala/index.php?page=lista_func&msg=1'); //mensagem de inserido com sucesso
+                header('Location: /sisescala/home2.php?page=lista_func&msg=1'); //mensagem de inserido com sucesso
             } else {
                 // Se der erro no endereco
-                header('Location: /sisescala/index.php?page=lista_func&msg=4'); // mensagem de erro
+                header('Location: /sisescala/home2.php?page=lista_func&msg=4'); // mensagem de erro
             }
         
         } else {
             // Se der erro no funcionario
-            header('Location: /sisescala/index.php?page=lista_func&msg=4');
+            header('Location: /sisescala/home2.php?page=lista_func&msg=4');
         }
         
         // Fechando a conexao 

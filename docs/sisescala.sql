@@ -52,12 +52,13 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   PRIMARY KEY (`id_end`) USING BTREE,
   KEY `endereco_ibfk_1` (`id_func`) USING BTREE,
   CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_func`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Copiando dados para a tabela sisescala.endereco: ~2 rows (aproximadamente)
 INSERT INTO `endereco` (`id_end`, `rua_end`, `compl_end`, `cep_end`, `bairro_end`, `cidade_end`, `estado_end`, `id_func`) VALUES
 	(32, 'Rua Mário das Virgens de Lima', '(Cj 6 de Novembro)', '21864410', 'Bangu', 'Rio de Janeiro', 'RJ', 28),
-	(33, 'Beco Flor de Maio', '', '21864110', 'Bangu', 'Rio de Janeiro', 'RJ', 29);
+	(33, 'Beco Flor de Maio', '', '21864110', 'Bangu', 'Rio de Janeiro', 'RJ', 29),
+	(38, 'Rua Mário das Virgens de Lima', '(Cj 6 de Novembro)', '21864410', 'Bangu', 'Rio de Janeiro', 'RJ', 34);
 
 -- Copiando estrutura para tabela sisescala.escala
 DROP TABLE IF EXISTS `escala`;
@@ -83,12 +84,13 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `sexo_func` varchar(50) DEFAULT NULL,
   `email_func` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_func`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.funcionario: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.funcionario: ~3 rows (aproximadamente)
 INSERT INTO `funcionario` (`id_func`, `nome_func`, `cargo_func`, `telefone_func`, `sexo_func`, `email_func`) VALUES
 	(28, 'Joao', 'OP', '2133376667', 'M', 'w@gmail.com'),
-	(29, 'fabiano', 'TC', '999999', 'M', 'w@gmail.com');
+	(29, 'fabiano', 'TC', '999999', 'M', 'w@gmail.com'),
+	(34, 'wagner', NULL, '21', 'M', 'wag@gmail.com');
 
 -- Copiando estrutura para tabela sisescala.setor
 DROP TABLE IF EXISTS `setor`;
@@ -128,11 +130,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`),
   KEY `nivel` (`nivel`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.usuarios: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.usuarios: ~3 rows (aproximadamente)
 INSERT INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`) VALUES
-	(8, 'Walter', 'prodgerente', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'aaaaaaaa@gmail.com', 3, 1, '2024-10-05 00:00:00');
+	(8, 'Walter', 'prodgerente', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'aaaaaaaa@gmail.com', 3, 1, '2024-10-05 00:00:00'),
+	(9, 'Davi', 'prodsuperv', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'd@gmail.com', 2, 1, '2024-10-06 00:00:00'),
+	(10, 'yan', 'tec', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'y@gmail.com', 1, 1, '2024-10-06 00:00:00'),
+	(15, 'wagner', 'wagtec', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'wag@gmail.com', 1, 1, '0000-00-00 00:00:00');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

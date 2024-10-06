@@ -14,12 +14,12 @@
       </li>
       
       <li>
-        <a href="?page=lista_func">
+        <a href="?page=lista_funcsup">
           <i class="bi bi-person-badge-fill"></i>
           <span class="link_name">Funcionarios</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="?page=lista_func">Funcionairos</a></li>
+          <li><a class="link_name" href="?page=lista_sup">Funcionarios</a></li>
         </ul>
       </li>
       <li>

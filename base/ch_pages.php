@@ -10,20 +10,32 @@ if (isset($_GET['page'])) {
             include "sis/funcionario/lista_func.php";
             break;
 
-        case 'fadd_func':
-            include "sis/funcionario/fadd_func.php";
+        case 'lista_funcsup':
+            include "sis/funcionario/lista_funcsup.php";
             break;
-
+            
+         case 'fadd_func':
+                include "sis/funcionario/fadd_func.php";
+                break;
+                
         case 'insere_func':
-            include "sis/funcionario/insere_func.php";
+             include "sis/funcionario/insere_func.php";
             break;
-
-        case 'fedita_func':
-            include "sis/funcionario/fedita_func.php";
-            break;
+                    
+         case 'fedita_func':
+             include "sis/funcionario/fedita_func.php";
+             break;
+                        
+            case 'fedita_funcsup':
+             include "sis/funcionario/fedita_funcsup.php";
+             break;
 
         case 'view_func':
             include "sis/funcionario/view_func.php";
+            break;
+
+        case 'perfil_func':
+            include "sis/funcionario/perfil_func.php";
             break;
 
         case 'excluir_func':
@@ -33,6 +45,7 @@ if (isset($_GET['page'])) {
         case 'atualiza_func':
             include "sis/funcionario/atualiza_func.php";
             break;
+
         // ---- USUÁRIOS ----///
         case 'lista_usu':
             include "sis/usuarios/lista_usu.php";
@@ -65,6 +78,17 @@ if (isset($_GET['page'])) {
         case 'ativa_usu':
             include "sis/usuarios/ativa_usu.php";
             break;
+
+
+            case 'funceusu.php':
+                include "sis/cadastro/funceusu.php";
+                break;
+    
+            case 'insere_cad':
+                include "sis/usuarios/insere_cad.php";
+                break;
+    
+            
 
 
         default:

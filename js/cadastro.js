@@ -1,3 +1,24 @@
+$(document).ready(function() {
+  $('#usuario').on('input', function() {
+      var usuario = $(this).val();
+      $.ajax({
+          url: 'verifica_usuario.php',
+          type: 'POST',
+          data: {usuario: usuario},
+          success: function(response) {
+              if (response === 'exists') {
+                  $('#usuarioMsg').text('Usuário já existe');
+                  $('#submitBtn').prop('disabled', true);
+              } else {
+                  $('#usuarioMsg').text('');
+                  $('#submitBtn').prop('disabled', false);
+              }
+          }
+      });
+  });
+});
+
+//Consulta de API Viacep
 const btnPesquisarCEP = document.querySelector("#btnPesquisar");
 btnPesquisarCEP.addEventListener("click", pesquisar)
 

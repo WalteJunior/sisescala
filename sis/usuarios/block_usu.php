@@ -1,7 +1,7 @@
 ﻿<?php
 $id = (int) $_GET['id'];
 
-$sql = "update usuario set ";
+$sql = "update usuarios set ";
 $sql .= "ativo='0' ";
 $sql .= "where id = '".$id."';";
 
