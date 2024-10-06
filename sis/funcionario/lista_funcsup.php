@@ -41,7 +41,7 @@
 					echo "<td>".$info['cidade_end']."</td>";
 					echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
 					echo "<a class='btn btn-success btn-xs' href=?page=view_func&id_func=".$info['id_func']."> Visualizar </a>";
-					echo "<a class='btn btn-warning btn-xs' href=?page=fedita_func&id_func=".$info['id_func']."> Editar </a>"; 
+					echo "<a class='btn btn-warning btn-xs' href=?page=fedita_funcsup&id_func=".$info['id_func']."> Editar </a>"; 
 					echo "<a href=?page=excluir_func&id_func=".$info['id_func']." class='btn btn-danger btn-xs'> Excluir </a></td>";
 				}
 				echo "</tr></tbody></table>";

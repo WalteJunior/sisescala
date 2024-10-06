@@ -19,7 +19,7 @@
           <span class="link_name">Funcionarios</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="?page=lista_func">Funcionairos</a></li>
+          <li><a class="link_name" href="?page=lista_func">Funcionarios</a></li>
         </ul>
       </li>
       <li>
