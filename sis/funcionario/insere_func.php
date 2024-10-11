@@ -47,10 +47,6 @@ $estado_end                 = $_POST["estado_end"];
 
 
 
-    // $sql = "insert into funcionario values ";
-    // $sql .= "('0','$nome_func','$telefone_func','$sexo_func', );";
-    
-    // '0', '$cep_end','$rua_end','$compl_end','$bairro_end','$cidade_end','$estado_end'
 
 ?>
 

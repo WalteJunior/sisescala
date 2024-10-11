@@ -63,12 +63,19 @@ if (isset($_GET['page'])) {
             include "sis/usuarios/fedita_usu.php";
             break;
 
+            case 'fedita_usu2':
+                include "sis/usuarios/fedita_usu2.php";
+                break;
+
         case 'view_usu':
             include "sis/usuarios/view_usu.php";
             break;
 
         case 'atualiza_usu':
             include "sis/usuarios/atualiza_usu.php";
+            break;
+        case 'atualiza_usu2':
+            include "sis/usuarios/atualiza_usu2.php";
             break;
 
         case 'block_usu':
