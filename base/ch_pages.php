@@ -3,28 +3,40 @@ if (isset($_GET['page'])) {
 
     switch ($_GET['page']) {
         case 'home':
+            include 'base/default.php';
+            break;
+        
+        // ---- Escalas e Horarios ----///
+        case 'escala':
             include 'base/escala.php';
             break;
+
+        case 'horario':
+            include 'base/horario.php';
+            break;
+        
         // ---- Funcionairos ----///
         case 'lista_func':
             include "sis/funcionario/lista_func.php";
             break;
-
+            
         case 'fadd_func':
             include "sis/funcionario/fadd_func.php";
             break;
-
+                
         case 'insere_func':
-            include "sis/funcionario/insere_func.php";
+             include "sis/funcionario/insere_func.php";
             break;
-
-        case 'fedita_func':
+                    
+         case 'fedita_func':
             include "sis/funcionario/fedita_func.php";
             break;
+                
 
         case 'view_func':
             include "sis/funcionario/view_func.php";
             break;
+
 
         case 'excluir_func':
             include "sis/funcionario/excluir_func.php";
@@ -33,6 +45,54 @@ if (isset($_GET['page'])) {
         case 'atualiza_func':
             include "sis/funcionario/atualiza_func.php";
             break;
+
+
+        // ---- Perfil usuarios/funcionarios ----///
+        case 'perfil_func':
+            include "sis/funcionario_perfil/perfil_func.php";
+            break;
+
+        case 'fedita_funcsup':
+            include "sis/funcionario_perfil/fedita_funcsup.php";
+            break;
+
+        case 'lista_funcsup':
+            include "sis/funcionario_perfil/lista_funcsup.php";
+            break;
+
+
+        // ---- Substituição ----///
+        case 'lista_sub':
+            include "sis/substituicao/lista_sub.php";
+            break;
+            
+        case 'fadd_sub':
+            include "sis/substituicao/fadd_sub.php";
+            break;
+                
+        case 'insere_sub':
+             include "sis/substituicao/insere_sub.php";
+            break;
+                    
+         case 'fedita_sub':
+            include "sis/substituicao/fedita_sub.php";
+            break;
+                
+
+        case 'view_sub':
+            include "sis/substituicao/view_sub.php";
+            break;
+
+
+        case 'excluir_sub':
+            include "sis/substituicao/excluir_sub.php";
+            break;
+
+        case 'atualiza_sub':
+            include "sis/substituicao/atualiza_sub.php";
+            break;
+
+
         // ---- USUÁRIOS ----///
         case 'lista_usu':
             include "sis/usuarios/lista_usu.php";
@@ -65,6 +125,24 @@ if (isset($_GET['page'])) {
         case 'ativa_usu':
             include "sis/usuarios/ativa_usu.php";
             break;
+            
+        case 'insere_cad':
+            include "sis/usuarios/insere_cad.php";
+            break;
+
+        // ---- CADASTRO USUÁRIOS ----///
+        case 'atualiza_usu2':
+            include "sis/usuarios/atualiza_usu2.php";
+            break;
+
+        case 'funceusu.php':
+            include "sis/cadastro/funceusu.php";
+            break;
+    
+        case 'fedita_usu2':
+            include "sis/usuarios/fedita_usu2.php";
+            break;
+            
 
 
         default:

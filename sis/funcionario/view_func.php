@@ -1,6 +1,6 @@
 ﻿<?php
 	$id = (int) $_GET['id_func'];
-	$sql = mysqli_query($con, "select * from funcionario, endereco 
+	$sql = mysqli_query($con, "select * from funcionario, endereco, setor 
         where funcionario.id_func = $id and $id = endereco.id_func;");
 	$row = mysqli_fetch_array($sql);
 ?>
@@ -8,12 +8,12 @@
 	<h3 class="page-header">Visualizar registro do Funcionário <?php echo $id; ?> </h3>
 	<div class="row">
 		<div class="col-md-2">
-			<p><strong>ID</strong></p>
-			<p><?php echo $row['id_func'];?></p>
-		</div>
-		<div class="col-md-2">
 			<p><strong>Nome</strong></p>
 			<p><?php echo $row['nome_func'];?></p>
+		</div>
+		<div class="col-md-2">
+			<p><strong>Setor</strong></p>
+			<p><?php echo $row['nome_st']; ?></p>
 		</div>
 		<div class="col-md-2">
 			<p><strong>Cargo</strong></p>
@@ -35,10 +35,6 @@
 
 	<!-- Endereço -->
 	<div class="row">
-		<div class="col-md-2">
-			<p><strong>Rua</strong></p>
-			<p><?php echo $row['rua_end'];?></p>
-		</div>
 		<div class="col-md-2">
 			<p><strong>Bairro</strong></p>
 			<p><?php echo $row['bairro_end'];?></p>

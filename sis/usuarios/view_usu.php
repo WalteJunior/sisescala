@@ -1,6 +1,6 @@
 ﻿<?php
 	$id = (int) $_GET['id'];
-	$sql = mysqli_query($con, "select * from usuario where id = '".$id."';");
+	$sql = mysqli_query($con, "select * from usuarios where id = '".$id."';");
 	$row = mysqli_fetch_array($sql);
 ?>
 

@@ -1,6 +1,6 @@
 ﻿<?php
 $id = (int) $_GET['id_func'];
-$sql = mysqli_query($con, "select * from funcionario, endereco 
+$sql = mysqli_query($con, "select * from funcionario, endereco, setor 
         where funcionario.id_func = $id and $id = endereco.id_func;");
 $row = mysqli_fetch_array($sql);
 ?>
@@ -14,25 +14,21 @@ $row = mysqli_fetch_array($sql);
 
 		<!-- 1ª LINHA -->
 		<div class="row">
-		<div class="form-group col-md-2">
-				<label for="id_func">Id funcionario</label>
-				<input type="text" class="form-control" name="id_func" readonly value="<?php echo $row["id_func"]; ?>">
-			</div>
 			<div class="form-group col-md-2">
 				<label for="nome_func">Nome do Funcionário</label>
-				<input type="text" class="form-control" name="nome_func" value="<?php echo $row["nome_func"]; ?>">
+				<input type="text" class="form-control" name="nome_func" readonly value="<?php echo $row["nome_func"]; ?>">
 			</div>
 			<div class="form-group col-md-2">
 				<label for="nome">Telefone</label>
-				<input type="tel" class="form-control" name="telefone_func" value="<?php echo $row["telefone_func"]; ?>">
+				<input type="tel" class="form-control" name="telefone_func" readonly value="<?php echo $row["telefone_func"]; ?>">
 			</div>
 			<div class="form-group col-md-2">
 				<label for="nome">E-mail</label>
-				<input type="email" class="form-control" name="email_func" value="<?php echo $row["email_func"]; ?>">
+				<input type="email" class="form-control" name="email_func" readonly value="<?php echo $row["email_func"]; ?>">
 			</div>
 			<div class="form-group col-md-2">
 				<label for="sexo">Sexo</label>
-				<select class="form-control" name="sexo_func">
+				<select class="form-control" name="sexo_func" readonly>
 					<?php
 					if ($row["sexo_func"] == "M")
 						echo '<option selected="selected" value="M">Masculino</option><option value="F">Feminino</option>';
@@ -43,25 +39,34 @@ $row = mysqli_fetch_array($sql);
 			</div>
 
 			<div class="form-group col-md-2">
+				<label for="nome_st">Setor</label>
+				<input type="text" class="form-control" name="nome_st" readonly value="<?php echo $row["nome_st"]; ?>">
+			</div>
+
+			<div class="form-group col-md-2">
 				<label for="cargo">Cargo</label>
 				<select class="form-control" name="cargo_func">
 					<?php
 					switch($row["cargo_func"]){
+						case "":
+							echo '<option selected="selected" value="">---------</option><option value="OP">Operador</option><option value="TC">Tecnico</option>
+							<option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
+						break;
 						case "OP":
-							echo '<option selected="selected" value="OP">Operador</option><option value="TC">Tecnico</option>
+							echo '<option value="">---------</option><option selected="selected" value="OP">Operador</option><option value="TC">Tecnico</option>
 							<option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
 						break;
 
 						case "TC":
-							echo '<option value="OP">Operador</option><option selected="selected" value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
+							echo '<option value="">---------</option><option value="OP">Operador</option><option selected="selected" value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
 						break;
 						
 						case "AX":
-							echo '<option value="OP">Operador</option><option value="TC">Tecnico</option><option selected="selected" value="AX">Auxiliar</option><option value="INSP">Inspetor</option>';
+							echo '<option value="">---------</option><option value="OP">Operador</option><option value="TC">Tecnico</option><option selected="selected" value="AX">Auxiliar</option><option value="INSP">Inspetor</option>';
 						break;
 
 						case "INSP":
-							echo '<option value="OP">Operador</option><option value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option selected="selected" value="INSP">Inspetor</option>';
+							echo '<option value="">---------</option><option value="OP">Operador</option><option value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option selected="selected" value="INSP">Inspetor</option>';
 					}
 					?>
 				</select>
@@ -69,40 +74,6 @@ $row = mysqli_fetch_array($sql);
 
 		</div>
 
-		<!--Endereço-->
-		<div class="row">
-			<input type="number" class="form-control" name="id_end" hidden value="<?php echo $row["id_end"]; ?>">
-			
-			<div class="form-group col-md-2">
-				<label for="cep_end">Cep</label>
-				<input type="number" class="form-control" name="cep_end" value="<?php echo $row["cep_end"]; ?>">
-			</div>
-
-			<div class="form-group col-md-2">
-				<label for="rua_end">Rua</label>
-				<input type="text" class="form-control" name="rua_end" value="<?php echo $row["rua_end"]; ?>">
-			</div>
-
-				<div class="form-group col-md-2">
-					<label for="compl_end">Complemento</label>
-					<input type="text" class="form-control" name="compl_end" value="<?php echo $row["compl_end"]; ?>">
-				</div>
-
-				<div class="form-group col-md-2">
-					<label for="bairro_end">Bairro</label>
-					<input type="text" class="form-control" name="bairro_end" value="<?php echo $row["bairro_end"]; ?>">
-				</div>
-
-				<div class="form-group col-md-2">
-					<label for="cidade_end">Cidade</label>
-					<input type="text" class="form-control" name="cidade_end" value="<?php echo $row["cidade_end"]; ?>">
-				</div>
-
-				<div class="form-group col-md-2">
-					<label for="estado_end">Estado</label>
-					<input type="text" class="form-control" name="estado_end" value="<?php echo $row["estado_end"]; ?>">
-				</div>
-			</div>
 			<hr />
 
 			<div id="actions" class="row">

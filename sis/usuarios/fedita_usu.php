@@ -1,6 +1,6 @@
 ﻿<?php
 	$id = (int) $_GET['id'];
-	$sql = mysqli_query($con, "select * from usuario where id = '".$id."';");
+	$sql = mysqli_query($con, "select * from usuarios where id = '".$id."';");
 	$row = mysqli_fetch_array($sql);
 ?>
 <div id="main" class="container-fluid">
@@ -19,7 +19,7 @@
 		</div>
 		
 		<div class="form-group col-md-5">
-			<label for="nome">Nome de Usuário</label>
+			<label for="nome">Nome do Usuário</label>
 			<input type="text" class="form-control" name="nome" value="<?php echo $row["nome"]; ?>">
 		</div>
 		

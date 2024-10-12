@@ -1,3 +1,5 @@
+<div> <?php include "sis/cadastro/mensagens.php"; ?> </div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +23,8 @@
         </div>
 
         <button type="submit" class="btn btn-primary btn-ghost">Login</button>
+
+        <p>Não tem login? <a href="sis/cadastro/funceusu.php">Cadastre-se</a></p>
     </form>
 </body>
 </html>

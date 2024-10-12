@@ -5,7 +5,7 @@ $usuario		= $_POST["usuario"];
 $email			= $_POST["email"];
 $nivel			= $_POST["nivel"];
 
-$sql = "update usuario set ";
+$sql = "update usuarios set ";
 $sql .= "nome='".$nome."', usuario='".$usuario."', email='".$email."', nivel='".$nivel."', dt_cadastro=now() ";
 $sql .= "where id = '".$id."';";
 
@@ -20,3 +20,4 @@ if($resultado){
 }
 
 ?>
+

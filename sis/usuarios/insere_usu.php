@@ -5,17 +5,17 @@
 	$email			= $_POST["email"];
 	$nivel			= $_POST["nivel"];
 
-	$sql = "insert into usuario values ";
+	$sql = "insert into usuarios values ";
 	$sql .= "('0','$nome','$usuario', '".sha1($senha)."',
 	'$email','$nivel','1', '".date('Y-m-d')."');";
 
 	$resultado = mysqli_query($con, $sql) or die(mysqli_error($con));
 
 	if($resultado){
-		header('Location: \sisescala/index.php?page=lista_usu&msg=1');
+		header('Location: \sisescala/home3.php?page=lista_usu&msg=1');
 		mysqli_close($con);
 	}else{
-		header('Location: \sisescala/index.php?page=lista_usu&msg=6');
+		header('Location: \sisescala/home3.php?page=lista_usu&msg=6');
 		mysqli_close($con);
 	}
 ?>

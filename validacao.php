@@ -4,7 +4,7 @@ if (!empty($_POST) and (empty($_POST['usuario']) or empty($_POST['senha']))) {
 	header("Location: index.php"); exit;
 }
 // Tenta se conectar ao servidor MySQL e ao DB
-$con = mysqli_connect('localhost', 'root', '', 'sistema') or trigger_error(mysqli_error());
+$con = mysqli_connect('localhost', 'root', '', 'sisescala');
 
 $usuario = mysqli_real_escape_string($con, $_POST['usuario']);
 $senha = mysqli_real_escape_string($con, $_POST['senha']);
@@ -36,11 +36,7 @@ if (mysqli_num_rows($query) != 1) {
 	$_SESSION['UsuarioNivel'] = $resultado['nivel'];
 
 	// Redireciona o visitante
-	switch($_SESSION['UsuarioNivel']){
-		case 1: header("Location: restrito1.php"); exit;break;
-		case 2: header("Location: restrito2.php"); exit;break;
-		case 3: header("Location: restrito3.php"); exit;break;
-	}
+	header("Location: home.php"); exit;
 }
 
 ?>

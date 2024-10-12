@@ -8,10 +8,10 @@ $resultado = mysqli_query($con, $sql);
 if ($resultado) {
     $sql2 = "delete from funcionario where id_func = '$id';";
     $resultado2 = mysqli_query($con, $sql2);
-    header('Location: \sisescala/index.php?page=lista_func&msg=3');
+    header('Location: \sisescala/home.php?page=lista_func&msg=3');
     mysqli_close($con);
 }else{
-    header('Location: \sisescala/index.php?page=lista_func&msg=4');
+    header('Location: \sisescala/home.php?page=lista_func&msg=4');
     mysqli_close($con);
 }
 ?>
