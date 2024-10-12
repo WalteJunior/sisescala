@@ -3,7 +3,7 @@ if (isset($_GET['page'])) {
 
     switch ($_GET['page']) {
         case 'home':
-            include 'base/default.php';
+            include 'base/home.php';
             break;
         
         // ---- Escalas e Horarios ----///
@@ -146,7 +146,7 @@ if (isset($_GET['page'])) {
 
 
         default:
-            include "base/escala.php";
+            include "base/home.php";
             break;
     }
 }
