@@ -113,14 +113,17 @@ CREATE TABLE IF NOT EXISTS `substituicao` (
   `motivo` varchar(50) NOT NULL,
   `data_solic` date NOT NULL,
   `substituto` varchar(50) NOT NULL,
-  `data_subs` date NOT NULL,
+  `data_subs` varchar(50) DEFAULT NULL,
+  `ativo_sub` enum('Aprovado','Reprovado','Em Analise') DEFAULT NULL,
   `id_esc` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_substituicao_escala` (`id_esc`),
   CONSTRAINT `FK_substituicao_escala` FOREIGN KEY (`id_esc`) REFERENCES `escala` (`id_esc`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.substituicao: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.substituicao: ~1 rows (aproximadamente)
+REPLACE INTO `substituicao` (`id`, `solicitante`, `motivo`, `data_solic`, `substituto`, `data_subs`, `ativo_sub`, `id_esc`) VALUES
+	(27, 'Walter', 'medico', '2024-10-14', 'João', '2024-10-16', 'Em Analise', NULL);
 
 -- Copiando estrutura para tabela sisescala.usuarios
 DROP TABLE IF EXISTS `usuarios`;
@@ -138,13 +141,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   KEY `nivel` (`nivel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.usuarios: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.usuarios: ~3 rows (aproximadamente)
 REPLACE INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`) VALUES
-	(3, 'Admin1', 'admin1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin@demo.com.br', 1, 1, '2024-10-07 21:21:10'),
-	(5, 'Admin2', 'admin2', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin2@mail.com', 2, 1, '2019-04-11 00:00:00'),
-	(6, 'Admin3', 'admin3', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin3@mail.com', 3, 1, '2019-04-11 00:00:00'),
-	(21, 'joao', 'jsilva', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'j@gmail.com', 1, 1, '0000-00-00 00:00:00'),
-	(22, 'maria', 'mfernandes', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'mari@gmail.com', 1, 1, '0000-00-00 00:00:00');
+	(3, 'Funcionario', 'func', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin@demo.com.br', 1, 1, '2024-10-07 21:21:10'),
+	(5, 'Supervisor', 'supervisor', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin2@mail.com', 2, 1, '2019-04-11 00:00:00'),
+	(6, 'Administrador', 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin3@mail.com', 3, 1, '2019-04-11 00:00:00');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
