@@ -78,11 +78,9 @@ if (isset($_GET['page'])) {
             include "sis/substituicao/fedita_sub.php";
             break;
                 
-
         case 'view_sub':
             include "sis/substituicao/view_sub.php";
             break;
-
 
         case 'excluir_sub':
             include "sis/substituicao/excluir_sub.php";
@@ -90,6 +88,18 @@ if (isset($_GET['page'])) {
 
         case 'atualiza_sub':
             include "sis/substituicao/atualiza_sub.php";
+            break;
+
+        case 'reprovar_sub':
+            include "sis/substituicao/reprovar_sub.php";
+            break;
+
+        case 'aprovar_sub':
+            include "sis/substituicao/aprovar_sub.php";
+            break;
+
+        case 'analise_sub':
+            include "sis/substituicao/analise_sub.php";
             break;
 
 

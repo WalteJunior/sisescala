@@ -44,7 +44,7 @@ $row = mysqli_fetch_array($sql);
 			</div>
 
 			<div class="form-group col-md-2">
-				<label for="cargo">Cargo</label>
+				<label for="cargo_func">Cargo</label>
 				<select class="form-control" name="cargo_func">
 					<?php
 					switch($row["cargo_func"]){

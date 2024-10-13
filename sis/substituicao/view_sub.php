@@ -7,23 +7,37 @@
 	<h3 class="page-header">Visualizar registro de Substituição - <?php echo $id; ?> </h3>
 	<div class="row">
 		<div class="col-md-2">
-			<p><strong>ID</strong></p>
+			<p><strong>Nº Registro</strong></p>
 			<p><?php echo $row['id'];?></p>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-3">
+			<p><strong>Solicitante</strong></p>
+			<p><?php echo $row['solicitante'];?></p>
+		</div>
+		<div class="col-md-3">
 			<p><strong>Motivo</strong></p>
 			<p><?php echo $row['motivo'];?></p>
 		</div>
 		<div class="col-md-3">
+			<p><strong>Data Falta</strong></p>
+			<p><?php echo date('d-m-Y',strtotime($row['data_solic'])); ?></p>
+		</div>
+		<div class="col-md-3">
+			<p><strong>Substituto</strong></p>
+			<p><?php echo $row['substituto'];?></p>
+		</div>
+		<div class="col-md-3">
 			<p><strong>Data Substituição</strong></p>
-			<p><?php echo date('d-m-Y',strtotime($row['data'])); ?></p>
+			<p><?php echo date('d-m-Y',strtotime($row['data_subs'])); ?></p>
+		</div>
+		<div class="col-md-5">
+			<p><strong>Status</strong></p>
+			<p><?php echo $row['ativo_sub'];?></p>
 		</div>
 	<hr/>
 	<div id="actions" class="row">
 		<div class="col-md-12">
 			<a href="?page=lista_sub" class="btn btn-default">Voltar</a>
-				<?php echo "<a href=?page=fedita_sub&id=".$row['id']." class='btn btn-primary'>Editar</a>";?>
-				<?php echo "<a href=?page=excluir_sub&id=".$row['id']." class='btn btn-danger'>Excluir</a>";?>
 		</div>
 	</div>
 </div>

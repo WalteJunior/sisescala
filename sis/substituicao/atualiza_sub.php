@@ -1,22 +1,21 @@
 ﻿<?php
-    $id                 = $_POST["id"];
-    $motivo             = $_POST["motivo"];
-    $data               = $_POST["data"];
+    $id = $_GET["id"];
+    $solicitante                = $_POST["solicitante"];
+    $motivo                     = $_POST["motivo"];
+    $data_solic                 = $_POST["data_solic"];
+    $substituto                 = $_POST["substituto"];
+    $data_subs                  = $_POST["data_subs"];
+    $aprovado                   = $_POST["ativo_sub"];
 
-    $fdg_dt_nasc = date('Y-m-d',strtotime($data)); 
 
-    $sql = "update substituicao set ";
-    $sql .= "motivo='".$motivo."',";
-    $sql .= "data='".$data."' ";
-    $sql .= "where id = '".$id."';";
-
+    // Atualiza no banco de dados
+    $sql = "UPDATE substituicao SET solicitante='$solicitante', motivo='$motivo', data_solic='$data_solic', substituto='$substituto', data_subs='$data_subs', ativo_sub='$aprovado' WHERE id=$id;";
     $resultado = mysqli_query($con, $sql);
 
-    if($resultado){
-        header('Location: \sisescala/index.php?page=lista_sub&msg=2');
-        mysqli_close($con);
-    }else{
-        header('Location: \sisescala/index.php?page=lista_sub&msg=4');
-        mysqli_close($con);
+    if ($resultado) {
+        header('Location: \sisescala/home.php?page=lista_sub&msg=2');
+    } else {
+        header('Location: \sisescala/home.php?page=lista_sub&msg=4');
     }
+    mysqli_close($con);
 ?>

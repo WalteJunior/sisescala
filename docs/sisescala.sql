@@ -21,6 +21,7 @@ CREATE DATABASE IF NOT EXISTS `sisescala` /*!40100 DEFAULT CHARACTER SET utf8 CO
 USE `sisescala`;
 
 -- Copiando estrutura para tabela sisescala.aluno
+DROP TABLE IF EXISTS `aluno`;
 CREATE TABLE IF NOT EXISTS `aluno` (
   `matricula` int(11) NOT NULL AUTO_INCREMENT,
   `nome_aluno` varchar(50) DEFAULT NULL,
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `aluno` (
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela sisescala.endereco
+DROP TABLE IF EXISTS `endereco`;
 CREATE TABLE IF NOT EXISTS `endereco` (
   `id_end` int(11) NOT NULL AUTO_INCREMENT,
   `rua_end` varchar(50) DEFAULT NULL,
@@ -50,13 +52,15 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   PRIMARY KEY (`id_end`) USING BTREE,
   KEY `endereco_ibfk_1` (`id_func`) USING BTREE,
   CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_func`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.endereco: ~1 rows (aproximadamente)
-INSERT INTO `endereco` (`id_end`, `rua_end`, `compl_end`, `cep_end`, `bairro_end`, `cidade_end`, `estado_end`, `id_func`) VALUES
-	(39, 'Rua João Goulart', '', '21010-840', 'Parada de Lucas', 'Rio de Janeiro', 'RJ', 35);
+-- Copiando dados para a tabela sisescala.endereco: ~2 rows (aproximadamente)
+REPLACE INTO `endereco` (`id_end`, `rua_end`, `compl_end`, `cep_end`, `bairro_end`, `cidade_end`, `estado_end`, `id_func`) VALUES
+	(44, 'Passagem Modelo', '', '66073-400', 'Guamá', 'Belém', 'PA', 40),
+	(45, 'Rua Félix Antônio Lombardi', '', '58028-500', 'Ipês', 'João Pessoa', 'PB', 41);
 
 -- Copiando estrutura para tabela sisescala.escala
+DROP TABLE IF EXISTS `escala`;
 CREATE TABLE IF NOT EXISTS `escala` (
   `id_esc` int(11) NOT NULL AUTO_INCREMENT,
   `data_inicio` date DEFAULT NULL,
@@ -67,26 +71,30 @@ CREATE TABLE IF NOT EXISTS `escala` (
   CONSTRAINT `FK_escala_funcionario` FOREIGN KEY (`id_func`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.escala: ~1 rows (aproximadamente)
-INSERT INTO `escala` (`id_esc`, `data_inicio`, `data_fim`, `id_func`) VALUES
-	(3, '2024-10-12', '2024-10-13', 35);
+-- Copiando dados para a tabela sisescala.escala: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela sisescala.funcionario
+DROP TABLE IF EXISTS `funcionario`;
 CREATE TABLE IF NOT EXISTS `funcionario` (
   `id_func` int(11) NOT NULL AUTO_INCREMENT,
-  `nome_func` varchar(50) DEFAULT NULL,
-  `cargo_func` varchar(50) DEFAULT NULL,
-  `telefone_func` varchar(50) DEFAULT NULL,
-  `sexo_func` varchar(50) DEFAULT NULL,
-  `email_func` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id_func`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `nome_func` varchar(50) NOT NULL,
+  `cargo_func` varchar(50) NOT NULL,
+  `telefone_func` varchar(50) NOT NULL,
+  `sexo_func` varchar(50) NOT NULL,
+  `email_func` varchar(50) NOT NULL,
+  `id_st` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_func`) USING BTREE,
+  KEY `FK_funcionario_setor` (`id_st`),
+  CONSTRAINT `FK_funcionario_setor` FOREIGN KEY (`id_st`) REFERENCES `setor` (`id_st`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.funcionario: ~1 rows (aproximadamente)
-INSERT INTO `funcionario` (`id_func`, `nome_func`, `cargo_func`, `telefone_func`, `sexo_func`, `email_func`) VALUES
-	(35, 'João', 'OP', '21999999', 'M', 'joao@gmail.com');
+-- Copiando dados para a tabela sisescala.funcionario: ~2 rows (aproximadamente)
+REPLACE INTO `funcionario` (`id_func`, `nome_func`, `cargo_func`, `telefone_func`, `sexo_func`, `email_func`, `id_st`) VALUES
+	(40, 'joao', '', '111111111', 'M', 'j@gmail.com', NULL),
+	(41, 'maria', '', '22222222', 'F', 'mari@gmail.com', NULL);
 
 -- Copiando estrutura para tabela sisescala.setor
+DROP TABLE IF EXISTS `setor`;
 CREATE TABLE IF NOT EXISTS `setor` (
   `id_st` int(11) NOT NULL AUTO_INCREMENT,
   `nome_st` varchar(50) DEFAULT NULL,
@@ -94,14 +102,18 @@ CREATE TABLE IF NOT EXISTS `setor` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Copiando dados para a tabela sisescala.setor: ~1 rows (aproximadamente)
-INSERT INTO `setor` (`id_st`, `nome_st`) VALUES
+REPLACE INTO `setor` (`id_st`, `nome_st`) VALUES
 	(1, 'Produção');
 
 -- Copiando estrutura para tabela sisescala.substituicao
+DROP TABLE IF EXISTS `substituicao`;
 CREATE TABLE IF NOT EXISTS `substituicao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `motivo` varchar(50) DEFAULT NULL,
-  `data` date DEFAULT NULL,
+  `solicitante` varchar(50) NOT NULL,
+  `motivo` varchar(50) NOT NULL,
+  `data_solic` date NOT NULL,
+  `substituto` varchar(50) NOT NULL,
+  `data_subs` date NOT NULL,
   `id_esc` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_substituicao_escala` (`id_esc`),
@@ -111,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `substituicao` (
 -- Copiando dados para a tabela sisescala.substituicao: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela sisescala.usuarios
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
@@ -123,15 +136,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`),
   KEY `nivel` (`nivel`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Copiando dados para a tabela sisescala.usuarios: ~5 rows (aproximadamente)
-INSERT INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`) VALUES
+REPLACE INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`) VALUES
 	(3, 'Admin1', 'admin1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin@demo.com.br', 1, 1, '2024-10-07 21:21:10'),
 	(5, 'Admin2', 'admin2', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin2@mail.com', 2, 1, '2019-04-11 00:00:00'),
 	(6, 'Admin3', 'admin3', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin3@mail.com', 3, 1, '2019-04-11 00:00:00'),
-	(19, 'Walter Junior', 'waltjunio', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'walter@gmail.com', 1, 1, '0000-00-00 00:00:00'),
-	(20, 'Walter Junior', 'walt', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'walter@gmail.com', 1, 1, '0000-00-00 00:00:00');
+	(21, 'joao', 'jsilva', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'j@gmail.com', 1, 1, '0000-00-00 00:00:00'),
+	(22, 'maria', 'mfernandes', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'mari@gmail.com', 1, 1, '0000-00-00 00:00:00');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

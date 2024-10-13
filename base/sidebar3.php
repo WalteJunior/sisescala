@@ -23,12 +23,12 @@
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="?page=lista_sub">
         <i class="bi bi-person-fill-exclamation"></i>
           <span class="link_name">Substituição</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Substituição</a></li>
+          <li><a class="link_name" href="?page=lista_sub">Substituição</a></li>
         </ul>
       </li>
       <li>
@@ -47,7 +47,7 @@
           </div>
           <div class="name-job">
             <div class="profile_name"></div>
-            <div class="job">Web Desginer</div>
+            <div class="job"><p><?php echo $_SESSION['UsuarioNome'];?></p></div>
           </div>
           <a href="/sisescala/logout.php"><i class='bx bx-log-out'></i></a>
         </div>
