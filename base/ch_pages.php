@@ -14,6 +14,9 @@ if (isset($_GET['page'])) {
         case 'horario':
             include 'base/horario.php';
             break;
+        case 'view_escala':
+            include 'base/view_escala.php';
+            break;
         
         // ---- Funcionairos ----///
         case 'lista_func':
