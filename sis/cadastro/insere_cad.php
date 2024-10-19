@@ -22,16 +22,6 @@ $bairro_end                 = $_POST["bairro_end"];
 $cidade_end                 = $_POST["cidade_end"];
 $estado_end                 = $_POST["estado_end"];
 
-// Inserção na tabela usuarios
-$sql_usuarios = "INSERT INTO usuarios (nome, usuario, senha, email) ";
-$sql_usuarios .= "VALUES ('$nome', '$usuario', '".sha1($senha)."', '$email');";
-
-// Executa a inserção na tabela usuarios
-$resultado_usuario = mysqli_query($con, $sql_usuarios) or die(mysqli_error($con));
-
-// Captura o ID do usuário recém-inserido (para armazenar na sessão)
-$id_usuario = mysqli_insert_id($con);
-
 // Inserção na tabela funcionario
 $sql_funcionario = "INSERT INTO funcionario (nome_func, telefone_func, sexo_func, email_func) ";
 $sql_funcionario .= "VALUES ('$nome', '$telefone', '$sexo', '$email');";
@@ -41,6 +31,17 @@ $resultado_funcionario = mysqli_query($con, $sql_funcionario) or die(mysqli_erro
 
 // Captura o ID do funcionário recém-inserido
 $id_func = mysqli_insert_id($con);
+
+// Inserção na tabela usuarios
+$sql_usuarios = "INSERT INTO usuarios (nome, usuario, senha, email, id_func) ";
+$sql_usuarios .= "VALUES ('$nome', '$usuario', '".sha1($senha)."', '$email','$id_func');";
+
+// Executa a inserção na tabela usuarios
+$resultado_usuario = mysqli_query($con, $sql_usuarios) or die(mysqli_error($con));
+
+// Captura o ID do usuário recém-inserido (para armazenar na sessão)
+$id_usuario = mysqli_insert_id($con);
+
 
 // Inserção na tabela endereco usando o id_func como chave estrangeira
 $sql_endereco = "INSERT INTO endereco (id_func, rua_end, compl_end, cep_end, bairro_end, cidade_end, estado_end) ";

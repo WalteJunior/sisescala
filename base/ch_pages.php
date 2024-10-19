@@ -8,14 +8,11 @@ if (isset($_GET['page'])) {
         
         // ---- Escalas e Horarios ----///
         case 'escala':
-            include 'base/escala.php';
+            include 'sis/escalas/escala.php';
             break;
 
-        case 'horario':
-            include 'base/horario.php';
-            break;
         case 'view_escala':
-            include 'base/view_escala.php';
+            include 'sis/escalas/view_escala.php';
             break;
         
         // ---- Funcionairos ----///

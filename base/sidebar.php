@@ -4,12 +4,12 @@
     </div>
     <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="?page=view_escala&id_func=<?php echo $info['id_func']?>">
           <i class="bi bi-table"></i>
           <span class="link_name">Horarios</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Horarios</a></li>
+          <li><a class="link_name" href="?page=view_escala&id_func=">Horarios</a></li>
         </ul>
       </li>
       
