@@ -12,6 +12,7 @@ $row = mysqli_fetch_array($sql);
 
 	<form action="?page=atualiza_func&id_func=<?php echo $row['id_func']; ?>" method="post">
 
+		<input type="hidden" name="id_func" value="<?php echo $row["id_func"]; ?>">
 		<!-- 1ª LINHA -->
 		<div class="row">
 			<div class="form-group col-md-2">
@@ -39,6 +40,37 @@ $row = mysqli_fetch_array($sql);
 			</div>
 
 			<div class="form-group col-md-2">
+				<label for="turno">Turno</label>
+				<select class="form-control" name="turno" >
+					<?php
+					switch($row["turno"]){
+						case'':
+							echo '
+							<option selected="selected" value="">--------</option>
+							<option value="diurno">Diurno</option>
+							<option value="noturno">Noturno</option>';
+						break;
+
+						case'diurno':
+							echo '
+							<option value="">--------</option>
+							<option selected="selected" value="diurno">Diurno</option>
+							<option value="noturno">Noturno</option>';
+						break;
+
+						case'noturno':
+							echo '
+							<option value="">--------</option>
+							<option value="diurno">Diurno</option>
+							<option selected="selected" value="noturno">Noturno</option>';
+						break;
+
+					}
+					?>
+				</select>
+			</div>
+
+			<div class="form-group col-md-2">
 				<label for="nome_st">Setor</label>
 				<input type="text" class="form-control" name="nome_st" readonly value="<?php echo $row["nome_st"]; ?>">
 			</div>
@@ -56,21 +88,22 @@ $row = mysqli_fetch_array($sql);
 							echo '<option value="">---------</option><option selected="selected" value="OP">Operador</option><option value="TC">Tecnico</option>
 							<option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
 						break;
-
 						case "TC":
-							echo '<option value="">---------</option><option value="OP">Operador</option><option selected="selected" value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
+							echo '<option value="">---------</option><option value="OP">Operador</option><option selected="selected" value="TC">Tecnico</option> 
+							<option value="AX">Auxiliar</option> <option value="INSP">Inspetor</option>';
 						break;
-						
 						case "AX":
-							echo '<option value="">---------</option><option value="OP">Operador</option><option value="TC">Tecnico</option><option selected="selected" value="AX">Auxiliar</option><option value="INSP">Inspetor</option>';
+							echo '<option value="">---------</option><option value="OP">Operador</option><option value="TC">Tecnico</option>
+							<option selected="selected" value="AX">Auxiliar</option><option value="INSP">Inspetor</option>';
 						break;
-
 						case "INSP":
-							echo '<option value="">---------</option><option value="OP">Operador</option><option value="TC">Tecnico</option> <option value="AX">Auxiliar</option> <option selected="selected" value="INSP">Inspetor</option>';
+							echo '<option value="">---------</option><option value="OP">Operador</option><option value="TC">Tecnico</option> 
+							<option value="AX">Auxiliar</option> <option selected="selected" value="INSP">Inspetor</option>';
 					}
 					?>
 				</select>
 			</div>
+
 
 		</div>
 

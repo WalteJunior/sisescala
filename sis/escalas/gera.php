@@ -5,18 +5,25 @@ if ($mysqli->connect_error) {
     die("Conexão falhou: " . $mysqli->connect_error);
 }
 
-// Verificar se os parâmetros estão definidos
-if (!isset($_GET['id_fun']) || !isset($_GET['tipo_turno'])) {
-    die("Erro: ID do funcionário ou tipo de turno não fornecido.");
+// Verificar se a sessão está ativa e se o id_func está definido na sessão
+session_start();
+if (isset($_SESSION['id_func'])) {
+    $id_func = (int) $_SESSION['id_func']; // Pegando o id_func da sessão
+    echo "ID do funcionário na sessão: " . $id_func; // Exibe o id_func para confirmação
+} else {
+    die("ID do funcionário não encontrado na sessão.");
 }
 
-$id_fun = $_GET['id_fun'];
-$tipo_turno = $_GET['tipo_turno']; // Supondo que você passe o tipo de turno também
+// Buscar dados da escala para o funcionário específico
+$sql = "SELECT turno FROM funcionario WHERE id_func = $id_func";
+$result = $mysqli->query($sql);
 
-// Validar o tipo de turno
-if (!in_array($tipo_turno, ['dia', 'noite'])) {
-    die("Erro: Tipo de turno inválido.");
+if ($result->num_rows == 0) {
+    die("Funcionário não encontrado com o ID: " . $id_func);
 }
+
+$row = $result->fetch_assoc();
+$turno_funcionario = $row['turno'];
 
 // Definir horários de início e fim do turno
 $hrinicio_dia = "07:00:00";
@@ -42,38 +49,28 @@ function gerarDatasMes($inicio_mes, $fim_mes) {
 $datas_mes = gerarDatasMes($inicio_mes, $fim_mes);
 
 // Limpar escala existente para o funcionário
-$mysqli->query("DELETE FROM escala WHERE id_func = $id_fun");
+$mysqli->query("DELETE FROM escala WHERE id_func = $id_func");
 
-// Iterar sobre cada data do mês
+// Iterar sobre cada data do mês e gerar escala se o turno do funcionário corresponder
 foreach ($datas_mes as $index => $data_atual) {
-    // Calcular se é dia de trabalho
-    if ($index % 2 == 0) { // Dias pares são dias de trabalho
-        if ($tipo_turno == 'diurno') {
-            $hrinicio = $hrinicio_dia;
-            $hrfim = $hrfim_dia;
-        } else if ($tipo_turno == 'noturno') {
-            $hrinicio = $hrinicio_noite;
-            $hrfim = $hrfim_noite;
-        }
-
-        // Inserir escala no banco de dados com a data do turno
-        // Adicione isto antes da inserção no banco de dados
-        echo "Gerando escala para ID: $id_fun, Turno: $tipo_turno\n";
-
-        $stmt = $mysqli->prepare("INSERT INTO escala (tipo_turno, hora_inicio, hora_fim, id_func, data) VALUES (?, ?, ?, ?, ?)");
-        if (!$stmt) {
-            die("Erro na preparação do statement: " . $mysqli->error);
-        }
-
-        $stmt->bind_param("sssis", $tipo_turno, $hrinicio, $hrfim, $id_fun, $data_atual);
-        if (!$stmt->execute()) {
-            die("Erro na execução: " . $stmt->error);
-        } else {
-            echo "Escala gerada para o ID: $id_fun na data: $data_atual\n"; // Debug
-        }
-
+    // Verifica se o turno do funcionário é diurno ou noturno e define horários de acordo
+    if ($turno_funcionario == 'Diurno') {
+        $hora_inicio = $hrinicio_dia;
+        $hora_fim = $hrfim_dia;
+    } else {
+        $hora_inicio = $hrinicio_noite;
+        $hora_fim = $hrfim_noite;
+    }
+    
+    // Inserir escala na tabela para o funcionário
+    $sql_insert = "INSERT INTO escala (tipo_turno, hora_inicio, hora_fim, data, id_func) 
+                   VALUES ('$turno_funcionario', '$hora_inicio', '$hora_fim', '$data_atual', $id_func)";
+    if (!$mysqli->query($sql_insert)) {
+        die("Erro ao inserir escala: " . $mysqli->error);
     }
 }
 
-echo "Escala gerada com sucesso!";
+echo "Escala gerada com sucesso para o funcionário ID: " . $id_func;
+
+$mysqli->close();
 ?>

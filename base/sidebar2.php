@@ -9,7 +9,7 @@
           <span class="link_name">Escalas</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Escalas</a></li>
+          <li><a class="link_name" href="?page=escala">Escalas</a></li>
         </ul>
       </li>
       

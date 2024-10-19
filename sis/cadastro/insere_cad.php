@@ -33,8 +33,9 @@ $resultado_funcionario = mysqli_query($con, $sql_funcionario) or die(mysqli_erro
 $id_func = mysqli_insert_id($con);
 
 // Inserção na tabela usuarios
-$sql_usuarios = "INSERT INTO usuarios (nome, usuario, senha, email, id_func) ";
-$sql_usuarios .= "VALUES ('$nome', '$usuario', '".sha1($senha)."', '$email','$id_func');";
+$sql_usuarios = "INSERT INTO usuarios (nome, usuario, senha, email, id_func, dt_cadastro) ";
+$sql_usuarios .= "VALUES ('$nome', '$usuario', '" . sha1($senha) . "', '$email', '$id_func', NOW());";
+
 
 // Executa a inserção na tabela usuarios
 $resultado_usuario = mysqli_query($con, $sql_usuarios) or die(mysqli_error($con));
