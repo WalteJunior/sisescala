@@ -5,7 +5,6 @@ if ($mysqli->connect_error) {
     die("Conexão falhou: " . $mysqli->connect_error);
 }
 
-
 // Verificar se a sessão está ativa e se o id_func está definido na sessão
 if (isset($_SESSION['id_func'])) {
     $id_func = (int) $_SESSION['id_func']; // Pegando o id_func da sessão
@@ -14,7 +13,7 @@ if (isset($_SESSION['id_func'])) {
 }
 
 // Buscar dados da escala para o funcionário específico
-$sql = "SELECT turno FROM funcionario WHERE id_func = $id_func";
+$sql = "SELECT nome_func, turno FROM funcionario WHERE id_func = $id_func";
 $result = $mysqli->query($sql);
 
 if ($result->num_rows == 0) {
@@ -22,13 +21,14 @@ if ($result->num_rows == 0) {
 }
 
 $row = $result->fetch_assoc();
+$nome_funcionario = $row['nome_func'];
 $turno_funcionario = $row['turno'];
 
 // Definir horários de início e fim do turno
-$hrinicio_dia = "07:00:00";
-$hrfim_dia = "19:00:00";
-$hrinicio_noite = "19:00:00";
-$hrfim_noite = "07:00:00";
+$hrinicio_dia = "07:00";
+$hrfim_dia = "19:00";
+$hrinicio_noite = "19:00";
+$hrfim_noite = "07:00";
 
 // Definir o primeiro dia do mês atual e o último dia do mês
 $inicio_mes = date("Y-m-01");  // Primeiro dia do mês atual
@@ -89,7 +89,6 @@ foreach ($datas_mes as $data_atual) {
     $ultima_data = $data_atual;
 }
 
-
 ////////////////////////////////////////////////////////////////////////////
 // Buscar dados da escala para o funcionário específico
 $sql = "SELECT escala.*, funcionario.nome_func 
@@ -98,21 +97,57 @@ $sql = "SELECT escala.*, funcionario.nome_func
         WHERE escala.id_func = $id_func";
 $result = $mysqli->query($sql);
 
+// Incluir Bootstrap no cabeçalho
+echo '
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Escala do Funcionário - ' . $nome_funcionario . '</title>
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Escala do Funcionário - ' . $nome_funcionario . '</h2>
+';
+
 if ($result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>Data</th><th>Hora Início</th><th>Hora Fim</th><th>Turno</th></tr>";
+    echo '
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Hora Início</th>
+                    <th scope="col">Hora Fim</th>
+                    <th scope="col">Turno</th>
+                </tr>
+            </thead>
+            <tbody>';
     while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['data'] . "</td>";
-        echo "<td>" . $row['hora_inicio'] . "</td>";
-        echo "<td>" . $row['hora_fim'] . "</td>";
-        echo "<td>" . $row['tipo_turno'] . "</td>";
-        echo "</tr>";
+        echo '
+        <tr>
+            <td>' . date("d/m/Y", strtotime($row['data'])) . '</td>
+            <td>' . date("H:i", strtotime($row['hora_inicio'])) . '</td>
+            <td>' . date("H:i", strtotime($row['hora_fim'])) . '</td>
+            <td>' . ucfirst($row['tipo_turno']) . '</td>
+        </tr>';
     }
-    echo "</table>";
+    echo '
+            </tbody>
+        </table>
+    </div>';
 } else {
-    echo "Nenhuma escala encontrada para o funcionário.";
+    echo '<div class="alert alert-warning" role="alert">Nenhuma escala encontrada para o funcionário.</div>';
 }
+
+echo '
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+';
 
 $mysqli->close();
 ?>
