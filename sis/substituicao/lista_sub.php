@@ -22,9 +22,11 @@
 
 					$data = mysqli_query($con, "select * from substituicao order by id desc;") or die(mysqli_error($con));
 					
-					if(isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1){
-						echo "<table class='table table-striped' cellspacing='0' cellpadding='0'>";
-						echo "<thead><tr>";
+					if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1) {
+						// Tabela com cor de fundo personalizada
+						echo "<table class='table table-striped table-bordered' style='background-color: #e0f7fa;' cellspacing='0' cellpadding='0'>"; // Fundo azul claro
+						echo "<thead style='background-color: #007bff; color: white;'>"; // Cabeçalho com azul mais escuro e texto branco
+						echo "<tr>";
 						echo "<td><strong>Nº Registro</strong></td>"; 
 						echo "<td><strong>Solicitante</strong></td>";
 						echo "<td><strong>Motivo</strong></td>";
@@ -35,7 +37,7 @@
 						echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
 						echo "</tr></thead><tbody>";
 						
-						while($info = mysqli_fetch_array($data)){ 
+						while ($info = mysqli_fetch_array($data)) { 
 							echo "<tr>";
 							echo "<td>".$info['id']."</td>";
 							echo "<td>".$info['solicitante']."</td>";
@@ -50,10 +52,11 @@
 							echo "</tr>";
 						}
 						echo "</tbody></table>";
-					
-					} else if(isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 2){
-						echo "<table class='table table-striped' cellspacing='0' cellpadding='0'>";
-						echo "<thead><tr>";
+						
+					} else if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 2) {
+						echo "<table class='table table-striped table-bordered' style='background-color: #e0f7fa;' cellspacing='0' cellpadding='0'>"; // Fundo azul claro
+						echo "<thead style='background-color: #007bff; color: white;'>"; // Cabeçalho com azul mais escuro e texto branco
+						echo "<tr>";
 						echo "<td><strong>Nº Registro</strong></td>"; 
 						echo "<td><strong>Solicitante</strong></td>";
 						echo "<td><strong>Motivo</strong></td>";  
@@ -61,7 +64,7 @@
 						echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
 						echo "</tr></thead><tbody>";
 						
-						while($info = mysqli_fetch_array($data)){ 
+						while ($info = mysqli_fetch_array($data)) { 
 							echo "<tr>";
 							echo "<td>".$info['id']."</td>";
 							echo "<td>".$info['solicitante']."</td>";
@@ -70,17 +73,14 @@
 							echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
 							echo "<a class='btn btn-info btn-xs' href=?page=view_sub&id=".$info['id']."> Visualizar </a>";
 					
-							if($info['ativo_sub'] == 'Em Analise'){
+							if ($info['ativo_sub'] == 'Em Analise') {
 								echo "<a class='btn btn-success btn-xs' href=?page=aprovar_sub&id=".$info['id'].">&nbsp;&nbsp;&nbsp;Aprovar&nbsp;&nbsp;</a>";
-
 								echo "<a class='btn btn-danger btn-xs' href=?page=reprovar_sub&id=".$info['id']."> Reprovar </a>";
-							} else if($info['ativo_sub'] == 'Aprovado'){
+							} else if ($info['ativo_sub'] == 'Aprovado') {
 								echo "<a class='btn btn-danger btn-xs' href=?page=reprovar_sub&id=".$info['id'].">&nbsp;&nbsp;&nbsp;Reprovar&nbsp;&nbsp;</a>";
-
 								echo "<a class='btn btn-warning btn-xs' href=?page=analise_sub&id=".$info['id']."> Em Analise </a>";
 							} else {
 								echo "<a class='btn btn-success btn-xs' href=?page=aprovar_sub&id=".$info['id'].">&nbsp;&nbsp;&nbsp;Aprovar&nbsp;&nbsp;</a>";
-
 								echo "<a class='btn btn-warning btn-xs' href=?page=analise_sub&id=".$info['id']."> Em Analise </a>";
 							}
 							echo "</tr>";
@@ -88,7 +88,6 @@
 						echo "</tbody></table>";
 					}
 					
-					echo "</tr></tbody></table>";
 				?>				
 			</div>
 		</div><!--list-->

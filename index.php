@@ -10,7 +10,7 @@
 </head>
 <body>
     <form action="validacao.php" method="post" class="login-form">
-        <h1>Login</h1>
+        <img src="./assets/logo.jpeg" alt="Logo da Empresa">
 
         <div class="form-input-material">
             <input type="text" name="usuario" id="username" placeholder=" " maxlength="25" autocomplete="off" class="form-control-material" required />

@@ -99,20 +99,33 @@ $sql = "SELECT escala.*, funcionario.nome_func
 $result = $mysqli->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>Data</th><th>Hora Início</th><th>Hora Fim</th><th>Turno</th></tr>";
+    echo '<div class="container">';
+    echo '<div class="row">';
+    echo '<div class="col-md-12">';
+    echo '<table class="table table-striped" style="background-color: #e0f7fa;">'; // Cor de fundo azul claro
+    echo '<thead style="background-color: #007bff; color: white;">'; // Cabeçalho com azul mais escuro e texto branco
+    echo '<tr><th>Data</th><th>Hora Início</th><th>Hora Fim</th><th>Turno</th></tr>';
+    echo '</thead>';
+    echo '<tbody>';
+
     while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['data'] . "</td>";
-        echo "<td>" . $row['hora_inicio'] . "</td>";
-        echo "<td>" . $row['hora_fim'] . "</td>";
-        echo "<td>" . $row['tipo_turno'] . "</td>";
-        echo "</tr>";
+        echo '<tr>';
+        echo '<td>' . date("d/m/Y", strtotime($row['data'])) . '</td>'; // Formatação da data
+        echo '<td>' . date("H:i", strtotime($row['hora_inicio'])) . '</td>'; // Formatação da hora de início
+        echo '<td>' . date("H:i", strtotime($row['hora_fim'])) . '</td>'; // Formatação da hora de fim
+        echo '<td>' . ucfirst($row['tipo_turno']) . '</td>'; // Capitalização do tipo de turno
+        echo '</tr>';
     }
-    echo "</table>";
+
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>'; // Fecha col-md-12
+    echo '</div>'; // Fecha row
+    echo '</div>'; // Fecha container
 } else {
-    echo "Nenhuma escala encontrada para o funcionário.";
+    echo '<div class="alert alert-warning">Nenhuma escala encontrada para o funcionário.</div>';
 }
+
 
 $mysqli->close();
 ?>

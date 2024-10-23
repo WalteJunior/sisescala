@@ -47,7 +47,7 @@
           </div>
           <div class="name-job">
             <div class="profile_name"></div>
-            <div class="job"><p><?php echo $_SESSION['UsuarioNome'];?></p></div>
+            <div class="job"><p style="font-size:medium;"><?php echo $_SESSION['UsuarioNome'];?></p></div>
           </div>
           <a href="/sisescala/logout.php"><i class='bx bx-log-out'></i></a>
         </div>
