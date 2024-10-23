@@ -27,12 +27,12 @@ if (!$row) {
     exit();
 }
 
-
-
 ?>
 <div id="main" class="container-fluid">
     <h3 class="page-header">Visualizar registro do Usuário <?php echo $id; ?> </h3>
-    <div class="row">
+    
+    <!-- Row 1 -->
+    <div class="row" style="background-color: #e0f7fa; padding: 15px; border-radius: 5px;"> <!-- Fundo azul claro -->
         <div class="col-md-2">
             <p><strong>Nome</strong></p>
             <p><?php echo $row['nome']; ?></p>
@@ -46,38 +46,41 @@ if (!$row) {
             <p><?php echo $row['email']; ?></p>
         </div>
         <div class="col-md-2">
-			<p><strong>Cargo</strong></p>
-			<p><?php echo $row['cargo_func']; ?></p>
-		</div>
-		<div class="col-md-2">
-			<p><strong>Telefone</strong></p>
-			<p><?php echo $row['telefone_func'];?></p>
-		</div>
-
+            <p><strong>Cargo</strong></p>
+            <p><?php echo $row['cargo_func']; ?></p>
+        </div>
+        <div class="col-md-2">
+            <p><strong>Telefone</strong></p>
+            <p><?php echo $row['telefone_func']; ?></p>
+        </div>
     </div>
-    <div class="row">
-		<div class="col-md-2">
-			<p><strong>Rua</strong></p>
-			<p><?php echo $row['rua_end'];?></p>
-		</div>
-		<div class="col-md-2">
-			<p><strong>Bairro</strong></p>
-			<p><?php echo $row['bairro_end'];?></p>
-		</div>
-		<div class="col-md-2">
-			<p><strong>Cidade</strong></p>
-			<p><?php echo $row['cidade_end'];?></p>
-		</div>
-	</div>
     
+    <!-- Row 2 -->
+    <div class="row" style="background-color: #e0f7fa; padding: 15px; margin-top: 10px; border-radius: 5px;"> <!-- Fundo azul claro -->
+        <div class="col-md-2">
+            <p><strong>Rua</strong></p>
+            <p><?php echo $row['rua_end']; ?></p>
+        </div>
+        <div class="col-md-2">
+            <p><strong>Bairro</strong></p>
+            <p><?php echo $row['bairro_end']; ?></p>
+        </div>
+        <div class="col-md-2">
+            <p><strong>Cidade</strong></p>
+            <p><?php echo $row['cidade_end']; ?></p>
+        </div>
+    </div>
 
     <hr/>
+    
+    <!-- Ações -->
     <div id="actions" class="row">
         <div class="col-md-12">
             <?php echo "<a href=?page=fedita_usu2&id=".$row['id']." class='btn btn-primary'>Editar</a>"; ?>
         </div>
     </div>
 </div>
+
 
 
 

@@ -14,32 +14,41 @@
 	<div> <?php include "mensagens.php"; ?> </div>
 
 	<div id="list" class="row">
-		<div class="table-responsive col-md-12">
-			<?php
-				$data = mysqli_query($con, "select * from funcionario, endereco, setor where funcionario.id_func = endereco.id_func;");
-				echo "<table class='table table-striped' cellspacing='0' cellpading='0'>";
-				echo "<thead><tr>"; 
-				echo "<td><strong>Nome</strong></td>"; 
-				echo "<td><strong>Sexo</strong></td>";
-				echo "<td><strong>Setor</strong></td>";
-				echo "<td><strong>Turno</strong></td>";
-				echo "<td><strong>Cargo</strong></td>";
-				echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
-				echo "</tr></thead><tbody>";
-				while($info = mysqli_fetch_array($data)){ 
-					echo "<tr>";
-					echo "<td>".$info['nome_func']."</td>";
-					echo "<td>".$info['sexo_func']."</td>";
-					echo "<td>".$info['nome_st']."</td>";
-					echo "<td>".$info['turno']."</td>";
-					echo "<td>".$info['cargo_func']."</td>";
-					echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
-					echo "<a class='btn btn-success btn-xs' href=?page=view_func&id_func=".$info['id_func']."> Visualizar </a>";
-					echo "<a class='btn btn-warning btn-xs' href=?page=fedita_func&id_func=".$info['id_func']."> Editar </a>"; 
-					echo "<a href=?page=excluir_func&id_func=".$info['id_func']." class='btn btn-danger btn-xs'> Excluir </a></td>";
-				}
-				echo "</tr></tbody></table>";
-			?>				
-		</div>
-	</div>
+    <div class="table-responsive col-md-12">
+	<?php
+    $data = mysqli_query($con, "select * from funcionario, endereco, setor where funcionario.id_func = endereco.id_func;");
+    
+    // Tabela com cor de fundo personalizada
+    echo "<table class='table table-striped table-bordered' style='background-color: #e0f7fa;' cellspacing='0' cellpadding='0'>"; // Fundo azul claro
+    echo "<thead style='background-color: #007bff; color: white;'>"; // Cabeçalho com azul escuro e texto branco
+    echo "<tr>"; 
+    echo "<td><strong>Nome</strong></td>"; 
+    echo "<td><strong>Sexo</strong></td>";
+    echo "<td><strong>Setor</strong></td>";
+    echo "<td><strong>Turno</strong></td>";
+    echo "<td><strong>Cargo</strong></td>";
+    echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
+    echo "</tr></thead><tbody>";
+
+    while ($info = mysqli_fetch_array($data)) { 
+        echo "<tr>";
+        echo "<td>".$info['nome_func']."</td>";
+        echo "<td>".$info['sexo_func']."</td>";
+        echo "<td>".$info['nome_st']."</td>";
+        echo "<td>".$info['turno']."</td>";
+        echo "<td>".$info['cargo_func']."</td>";
+        echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
+        echo "<a class='btn btn-success btn-xs' href='?page=view_func&id_func=".$info['id_func']."'> Visualizar </a>";
+        echo "<a class='btn btn-warning btn-xs' href='?page=fedita_func&id_func=".$info['id_func']."'> Editar </a>"; 
+        echo "<a href='?page=excluir_func&id_func=".$info['id_func']."' class='btn btn-danger btn-xs'> Excluir </a>";
+        echo "</td>";
+        echo "</tr>";
+    }
+
+    echo "</tbody></table>";
+?>
+
+    </div>
+</div>
+
 </div>

@@ -113,41 +113,33 @@ echo '
 ';
 
 if ($result->num_rows > 0) {
-    echo '
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Data</th>
-                    <th scope="col">Hora Início</th>
-                    <th scope="col">Hora Fim</th>
-                    <th scope="col">Turno</th>
-                </tr>
-            </thead>
-            <tbody>';
+    echo '<div class="container">';
+    echo '<div class="row">';
+    echo '<div class="col-md-12">';
+    echo '<table class="table table-striped" style="background-color: #e0f7fa;">'; // Cor de fundo azul claro
+    echo '<thead style="background-color: #007bff; color: white;">'; // Cabeçalho com azul mais escuro e texto branco
+    echo '<tr><th>Data</th><th>Hora Início</th><th>Hora Fim</th><th>Turno</th></tr>';
+    echo '</thead>';
+    echo '<tbody>';
+
     while ($row = $result->fetch_assoc()) {
-        echo '
-        <tr>
-            <td>' . date("d/m/Y", strtotime($row['data'])) . '</td>
-            <td>' . date("H:i", strtotime($row['hora_inicio'])) . '</td>
-            <td>' . date("H:i", strtotime($row['hora_fim'])) . '</td>
-            <td>' . ucfirst($row['tipo_turno']) . '</td>
-        </tr>';
+        echo '<tr>';
+        echo '<td>' . date("d/m/Y", strtotime($row['data'])) . '</td>'; // Formatação da data
+        echo '<td>' . date("H:i", strtotime($row['hora_inicio'])) . '</td>'; // Formatação da hora de início
+        echo '<td>' . date("H:i", strtotime($row['hora_fim'])) . '</td>'; // Formatação da hora de fim
+        echo '<td>' . ucfirst($row['tipo_turno']) . '</td>'; // Capitalização do tipo de turno
+        echo '</tr>';
     }
-    echo '
-            </tbody>
-        </table>
-    </div>';
+
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>'; // Fecha col-md-12
+    echo '</div>'; // Fecha row
+    echo '</div>'; // Fecha container
 } else {
-    echo '<div class="alert alert-warning" role="alert">Nenhuma escala encontrada para o funcionário.</div>';
+    echo '<div class="alert alert-warning">Nenhuma escala encontrada para o funcionário.</div>';
 }
 
-echo '
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-';
 
 $mysqli->close();
 ?>
