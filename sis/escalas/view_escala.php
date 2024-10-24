@@ -5,11 +5,11 @@ if ($mysqli->connect_error) {
     die("Conexão falhou: " . $mysqli->connect_error);
 }
 
-// Verificar se a sessão está ativa e se o id_func está definido na sessão
-if (isset($_SESSION['id_func'])) {
-    $id_func = (int) $_SESSION['id_func']; // Pegando o id_func da sessão
+// Verificar se o id_func foi passado pela URL
+if (isset($_GET['id_func'])) {
+    $id_func = (int) $_GET['id_func']; // Pegando o id_func da URL
 } else {
-    die("ID do funcionário não encontrado na sessão.");
+    die("ID do funcionário não encontrado.");
 }
 
 // Buscar dados da escala para o funcionário específico
@@ -139,7 +139,6 @@ if ($result->num_rows > 0) {
 } else {
     echo '<div class="alert alert-warning">Nenhuma escala encontrada para o funcionário.</div>';
 }
-
 
 $mysqli->close();
 ?>

@@ -53,7 +53,7 @@ $row = mysqli_fetch_array($sql);
 	<hr />
 	<div id="actions" class="row">
 		<div class="col-md-12">
-			<a href="?page=lista_func" class="btn btn-default">Voltar</a>
+			<a href="?page=lista_func" class="btn btn-secondary">Voltar</a>
 			<?php echo "<a href=?page=fedita_func&id_func=" . $row['id_func'] . " class='btn btn-primary'>Editar</a>"; ?>
 			<?php echo "<a href=?page=excluir_func&id_func=" . $row['id_func'] . " class='btn btn-danger'>Excluir</a>"; ?>
 		</div>

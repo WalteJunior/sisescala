@@ -50,7 +50,7 @@
 						}
 						echo "<td class='d-none d-md-table-cell'>".date('d/m/Y',strtotime($info['dt_cadastro']))."</td>";
 						echo "<td><div class='btn-group btn-group-xs'>";
-						echo "<a class='btn btn-info btn-xs' href=?page=view_usu&id=".$info['id']."> Detalhar </a>";
+						echo "<a class='btn btn-success btn-xs' href=?page=view_usu&id=".$info['id']."> Detalhar </a>";
 						echo "<a class='btn btn-warning btn-xs' href=?page=fedita_usu&id=".$info['id']."> Editar </a>";
 						if($info['ativo'] == 1){
 							echo "<a class='btn btn-danger btn-xs'  href=?page=block_usu&id=".$info['id']."> Bloquear </a>";

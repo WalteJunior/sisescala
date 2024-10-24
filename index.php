@@ -22,7 +22,7 @@
             <label for="password">Password</label>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-ghost">Login</button>
+        <button type="submit" class="btn btn-primary btn-ghost">Login</button><br>
 
         <p>Não tem login? <a href="sis/cadastro/funceusu.php">Cadastre-se</a></p>
     </form>

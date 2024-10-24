@@ -87,7 +87,7 @@
             <div class="col-md-12">
                 <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Salvar</button>
                 <button type="button" class="btn btn-secondary" id="btnPesquisar">Consultar Cep</button>
-                <a href="../index.php" class="btn btn-default">Cancelar</a>
+                <a href="../../index.php" class="btn btn-danger">Cancelar</a>
             </div>
         </div>
     </form>

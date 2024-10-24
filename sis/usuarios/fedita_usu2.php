@@ -78,7 +78,7 @@
 	 <div class="col-md-10">
 		 <button type="submit" class="btn btn-primary">Salvar Alterações</button>
 		 <button type="button" class="btn btn-secondary" id="btnPesquisar">Consultar Cep</button>
-		 <a href="?page=perfil_func" class="btn btn-default">Voltar</a>
+		 <a href="?page=perfil_func" class="btn btn-danger">Voltar</a>
 	 </div>
 	</div>
 </div>
