@@ -34,26 +34,27 @@
 			</div>
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-2">
-	<label for="substituto">Substituto</label>
-	<select class="form-control" name="substituto">
-		<?php
-		include "base/config.php"; // Inclui conexão com o banco de dados
+				<label for="substituto">Substituto</label>
+				<select class="form-control" name="substituto">
+					<?php
+					include "base/config.php"; // Inclui conexão com o banco de dados
 
-		// Query para listar funcionários, excluindo o solicitante
-		$sql_funcionarios = "SELECT id_func, nome_func FROM funcionario WHERE nome_func != '" . $_SESSION['UsuarioNome'] . "'";
-		$res_funcionarios = mysqli_query($con, $sql_funcionarios);
+					// Query para listar funcionários, excluindo o solicitante
+					$sql_funcionarios = "SELECT id_func, nome_func FROM funcionario WHERE nome_func != '" . $_SESSION['UsuarioNome'] . "'";
+					$res_funcionarios = mysqli_query($con, $sql_funcionarios);
 
-		// Preenche o select com os funcionários disponíveis
-		if ($res_funcionarios) {
-			while ($row = mysqli_fetch_assoc($res_funcionarios)) {
-				echo "<option value='{$row['id_func']}'>{$row['nome_func']}</option>";
-			}
-		} else {
-			echo "<option value=''>Nenhum funcionário disponível</option>";
-		}
-		?>
-	</select>
-</div>
+					// Preenche o select com os funcionários disponíveis
+					if ($res_funcionarios) {
+						while ($row = mysqli_fetch_assoc($res_funcionarios)) {
+							echo "<option value='{$row['nome_func']}'>{$row['nome_func']}</option>";
+						}
+					} else {
+						echo "<option value=''>Nenhum funcionário disponível</option>";
+					}
+					?>
+				</select>
+			</div>
+			
 
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-3">

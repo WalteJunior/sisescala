@@ -1,3 +1,4 @@
+//validar usuario
 $(document).ready(function() {
   $('#usuario').on('input', function() {
       var usuario = $(this).val();
@@ -20,9 +21,9 @@ $(document).ready(function() {
 
 //mask de input
 $(document).ready(function(){
-	$('#nr_processo').inputmask("9999/999999");
 	$('#tel_fixo').inputmask("(99)99999-9999");
 	$('#data').inputmask("99/99/9999");
+  $('#cep').inputmask("99999-999");
 	$('#cpf').inputmask("999.999.999-99");
 	$('#pcnj').inputmask("9999999.99.9999.9.99.9999")
 

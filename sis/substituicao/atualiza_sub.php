@@ -6,6 +6,7 @@
     $substituto                 = $_POST["substituto"];
     $data_subs                  = $_POST["data_subs"];
     $aprovado                   = $_POST["ativo_sub"];
+    
 
 
     // Atualiza no banco de dados

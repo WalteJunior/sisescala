@@ -24,6 +24,8 @@
 
         <button type="submit" class="btn btn-primary btn-ghost">Login</button><br>
 
+        <p>Esqueceu a senha?<a href="sis/senha/novasenha.php"> Redefinir senha</a></p>
+
         <p>Não tem login? <a href="sis/cadastro/funceusu.php">Cadastre-se</a></p>
     </form>
 </body>

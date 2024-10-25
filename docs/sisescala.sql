@@ -55,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `escala` (
   PRIMARY KEY (`id_esc`),
   KEY `FK_escala_funcionario` (`id_func`),
   CONSTRAINT `FK_escala_funcionario` FOREIGN KEY (`id_func`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=374 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=422 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.escala: ~81 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.escala: ~65 rows (aproximadamente)
 REPLACE INTO `escala` (`id_esc`, `tipo_turno`, `hora_inicio`, `hora_fim`, `data`, `id_func`) VALUES
 	(7, 'diurno', '07:00:00', '19:00:00', NULL, NULL),
 	(8, 'noturno', '19:00:00', '07:00:00', NULL, NULL),
@@ -108,22 +108,22 @@ REPLACE INTO `escala` (`id_esc`, `tipo_turno`, `hora_inicio`, `hora_fim`, `data`
 	(339, 'diurno', '07:00:00', '19:00:00', '2024-10-26', 46),
 	(340, 'diurno', '07:00:00', '19:00:00', '2024-10-28', 46),
 	(341, 'diurno', '07:00:00', '19:00:00', '2024-10-30', 46),
-	(358, 'noturno', '19:00:00', '07:00:00', '2024-10-01', 42),
-	(359, 'noturno', '19:00:00', '07:00:00', '2024-10-03', 42),
-	(360, 'noturno', '19:00:00', '07:00:00', '2024-10-05', 42),
-	(361, 'noturno', '19:00:00', '07:00:00', '2024-10-07', 42),
-	(362, 'noturno', '19:00:00', '07:00:00', '2024-10-09', 42),
-	(363, 'noturno', '19:00:00', '07:00:00', '2024-10-11', 42),
-	(364, 'noturno', '19:00:00', '07:00:00', '2024-10-13', 42),
-	(365, 'noturno', '19:00:00', '07:00:00', '2024-10-15', 42),
-	(366, 'noturno', '19:00:00', '07:00:00', '2024-10-17', 42),
-	(367, 'noturno', '19:00:00', '07:00:00', '2024-10-19', 42),
-	(368, 'noturno', '19:00:00', '07:00:00', '2024-10-21', 42),
-	(369, 'noturno', '19:00:00', '07:00:00', '2024-10-23', 42),
-	(370, 'noturno', '19:00:00', '07:00:00', '2024-10-25', 42),
-	(371, 'noturno', '19:00:00', '07:00:00', '2024-10-27', 42),
-	(372, 'noturno', '19:00:00', '07:00:00', '2024-10-29', 42),
-	(373, 'noturno', '19:00:00', '07:00:00', '2024-10-31', 42);
+	(406, 'noturno', '19:00:00', '07:00:00', '2024-10-01', 42),
+	(407, 'noturno', '19:00:00', '07:00:00', '2024-10-03', 42),
+	(408, 'noturno', '19:00:00', '07:00:00', '2024-10-05', 42),
+	(409, 'noturno', '19:00:00', '07:00:00', '2024-10-07', 42),
+	(410, 'noturno', '19:00:00', '07:00:00', '2024-10-09', 42),
+	(411, 'noturno', '19:00:00', '07:00:00', '2024-10-11', 42),
+	(412, 'noturno', '19:00:00', '07:00:00', '2024-10-13', 42),
+	(413, 'noturno', '19:00:00', '07:00:00', '2024-10-15', 42),
+	(414, 'noturno', '19:00:00', '07:00:00', '2024-10-17', 42),
+	(415, 'noturno', '19:00:00', '07:00:00', '2024-10-19', 42),
+	(416, 'noturno', '19:00:00', '07:00:00', '2024-10-21', 42),
+	(417, 'noturno', '19:00:00', '07:00:00', '2024-10-23', 42),
+	(418, 'noturno', '19:00:00', '07:00:00', '2024-10-25', 42),
+	(419, 'noturno', '19:00:00', '07:00:00', '2024-10-27', 42),
+	(420, 'noturno', '19:00:00', '07:00:00', '2024-10-29', 42),
+	(421, 'noturno', '19:00:00', '07:00:00', '2024-10-31', 42);
 
 -- Copiando estrutura para tabela sisescala.funcionario
 DROP TABLE IF EXISTS `funcionario`;
@@ -164,22 +164,18 @@ REPLACE INTO `setor` (`id_st`, `nome_st`) VALUES
 DROP TABLE IF EXISTS `substituicao`;
 CREATE TABLE IF NOT EXISTS `substituicao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `solicitante` int(11) NOT NULL,
+  `solicitante` varchar(50) NOT NULL DEFAULT '',
   `motivo` varchar(50) NOT NULL,
   `data_solic` date NOT NULL,
-  `substituto` int(11) NOT NULL,
+  `substituto` varchar(50) NOT NULL DEFAULT '',
   `data_subs` date DEFAULT NULL,
-  `status` enum('Pendente','Aprovada','Reprovada') DEFAULT 'Pendente',
+  `ativo_sub` enum('Pendente','Aprovada','Reprovada') NOT NULL DEFAULT 'Pendente',
   `data_aprovacao` datetime DEFAULT NULL,
   `id_esc` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `solicitante` (`solicitante`),
-  KEY `substituto` (`substituto`),
   KEY `id_esc` (`id_esc`),
-  CONSTRAINT `substituicao_ibfk_1` FOREIGN KEY (`solicitante`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `substituicao_ibfk_2` FOREIGN KEY (`substituto`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `substituicao_ibfk_3` FOREIGN KEY (`id_esc`) REFERENCES `escala` (`id_esc`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Copiando dados para a tabela sisescala.substituicao: ~0 rows (aproximadamente)
 
@@ -195,6 +191,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `ativo` tinyint(1) NOT NULL DEFAULT 1,
   `dt_cadastro` datetime NOT NULL,
   `id_func` int(11) DEFAULT NULL,
+  `token_recuperacao` varchar(32) DEFAULT NULL,
+  `expiracao_token` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`),
   KEY `nivel` (`nivel`),
@@ -203,14 +201,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Copiando dados para a tabela sisescala.usuarios: ~7 rows (aproximadamente)
-REPLACE INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`, `id_func`) VALUES
-	(3, 'Funcionario', 'func', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin@demo.com.br', 1, 1, '2024-10-07 21:21:10', NULL),
-	(5, 'Supervisor', 'sup', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin2@mail.com', 2, 1, '2019-04-11 00:00:00', NULL),
-	(6, 'Administrador', 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin3@mail.com', 3, 1, '2019-04-11 00:00:00', NULL),
-	(23, 'walter', 'walt', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'walt@gmail.com', 1, 1, '2024-10-14 00:00:00', 42),
-	(25, 'Jessica', 'jess', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'jess@gmail.com', 1, 1, '2024-10-16 00:00:00', 44),
-	(26, 'Marta', 'mart', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'mt@gmail.com', 1, 1, '2024-10-19 00:00:00', 45),
-	(27, 'Davi', 'dav', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'dv@gmail.com', 1, 1, '2024-10-19 18:58:42', 46);
+REPLACE INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`, `id_func`, `token_recuperacao`, `expiracao_token`) VALUES
+	(3, 'Funcionario', 'func', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin@demo.com.br', 1, 1, '2024-10-07 21:21:10', NULL, NULL, NULL),
+	(5, 'Supervisor', 'sup', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin2@mail.com', 2, 1, '2019-04-11 00:00:00', NULL, NULL, NULL),
+	(6, 'Administrador', 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin3@mail.com', 3, 1, '2019-04-11 00:00:00', NULL, NULL, NULL),
+	(23, 'walter', 'walt', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'walt@gmail.com', 1, 1, '2024-10-14 00:00:00', 42, 'f7894e5d5b92a8c79f0660d577a068df', '2024-10-25 19:13:34'),
+	(25, 'Jessica', 'jess', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'jess@gmail.com', 1, 1, '2024-10-16 00:00:00', 44, NULL, NULL),
+	(26, 'Marta', 'mart', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'mt@gmail.com', 1, 1, '2024-10-19 00:00:00', 45, NULL, NULL),
+	(27, 'Davi', 'dav', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'dv@gmail.com', 1, 1, '2024-10-19 18:58:42', 46, NULL, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

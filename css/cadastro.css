@@ -1,0 +1,79 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(#2394D5 50%, #124D6F);
+    margin: 0;
+    padding: 0;
+}
+  
+#main {
+    width: 50vw;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+                0 1px 1px rgba(128, 128, 128, 0.155),
+                0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+                0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+                0 12px 12px rgba(128, 128, 128, 0.35);
+    padding: 50px 40px;
+}
+  
+h3.page-header {
+    margin-bottom: 30px;
+}
+  
+.form-input-material {
+    margin: 12px 0;
+    width: 100%;
+    position: relative;
+}
+  
+.form-input-material input,
+.form-input-material select {
+    width: 100%;
+    padding-top: 15px;
+    background: none;
+    border: solid #686868 2px;
+    color: black;
+    font-size: 16px;
+    outline: none;
+}
+  
+.form-input-material input:focus,
+.form-input-material select:focus {
+    border-color: #1e90ff;
+}
+  
+.form-input-material label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 14px;
+    color: #686868;
+    transition: all 0.2s ease-in-out;
+}
+  
+.form-input-material input:focus + label,
+.form-input-material input:not(:placeholder-shown) + label {
+    top: -20px;
+    left: 0;
+    color: #1e90ff;
+    font-size: 12px;
+}
+  
+.btn {
+    width:120px;
+    padding: 10px 0;
+    background-color: #1e90ff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.btn:hover {
+    background-color: #4682b4;
+}
+  

@@ -6,6 +6,9 @@ body {
   background: linear-gradient( #2394D5 50%, #124D6F);
   margin: 0;
 }
+h1{
+  color: black;
+}
 
 .login-form {
   display: flex;
