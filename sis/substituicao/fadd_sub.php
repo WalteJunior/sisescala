@@ -30,7 +30,7 @@
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-3">
 				<label for="data_solic">Data da substituição</label>
-				<input type="date" class="form-control" name="data_solic">
+				<input type="date" class="form-control" name="data_solic" id="data_solic">
 			</div>
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-2">
@@ -59,7 +59,7 @@
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-3">
 				<label for="data_subs">Data do substituto</label>
-				<input type="date" class="form-control" name="data_subs">
+				<input type="date" class="form-control" name="data_subs" id="data_subs">
 			</div>
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-2">
@@ -81,3 +81,23 @@
 		</div>
 	</form>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputDate = document.getElementById('data_solic');
+        const inputDate2 = document.getElementById('data_subs');
+        const today = new Date();
+        
+        // Adicionar 3 dias à data atual
+        today.setDate(today.getDate() + 3);
+        
+        // Formatar a data para o padrão `YYYY-MM-DD` exigido pelo atributo `min`
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const minDate = `${year}-${month}-${day}`;
+        
+        // Definir a data mínima no campo de data
+        inputDate.min = minDate;
+        inputDate2.min = minDate;
+    });
+</script>
