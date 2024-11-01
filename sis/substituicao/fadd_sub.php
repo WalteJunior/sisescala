@@ -3,11 +3,6 @@
 		<div class="col-md-11">
 			<h2>Substituições</h2>
 		</div>
-
-		<div class="col-md-2">
-			<!-- Chama o Formulário para adicionar Substituições -->
-			<a href="?page=fadd_sub" class="btn btn-primary pull-right h2">Nova substituição</a>
-		</div>
 	</div>
 
 	<form action="?page=insere_sub" method="post">

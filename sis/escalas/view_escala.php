@@ -47,14 +47,22 @@ function gerarDatasMes($inicio_mes, $fim_mes) {
 
 $datas_mes = gerarDatasMes($inicio_mes, $fim_mes);
 
+// Verifica se já existem escalas para o mês atual
+$sql_check = "SELECT COUNT(*) as count FROM escala WHERE id_func = $id_func AND MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE())";
+$result_check = $mysqli->query($sql_check);
+$count = $result_check->fetch_assoc()['count'];
+
+
+
 // Limpar escala existente para o funcionário
 $mysqli->query("DELETE FROM escala WHERE id_func = $id_func");
 
-// Variável para armazenar a última data escalada
+// Gerar escalas aleatórias respeitando a regra de 12x36
 $ultima_data = null;
+$turnos = []; // Array para armazenar turnos gerados
 
 foreach ($datas_mes as $data_atual) {
-    // Verifica se o funcionário pode ser escalado com base na última data
+    // Se já houver uma escala na última data, pular
     if ($ultima_data) {
         $diff = strtotime($data_atual) - strtotime($ultima_data);
         $horas = $diff / 3600; // Diferença em horas
@@ -63,24 +71,21 @@ foreach ($datas_mes as $data_atual) {
         }
     }
 
-    // Verifica se o dia atual é par ou ímpar
-    $dia_atual = date('d', strtotime($data_atual));
+    // Randomizar o turno
+    $turno_aleatorio = rand(0, 1) ? 'diurno' : 'noturno';
 
-    if ($turno_funcionario == 'diurno' && $dia_atual % 2 == 0) {
-        // Se for diurno e dia par
+    // Definir horário de acordo com o turno aleatório
+    if ($turno_aleatorio == 'diurno') {
         $hora_inicio = $hrinicio_dia;
         $hora_fim = $hrfim_dia;
-    } elseif ($turno_funcionario == 'noturno' && $dia_atual % 2 != 0) {
-        // Se for noturno e dia ímpar
+    } else {
         $hora_inicio = $hrinicio_noite;
         $hora_fim = $hrfim_noite;
-    } else {
-        continue; // Se não for dia correto para o turno, pula para o próximo dia
     }
 
     // Inserir escala na tabela para o funcionário
     $sql_insert = "INSERT INTO escala (tipo_turno, hora_inicio, hora_fim, data, id_func) 
-                   VALUES ('$turno_funcionario', '$hora_inicio', '$hora_fim', '$data_atual', $id_func)";
+                   VALUES ('$turno_aleatorio', '$hora_inicio', '$hora_fim', '$data_atual', $id_func)";
     if (!$mysqli->query($sql_insert)) {
         die("Erro ao inserir escala: " . $mysqli->error);
     }

@@ -9,6 +9,9 @@ body {
 h1{
   color: black;
 }
+a{
+  width: 310px;
+}
 
 .login-form {
   display: flex;
