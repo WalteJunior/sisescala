@@ -12,7 +12,7 @@ if (isset($_GET['id_func'])) {
     die("ID do funcionário não encontrado.");
 }
 
-// Buscar dados da escala para o funcionário específico
+// Buscar dados do funcionário
 $sql = "SELECT nome_func, turno FROM funcionario WHERE id_func = $id_func";
 $result = $mysqli->query($sql);
 
@@ -22,79 +22,7 @@ if ($result->num_rows == 0) {
 
 $row = $result->fetch_assoc();
 $nome_funcionario = $row['nome_func'];
-$turno_funcionario = $row['turno'];
 
-// Definir horários de início e fim do turno
-$hrinicio_dia = "07:00";
-$hrfim_dia = "19:00";
-$hrinicio_noite = "19:00";
-$hrfim_noite = "07:00";
-
-// Definir o primeiro dia do mês atual e o último dia do mês
-$inicio_mes = date("Y-m-01");  // Primeiro dia do mês atual
-$fim_mes = date("Y-m-t");      // Último dia do mês
-
-// Criar um array com todas as datas do mês
-function gerarDatasMes($inicio_mes, $fim_mes) {
-    $datas = array();
-    $dia = strtotime($inicio_mes);
-    while ($dia <= strtotime($fim_mes)) {
-        $datas[] = date("Y-m-d", $dia);
-        $dia = strtotime("+1 day", $dia);
-    }
-    return $datas;
-}
-
-$datas_mes = gerarDatasMes($inicio_mes, $fim_mes);
-
-// Verifica se já existem escalas para o mês atual
-$sql_check = "SELECT COUNT(*) as count FROM escala WHERE id_func = $id_func AND MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE())";
-$result_check = $mysqli->query($sql_check);
-$count = $result_check->fetch_assoc()['count'];
-
-
-
-// Limpar escala existente para o funcionário
-$mysqli->query("DELETE FROM escala WHERE id_func = $id_func");
-
-// Gerar escalas aleatórias respeitando a regra de 12x36
-$ultima_data = null;
-$turnos = []; // Array para armazenar turnos gerados
-
-foreach ($datas_mes as $data_atual) {
-    // Se já houver uma escala na última data, pular
-    if ($ultima_data) {
-        $diff = strtotime($data_atual) - strtotime($ultima_data);
-        $horas = $diff / 3600; // Diferença em horas
-        if ($horas < 36) {
-            continue; // Pula a data se não tiver passado 36 horas desde a última escala
-        }
-    }
-
-    // Randomizar o turno
-    $turno_aleatorio = rand(0, 1) ? 'diurno' : 'noturno';
-
-    // Definir horário de acordo com o turno aleatório
-    if ($turno_aleatorio == 'diurno') {
-        $hora_inicio = $hrinicio_dia;
-        $hora_fim = $hrfim_dia;
-    } else {
-        $hora_inicio = $hrinicio_noite;
-        $hora_fim = $hrfim_noite;
-    }
-
-    // Inserir escala na tabela para o funcionário
-    $sql_insert = "INSERT INTO escala (tipo_turno, hora_inicio, hora_fim, data, id_func) 
-                   VALUES ('$turno_aleatorio', '$hora_inicio', '$hora_fim', '$data_atual', $id_func)";
-    if (!$mysqli->query($sql_insert)) {
-        die("Erro ao inserir escala: " . $mysqli->error);
-    }
-
-    // Atualiza a última data escalada
-    $ultima_data = $data_atual;
-}
-
-////////////////////////////////////////////////////////////////////////////
 // Buscar dados da escala para o funcionário específico
 $sql = "SELECT escala.*, funcionario.nome_func 
         FROM escala 

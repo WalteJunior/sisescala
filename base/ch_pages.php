@@ -11,6 +11,14 @@ if (isset($_GET['page'])) {
             include 'sis/escalas/escala.php';
             break;
 
+        case 'gera':
+            include 'sis/escalas/gera_escala.php';
+            break;
+
+        case 'insere':
+            include 'sis/escalas/insere_escala.php';
+            break;
+
         case 'view_escala':
             include 'sis/escalas/view_escala.php';
             break;
