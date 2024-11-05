@@ -12,7 +12,15 @@
           <li><a class="link_name" href="#">Escalas</a></li>
         </ul>
       </li>
-      
+      <li>
+        <a href="?page=gera">
+          <i class="bi bi-table"></i>
+          <span class="link_name">Criar escalas</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="?page=gera">Criar escalas</a></li>
+        </ul>
+      </li>
       <li>
         <a href="?page=lista_func">
           <i class="bi bi-person-badge-fill"></i>

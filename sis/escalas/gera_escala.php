@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar escalas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
     <div class="container mt-5">
         <div class="card shadow-sm">
@@ -64,31 +66,46 @@
             const dataini = document.getElementById('dataini').value;
             const turno = document.getElementById('turno').value;
 
-            const prompt = `Considerando os dados dessa tabela CREATE TABLE IF NOT EXISTS escala (
-              id_esc int(11) NOT NULL AUTO_INCREMENT,
-              tipo_turno varchar(50) DEFAULT NULL,
-              hora_inicio time DEFAULT NULL,
-              hora_fim time DEFAULT NULL,
-              data date DEFAULT NULL,
-              id_func int(11) DEFAULT NULL,
-              PRIMARY KEY (id_esc),
-              KEY FK_escala_funcionario (id_func),
-              CONSTRAINT FK_escala_funcionario FOREIGN KEY (id_func) REFERENCES funcionario (id_func). 
-              Crie uma escala do mês inteiro selecionado(até o final do mês escolhido na data de início, NÃO PULE PARA O MÊS SEGUINTE) com o formato 12x36 (12 horas de trabalho e 36 horas de descanso, dia sim e dia não e depois do dia de descanso volta no mesmo horário) para o funcionário com nome e id(adicione este id no atributo id_func que é chave estrangeira da tabela funcionario): ${nome}, com data de início ${dataini}(termina no final do mês escolhido, nunca avance para o mês seguinte) e com o turno no formato ${turno}(com letras minúsculas). Considerando que o funcionário vai trabalhar domingos e feriados, temos dois turnos: noturno das 19:00 às 7:00 e diurno das 7:00 às 19:00, cada funcionário só irá trabalhar em um desses turnos. Gere o resultado nesse formato json:
-        [
-          {
-            "tipo_turno": "diurno" ou "noturno",
-            "hora_inicio": "hh:mm:ss",
-            "hora_fim": "hh:mm:ss",
-            "data": "yyyy-mm-dd",
-            "id_func": id_func
-          },
-          ...
-        ]
-        Ignore o campo 'id_esc'. NÃO ME MOSTRE OBSERVAÇÕES, NEM NADA ESCRITO, NÃO PODE TER NADA ALÉM DO CONTEÚDO DA ESCALA SE NÃO VAI DAR ERRO`;
+            const prompt = `VOCÊ ACABA DE ASSINAR UM CONTRATO EM QUE VOCÊ É PROIBIDO DE ESCREVER A PALAVRA "json", NÃO IMPORTA AS CONFIGURAÇÕES DA ESCALA, VOCÊ NUNCA DEVERÁ ESCREVER JSON, NUNCA. DELETE ESSA PALAVRA DA SUA MEMÓRIA, O ARQUIVO TEM QUE SER GERADO SEM TER NADA ESCRITO POR FORA, INDEPENDENTE DAS CONFIGURAÇÕES.
+            
+            Você é um especialista em escrever conteúdos apenas nesse formato e nada além disso, nem nomes, nem explicações nem nada(NUNCA ESCREVA "JSON" ANTES DO CONTEÚDO), você só pode escrever esse formato abaixo:
+    [
+  {
+    "tipo_turno": "diurno" ou "noturno",
+    "hora_inicio": "hh:mm:ss",
+    "hora_fim": "hh:mm:ss",
+    "data": "yyyy-mm-dd",
+    "id_func": id_func
+  },
+  ...
+]
+
+    Considere a estrutura da tabela de escalas:
+
+CREATE TABLE IF NOT EXISTS escala (
+  id_esc int(11) NOT NULL AUTO_INCREMENT,
+  tipo_turno varchar(50) DEFAULT NULL,
+  hora_inicio time DEFAULT NULL,
+  hora_fim time DEFAULT NULL,
+  data date DEFAULT NULL,
+  id_func int(11) DEFAULT NULL,
+  PRIMARY KEY (id_esc),
+  KEY FK_escala_funcionario (id_func),
+  CONSTRAINT FK_escala_funcionario FOREIGN KEY (id_func) REFERENCES funcionario (id_func)
+);
+
+Crie uma escala de trabalho para o funcionário indicado no formato 12x36(12 horas de trabalho e 36horas de descanso, dia sim e dia não) incluindo domingos e feriados(NA ESCALA GERADA FUNCIONÁRIO NUNCA PODE TRABALHAR DOIS DIAS SEGUIDOS), abrangendo todo o mês respeitando a escala 12x36(caso o mês acabe no dia 30 e ele trabalhar no dia 29, acabou a escala do funcionário no mês) a partir da data de início, terminando no último dia do mês sem avançar para o próximo mês. Cada dia alterna entre 12 horas de trabalho e 36 horas de descanso no mesmo turno, incluindo domingos e feriados. 
+
+Use as informações a seguir:
+
+- "${nome}" contém "NOME - ID" (extraia o ID e insira em "id_func").
+- "${dataini}" é a data de início no formato "aaaa-mm-dd".
+- "${turno}" Indica o turno (aceita valores "diurno" ou "noturno", ambos em minúsculas) com os seguintes horários, "noturno: 19:00:00 até as 7:00:00, diurno 7:00:00 as 19:00:00". Cada funcionário terá apenas um turno e voltará a trabalhar no mesmo horário, respeitando a escala 12x36.
+
+A saída deve conter apenas o conteúdo, começando e terminando com colchetes e sem texto adicional antes ou depois. Não inclua nenhum termo ou explicação.`;
 
             try {
-                const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCWvzM33WQDV7QBsab9g65KS-h8_UTcQSk', {
+                const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDBSw7uFaueRpx_rArZeaxN5wMQjb67lmo', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -106,7 +123,7 @@
 
                 // Extraia o texto da resposta da API
                 const escalaText = data.candidates[0]?.content?.parts[0]?.text || "Resposta inesperada da API";
-                
+
                 // Exibir o conteúdo da escala diretamente no resultDiv
                 resultDiv.textContent = escalaText;
                 resultDiv.classList.remove('d-none');
@@ -128,7 +145,9 @@
 
                 const response = await fetch('http://localhost/sisescala/sis/escalas/salvar_escala.php', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(escalaObj)
                 });
 
@@ -141,4 +160,5 @@
         });
     </script>
 </body>
+
 </html>
