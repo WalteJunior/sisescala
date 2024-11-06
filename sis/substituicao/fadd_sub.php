@@ -1,9 +1,10 @@
 <div id="main" class="container-fluid">
 	<div id="top" class="row">
 		<div class="col-md-11">
-			<h2>Substituições</h2>
+			<h2>Criar substituição</h2>
 		</div>
 	</div>
+	<hr>
 
 	<form action="?page=insere_sub" method="post">
 		<!-- 1ª LINHA -->

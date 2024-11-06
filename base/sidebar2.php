@@ -14,7 +14,7 @@
       </li>
       <li>
         <a href="?page=gera">
-          <i class="bi bi-table"></i>
+        <i class="bi bi-calendar3"></i>
           <span class="link_name">Criar escalas</span>
         </a>
         <ul class="sub-menu blank">
@@ -47,7 +47,7 @@
           </div>
           <div class="name-job">
             <div class="profile_name"></div>
-            <div class="job"><p style="font-size:medium;"><?php echo $_SESSION['UsuarioNome'];?></p></div>
+            <div class="job"><p style="font-size:medium; text-align:center; margin-top:10px;"><?php echo $_SESSION['UsuarioNome'];?></p></div>
           </div>
           <a href="/sisescala/logout.php"><i class='bx bx-log-out'></i></a>
         </div>

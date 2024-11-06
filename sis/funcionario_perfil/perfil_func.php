@@ -29,7 +29,7 @@ if (!$row) {
 
 ?>
 <div id="main" class="container-fluid">
-    <h3 class="page-header">Visualizar registro do Usuário <?php echo $id; ?> </h3>
+    <h3 class="page-header">Registro do Usuário - <?php echo $row['nome'] ; ?> </h3>
     
     <!-- Row 1 -->
     <div class="row" style="background-color: #e0f7fa; padding: 15px; border-radius: 5px;"> <!-- Fundo azul claro -->
@@ -88,4 +88,3 @@ if (!$row) {
 // Fecha a conexão com o banco de dados
 mysqli_close($con);
 ?>
-<script src="../js/cadastro.js"></script>

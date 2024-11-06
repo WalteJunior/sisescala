@@ -4,7 +4,7 @@
 	$row = mysqli_fetch_array($sql);
 ?>
 <div id="main" class="container-fluid">
-	<br><h3 class="page-header">Editar registro da Usuário - <?php echo $id;?></h3>
+	<br><h3 class="page-header">Edição de registro</h3>
 	
 	<!-- Área de campos do formulário de edição-->
 	
@@ -43,32 +43,32 @@
 	
 	<div class="form-group col-md-2">
 		<label for="cep_end">Cep</label>
-		<input type="number" class="form-control" min="0" name="cep_end" value="<?php echo $row["cep_end"]; ?>">
+		<input type="text" class="form-control" min="0" name="cep_end" id="cep" value="<?php echo $row["cep_end"]; ?>">
 	</div>
 
 	<div class="form-group col-md-2">
 		<label for="rua_end">Rua</label>
-		<input type="text" class="form-control" name="rua_end" value="<?php echo $row["rua_end"]; ?>">
+		<input type="text" class="form-control" name="rua_end" id="rua" value="<?php echo $row["rua_end"]; ?>">
 	</div>
 
 		<div class="form-group col-md-2">
 			<label for="compl_end">Complemento</label>
-			<input type="text" class="form-control" name="compl_end" value="<?php echo $row["compl_end"]; ?>">
+			<input type="text" class="form-control" name="compl_end" id="complemento" value="<?php echo $row["compl_end"]; ?>">
 		</div>
 
 		<div class="form-group col-md-2">
 			<label for="bairro_end">Bairro</label>
-			<input type="text" class="form-control" name="bairro_end" value="<?php echo $row["bairro_end"]; ?>">
+			<input type="text" class="form-control" name="bairro_end" id="bairro" value="<?php echo $row["bairro_end"]; ?>">
 		</div>
 
 		<div class="form-group col-md-2">
 			<label for="cidade_end">Cidade</label>
-			<input type="text" class="form-control" name="cidade_end" value="<?php echo $row["cidade_end"]; ?>">
+			<input type="text" class="form-control" name="cidade_end" id="cidade" value="<?php echo $row["cidade_end"]; ?>">
 		</div>
 
 		<div class="form-group col-md-2">
 			<label for="estado_end">Estado</label>
-			<input type="text" class="form-control" name="estado_end" value="<?php echo $row["estado_end"]; ?>">
+			<input type="text" class="form-control" name="estado_end" id="estado" value="<?php echo $row["estado_end"]; ?>">
 		</div>
 	</div>
 </div>
@@ -82,4 +82,41 @@
 	 </div>
 	</div>
 </div>
-<script src="/js/cadastro.js>
+<script>
+	const btnPesquisarCEP = document.querySelector("#btnPesquisar");
+btnPesquisarCEP.addEventListener("click", pesquisar)
+
+function pesquisar() {
+
+  const inputDoCep = document.getElementById("cep");
+  const valorDoCep = inputDoCep.value;
+  const url = 'https://viacep.com.br/ws/' + valorDoCep + '/json/';
+
+  fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      if (data.erro) {
+        alert("O CEP DIGITADO ESTÁ INVÁLIDO");
+        return;
+      }
+      atribuirCampos(data);
+    })
+}
+
+
+function atribuirCampos(data) {
+  const rua = document.querySelector("#rua");
+  const complemento = document.querySelector("#complemento");
+  const bairro = document.querySelector("#bairro");
+  const cidade = document.querySelector("#cidade");
+  const estado = document.querySelector("#estado");
+
+  rua.value = data.logradouro;
+  complemento.value = data.complemento;
+  bairro.value = data.bairro;
+  cidade.value = data.localidade;
+  estado.value = data.uf;
+}
+</script>

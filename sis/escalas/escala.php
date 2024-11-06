@@ -1,5 +1,10 @@
 <div id="list" class="container-fluid">
     <div class="table-responsive col-md-12">
+
+        <div class="col-md-11">
+            <h3>Lista de Escalas</h3>
+		</div>
+        <hr>
         <?php
         // Conexão com o banco de dados
         $con = mysqli_connect('localhost', 'root', '', 'sisescala');
@@ -9,8 +14,13 @@
             die("Falha na conexão: " . mysqli_connect_error());
         }
 
+        $quantidade = 10;
+
+        $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
+        $inicio = ($quantidade * $pagina) - $quantidade;
+
         // Consulta para buscar os dados do funcionário
-        $data = mysqli_query($con, "SELECT * FROM funcionario INNER JOIN endereco ON funcionario.id_func = endereco.id_func;");
+        $data = mysqli_query($con, "SELECT * FROM funcionario INNER JOIN endereco ON funcionario.id_func = endereco.id_func limit $inicio, $quantidade; ");
 
         // Verifica se a consulta foi bem-sucedida
         if ($data && mysqli_num_rows($data) > 0) {
@@ -47,7 +57,38 @@
         
 
         // Fecha a conexão
-        mysqli_close($con);
         ?>
     </div>
+    <!-- PAGINAÇÃO -->
+		<div id="bottom" class="row">
+			<div class="col-md-12">
+				<?php
+					$sqlTotal 		= "select id_func from funcionario;";
+					$qrTotal  		= mysqli_query($con, $sqlTotal);
+					$numTotal 		= mysqli_num_rows($qrTotal);
+					$totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
+
+					$exibir = 3;
+
+					$anterior = (($pagina-1) <= 0) ? 1 : $pagina - 1;
+					$posterior = (($pagina+1) >= $totalpagina) ? $totalpagina : $pagina+1;
+
+					echo "<ul class='pagination'>";
+					echo "<li class='page-item'><a class='page-link' href='?page=escala&pagina=1'> Primeira</a></li> "; 
+					echo "<li class='page-item'><a class='page-link' href=\"?page=escala&pagina=$anterior\"> Anterior</a></li> ";
+
+					echo "<li class='page-item'><a class='page-link' href='?page=escala&pagina=".$pagina."'><strong>".$pagina."</strong></a></li> ";
+
+					for($i = $pagina+1; $i < $pagina+$exibir; $i++){
+						if($i <= $totalpagina)
+						echo "<li class='page-item'><a class='page-link' href='?page=escala&pagina=".$i."'> ".$i." </a></li> ";
+					}
+
+					echo "<li class='page-item'><a class='page-link' href=\"?page=escala&pagina=$posterior\"> Pr&oacute;xima</a></li> ";
+					echo "<li class='page-item'><a class='page-link' href=\"?page=escala&pagina=$totalpagina\"> &Uacute;ltima</a></li></ul>";
+
+                    mysqli_close($con);
+				?>	
+			</div>
+		</div><!--bottom-->
 </div>

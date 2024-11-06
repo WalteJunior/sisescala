@@ -4,8 +4,8 @@
 	$row = mysqli_fetch_array($sql);
 ?>
 <div id="main" class="container-fluid">
-	<h3 class="page-header">Visualizar registro de Substituição - <?php echo $id; ?> </h3>
-	<div class="row">
+	<h3 class="page-header">Substituição - Nº Registro - <?php echo $id; ?> </h3>
+	<div class="row" style="background-color: #e0f7fa; padding: 10px; border-radius: 5px;">
 		<div class="col-md-2">
 			<p><strong>Nº Registro</strong></p>
 			<p><?php echo $row['id'];?></p>
@@ -34,10 +34,11 @@
 			<p><strong>Status</strong></p>
 			<p><?php echo $row['ativo_sub'];?></p>
 		</div>
+	</div>
 	<hr/>
 	<div id="actions" class="row">
 		<div class="col-md-12">
-			<a href="?page=lista_sub" class="btn btn-default">Voltar</a>
+			<a href="?page=lista_sub" class="btn btn-secondary">Voltar</a>
 		</div>
 	</div>
 </div>

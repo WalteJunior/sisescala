@@ -73,5 +73,6 @@ if ($result->num_rows > 0) {
     echo '<div class="alert alert-warning">Nenhuma escala encontrada para o funcionário.</div>';
 }
 
+echo '<a href="?page=escala" class="btn btn-secondary">Voltar</a>';
 $mysqli->close();
 ?>

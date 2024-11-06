@@ -1,7 +1,7 @@
 ﻿<div id="main" class="container-fluid">
 	<div id="top" class="row">
 		<div class="col-md-10">
-			<h2>Substituição</h2>
+			<h2>Substituições</h2>
 		</div>
 
 		<div class="col-md-2">

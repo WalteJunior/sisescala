@@ -197,7 +197,7 @@ REPLACE INTO `funcionario` (`id_func`, `nome_func`, `cargo_func`, `turno`, `tele
 	(46, 'Davi', 'OP', 'diurno', '2190000', 'M', 'dv@gmail.com', NULL),
 	(47, 'Clara', 'TC', 'diurno', '(21)98787-3089', 'F', 'clara@gmail.com', NULL),
 	(48, 'Leticia', 'AX', 'diurno', '(21)33376-667_', 'F', 'let@gmail.com', NULL),
-	(49, 'Carolina', NULL, NULL, '(21)95432-1598', 'F', 'caca@gmail.com', NULL);
+	(49, 'Carolina', 'TC', 'diurno', '(21)95432-1598', 'F', 'caca@gmail.com', NULL);
 
 -- Copiando estrutura para tabela sisescala.setor
 DROP TABLE IF EXISTS `setor`;
@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `setor` (
   PRIMARY KEY (`id_st`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.setor: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.setor: ~1 rows (aproximadamente)
 REPLACE INTO `setor` (`id_st`, `nome_st`) VALUES
 	(1, 'Produção');
 
@@ -220,17 +220,18 @@ CREATE TABLE IF NOT EXISTS `substituicao` (
   `data_solic` date NOT NULL,
   `substituto` varchar(50) NOT NULL DEFAULT '',
   `data_subs` date DEFAULT NULL,
-  `ativo_sub` enum('Pendente','Aprovada','Reprovada') NOT NULL DEFAULT 'Pendente',
+  `ativo_sub` enum('Em analise','Aprovado','Reprovado') NOT NULL,
   `data_aprovacao` datetime DEFAULT NULL,
   `id_esc` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_esc` (`id_esc`),
   CONSTRAINT `substituicao_ibfk_3` FOREIGN KEY (`id_esc`) REFERENCES `escala` (`id_esc`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.substituicao: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.substituicao: ~2 rows (aproximadamente)
 REPLACE INTO `substituicao` (`id`, `solicitante`, `motivo`, `data_solic`, `substituto`, `data_subs`, `ativo_sub`, `data_aprovacao`, `id_esc`) VALUES
-	(10, 'walter', 'medico', '2024-11-13', 'Davi', '2024-11-15', '', NULL, NULL);
+	(10, 'walter', 'medico', '2024-11-13', 'Davi', '2024-11-15', 'Aprovado', NULL, NULL),
+	(11, 'Supervisor', 'aaa', '0000-00-00', 'walter', '0000-00-00', 'Reprovado', NULL, NULL);
 
 -- Copiando estrutura para tabela sisescala.usuarios
 DROP TABLE IF EXISTS `usuarios`;

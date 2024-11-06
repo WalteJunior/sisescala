@@ -5,8 +5,8 @@ $sql = mysqli_query($con, "select * from funcionario, endereco, setor
 $row = mysqli_fetch_array($sql);
 ?>
 <div id="main" class="container-fluid">
-	<h3 class="page-header">Visualizar registro do Funcionário <?php echo $id; ?> </h3>
-	<div class="row">
+	<h3 class="page-header">Registro do Funcionário - <?php echo $row['nome_func']; ?> </h3>
+	<div class="row" style="background-color: #e0f7fa; padding: 15px; border-radius: 5px;">
 		<div class="col-md-3">
 			<p><strong>Nome</strong></p>
 			<p><?php echo $row['nome_func']; ?></p>
@@ -23,9 +23,7 @@ $row = mysqli_fetch_array($sql);
 			<p><strong>Cargo</strong></p>
 			<p><?php echo $row['cargo_func']; ?></p>
 		</div>
-	</div>
 
-	<div class="row">
 		<div class="col-md-2">
 			<p><strong>Telefone</strong></p>
 			<p><?php echo $row['telefone_func']; ?></p>
