@@ -1,4 +1,8 @@
 <?php
+// Configurar o locale para Português do Brasil
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'portuguese');
+
+// Conexão com o banco de dados
 $mysqli = new mysqli("localhost", "root", "", "sisescala");
 
 if ($mysqli->connect_error) {
@@ -52,7 +56,7 @@ if ($result->num_rows > 0) {
 
     while ($row = $result->fetch_assoc()) {
         $data = strtotime($row['data']);
-        $month_year = date("F Y", $data);
+        $month_year = ucfirst(strftime("%B de %Y", $data));  // Nome do mês em português
         $month_key = date("M-Y", $data);  // Key para controle dos últimos 3 meses (ex: "Nov-2024")
 
         // Gerar nova tabela se o mês mudou
@@ -90,7 +94,7 @@ if ($result->num_rows > 0) {
     echo '<select id="mesSelect" class="form-select mb-4" onchange="mostrarTabela(this.value)">';
 
     foreach ($months as $month_key) {
-        $month_text = date("F Y", strtotime("01-$month_key"));  // Formato ex: "Novembro 2024"
+        $month_text = ucfirst(strftime("%B de %Y", strtotime("01-$month_key")));  // Formato ex: "Novembro 2024"
         echo "<option value='$month_key'>$month_text</option>";
     }
 
@@ -105,7 +109,7 @@ if ($result->num_rows > 0) {
     echo '<div class="alert alert-warning">Nenhuma escala encontrada para o funcionário.</div>';
 }
 
-echo '<a href="?page=escala" class="btn btn-secondary mt-3">Voltar</a>';
+echo '<a href="?page=escala" class="btn btn-secondary mt-3 mb-3">Voltar</a>';
 $mysqli->close();
 ?>
 

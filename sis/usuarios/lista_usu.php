@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<hr/>
-	<div><?php include "mensagens.php"; ?>	</div>
+	<div><?php include "mensagens.php"; ?></div>
 	<!--top - Lista dos Campos-->
 		<div id="list" class="row">
 			<div class="table-responsive">
@@ -22,20 +22,22 @@
 
 					$data_all = mysqli_query($con, "select * from usuarios order by id asc limit $inicio, $quantidade;");
 
-					echo "<table class='table table-striped' cellspacing='0' cellpading='0'>";
-					echo "<thead><tr>";
-					echo "<td><strong>ID</strong></td>"; 
-					echo "<td><strong>Nome do usuário</strong></td>"; 
+					// Tabela com cor de fundo personalizada
+					echo "<table class='table table-striped table-bordered' style='background-color: #e0f7fa;' cellspacing='0' cellpadding='0'>";
+					echo "<thead style='background-color: #007bff; color: white;'>";
+					echo "<tr>";
+					echo "<td><strong>ID</strong></td>";
+					echo "<td><strong>Nome do usuário</strong></td>";
 					echo "<td><strong>Usuário</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>Senha</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>E-mail</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>Nível</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>Ativo</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>Data cad/ed</strong></td>";
-					echo "<td class='actions'><strong>Ações</strong></td>"; 
+					echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>";
 					echo "</tr></thead><tbody>";
 
-					while($info = mysqli_fetch_array($data_all)){ 
+					while($info = mysqli_fetch_array($data_all)){
 						echo "<tr>";
 						echo "<td>".$info['id']."</td>";
 						echo "<td>".$info['nome']."</td>";
@@ -49,13 +51,13 @@
 							echo "<td class='d-none d-md-table-cell'>NÃO</td>";
 						}
 						echo "<td class='d-none d-md-table-cell'>".date('d/m/Y',strtotime($info['dt_cadastro']))."</td>";
-						echo "<td><div class='btn-group btn-group-xs'>";
-						echo "<a class='btn btn-success btn-xs' href=?page=view_usu&id=".$info['id']."> Detalhar </a>";
-						echo "<a class='btn btn-warning btn-xs' href=?page=fedita_usu&id=".$info['id']."> Editar </a>";
+						echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
+						echo "<a class='btn btn-success btn-xs' href='?page=view_usu&id=".$info['id']."'> Detalhar </a>";
+						echo "<a class='btn btn-warning btn-xs' href='?page=fedita_usu&id=".$info['id']."'> Editar </a>";
 						if($info['ativo'] == 1){
-							echo "<a class='btn btn-danger btn-xs'  href=?page=block_usu&id=".$info['id']."> Bloquear </a>";
+							echo "<a class='btn btn-danger btn-xs' href='?page=block_usu&id=".$info['id']."'> Bloquear </a>";
 						}else if($info['ativo'] == 0){
-							echo "<a class='btn btn-success btn-xs'  href=?page=ativa_usu&id=".$info['id'].">&nbsp;&nbsp;&nbsp;Ativar&nbsp;&nbsp;</a></div></td>";
+							echo "<a class='btn btn-success btn-xs' href='?page=ativa_usu&id=".$info['id']."'>&nbsp;&nbsp;&nbsp;Ativar&nbsp;&nbsp;</a></div></td>";
 						}
 					}
 					echo "</tr></tbody></table>";
@@ -67,9 +69,9 @@
 		<div id="bottom" class="row">
 			<div class="col-md-12">
 				<?php
-					$sqlTotal 		= "select id from usuarios;";
-					$qrTotal  		= mysqli_query($con, $sqlTotal);
-					$numTotal 		= mysqli_num_rows($qrTotal);
+					$sqlTotal = "select id from usuarios;";
+					$qrTotal = mysqli_query($con, $sqlTotal);
+					$numTotal = mysqli_num_rows($qrTotal);
 					$totalpagina = (ceil($numTotal/$quantidade)<=0) ? 1 : ceil($numTotal/$quantidade);
 
 					$exibir = 3;
@@ -90,8 +92,7 @@
 
 					echo "<li class='page-item'><a class='page-link' href=\"?page=lista_usu&pagina=$posterior\"> Pr&oacute;xima</a></li> ";
 					echo "<li class='page-item'><a class='page-link' href=\"?page=lista_usu&pagina=$totalpagina\"> &Uacute;ltima</a></li></ul>";
-
 				?>	
 			</div>
 		</div><!--bottom-->
-</div><!--main-->
+</div><!--main-->  
