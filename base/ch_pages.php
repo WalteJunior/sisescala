@@ -27,6 +27,12 @@ if (isset($_GET['page'])) {
         case 'rel_func':
             include 'relatorio/rel_func.php';
             break;
+        case 'par_sup_adm':
+                include 'relatorio/par_sup_adm.php';
+                break;
+        case 'rel_sup_adm':
+            include 'relatorio/rel_sup_adm.php';
+            break;
         
         // ---- Funcionairos ----///
         case 'lista_func':
