@@ -31,15 +31,19 @@
             echo '<div class="col-md-12">';
             echo '<table class="table table-striped" style="background-color: #e0f7fa;">'; // Cor de fundo azul claro
             echo '<thead style="background-color: #007bff; color: white;">'; // Cabeçalho com azul mais escuro e texto branco
-            echo '<tr><th><strong>Nome</strong></th>';
-            echo '<th><strong>Cargo</strong></th>';
-            echo '<th><strong>Telefone</strong></th>';
-            echo '<th class="actions d-flex justify-content-center"><strong>Escalas</strong></th>';
-            echo '</tr></thead><tbody>';
-
+            echo '<tr>';
+            echo '<th style="width: 25%;"><strong>Nome</strong></th>'; // Definindo largura de 25% para o título "Nome"
+            echo '<th style="width: 25%;"><strong>Turno</strong></th>'; // Definindo largura de 15% para o título "Turno"
+            echo '<th style="width: 25%;"><strong>Cargo</strong></th>'; // Definindo largura de 20% para o título "Cargo"
+            echo '<th style="width: 25%;"><strong>Telefone</strong></th>'; // Definindo largura de 20% para o título "Telefone"
+            echo '<th class="actions d-flex justify-content-center" style="width: 90%;"><strong>Escalas</strong></th>'; // Definindo largura de 20% para "Escalas" e alinhamento centralizado
+            echo '</tr>';
+            echo '</thead><tbody>';
+        
             while ($info = mysqli_fetch_array($data)) {
                 echo '<tr>';
                 echo '<td>' . $info['nome_func'] . '</td>';
+                echo '<td>' . $info['turno'] . '</td>';
                 echo '<td>' . $info['cargo_func'] . '</td>';
                 echo '<td>' . $info['telefone_func'] . '</td>';
                 echo '<td class="actions btn-group-sm d-flex justify-content-center">';
@@ -47,7 +51,7 @@
                 echo '</td>';
                 echo '</tr>';
             }
-
+        
             echo '</tbody>';
             echo '</table>';
             echo '</div>'; // Fecha col-md-12
@@ -56,6 +60,7 @@
         } else {
             echo '<div class="alert alert-warning">Nenhum funcionário encontrado.</div>';
         }
+        
 
 
         // Fecha a conexão

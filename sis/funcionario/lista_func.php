@@ -30,7 +30,6 @@
             echo "<td><strong>Nome</strong></td>"; 
             echo "<td><strong>Sexo</strong></td>";
             echo "<td><strong>Setor</strong></td>";
-            echo "<td><strong>Turno</strong></td>";
             echo "<td><strong>Cargo</strong></td>";
             echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
             echo "</tr></thead><tbody>";
@@ -40,7 +39,6 @@
                 echo "<td>".$info['nome_func']."</td>";
                 echo "<td>".$info['sexo_func']."</td>";
                 echo "<td>".$info['nome_st']."</td>";
-                echo "<td>".$info['turno']."</td>";
                 echo "<td>".$info['cargo_func']."</td>";
                 echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
                 echo "<a class='btn btn-success btn-xs' href='?page=view_func&id_func=".$info['id_func']."'> Visualizar </a>";

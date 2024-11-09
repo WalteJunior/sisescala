@@ -16,10 +16,6 @@ $row = mysqli_fetch_array($sql);
 			<p><?php echo $row['nome_st']; ?></p>
 		</div>
 		<div class="col-md-3">
-			<p><strong>Turno</strong></p>
-			<p><?php echo $row['turno']; ?></p>
-		</div>
-		<div class="col-md-3">
 			<p><strong>Cargo</strong></p>
 			<p><?php echo $row['cargo_func']; ?></p>
 		</div>
