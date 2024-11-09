@@ -6,11 +6,23 @@ body {
   background: linear-gradient( #2394D5 50%, #124D6F);
   margin: 0;
 }
-h1{
+h1,h2,h3{
   color: black;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
 }
 a{
   width: 310px;
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+}
+p,span,label{
+  color: black;
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:400;
 }
 
 .login-form {
@@ -79,11 +91,11 @@ img {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .btn:hover {
   background-color: #4682b4;
-}
-p{
-  color: black;
 }

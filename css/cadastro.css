@@ -66,14 +66,10 @@ h3.page-header {
 .btn {
     width:120px;
     padding: 10px 0;
-    background-color: #1e90ff;
     border: none;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
   
-.btn:hover {
-    background-color: #4682b4;
-}
   
