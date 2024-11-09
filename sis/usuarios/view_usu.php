@@ -10,13 +10,13 @@
 	
 	<!-- 1ª LINHA -->
 	
-	<div class="row">
+	<div class="row" style="background-color: #e0f7fa; padding: 15px; border-radius: 5px;">
 		<div class="col-md-1">
 			<p><strong>ID</strong></p>
 			<p><?php echo $row['id'];?></p>
 		</div>
 
-		<div class="col-md-5">
+		<div class="col-md-3">
 			<p><strong>Nome do usuário</strong></p>
 			<p><?php echo $row['nome'];?></p>
 		</div>
@@ -30,11 +30,9 @@
 			<p><strong>Senha</strong></p>
 			<p><?php echo $row['senha']; ?></p>
 		</div>
-	</div>
 	
 	<!-- 2ª LINHA -->
 	
-	<div class="row">
 		<div class="col-md-4">
 			<p><strong>E-mail</strong></p>
 			<p><?php echo $row['email'];?></p>
@@ -75,7 +73,7 @@
 	
 	<div id="actions" class="row">
 		<div class="col-md-12">
-			<a href="?page=lista_usu" class="btn btn-default">Voltar</a>
+			<a href="?page=lista_usu" class="btn btn-secondary">Voltar</a>
 			<?php echo "<a href=?page=fedita_usu&id=".$row['id']." class='btn btn-primary'>Editar</a>";?>
 			<?php
 				if($row["ativo"]==1){

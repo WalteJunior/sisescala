@@ -22,6 +22,11 @@ if (isset($_GET['page'])) {
         case 'view_escala':
             include 'sis/escalas/view_escala.php';
             break;
+
+        // ---- Escalas e Horarios ----///
+        case 'rel_func':
+            include 'relatorio/rel_func.php';
+            break;
         
         // ---- Funcionairos ----///
         case 'lista_func':

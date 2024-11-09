@@ -9,12 +9,16 @@ if ($mysqli->connect_error) {
     die("Conexão falhou: " . $mysqli->connect_error);
 }
 
-// Verificar se o id_func foi passado pela URL
+// Verificar se o id_func foi passado pela URL e armazenar na sessão
 if (isset($_GET['id_func'])) {
     $id_func = (int) $_GET['id_func'];
+    $_SESSION['id_func'] = $id_func;  // Armazena o id_func na sessão
+} elseif (isset($_SESSION['id_func'])) {
+    $id_func = $_SESSION['id_func'];
 } else {
     die("ID do funcionário não encontrado.");
 }
+
 
 // Buscar dados do funcionário
 $sql = "SELECT nome_func FROM funcionario WHERE id_func = $id_func";
@@ -108,8 +112,11 @@ if ($result->num_rows > 0) {
 } else {
     echo '<div class="alert alert-warning">Nenhuma escala encontrada para o funcionário.</div>';
 }
-
-echo '<a href="?page=escala" class="btn btn-secondary mt-3 mb-3">Voltar</a>';
+if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1){
+    echo '<a href="./relatorio/rel_func.php" target="_blank" class="btn btn-secondary mt-3 mb-3">Relatorio</a>';
+}else{
+    echo '<a href="?page=escala" class="btn btn-secondary mt-3 mb-3">Voltar</a>';
+}
 $mysqli->close();
 ?>
 
@@ -131,6 +138,6 @@ $mysqli->close();
         }
     });
 </script>
-
+<a href="sisescala/relatorio/rel_func.php"></a>
 </body>
 </html>
