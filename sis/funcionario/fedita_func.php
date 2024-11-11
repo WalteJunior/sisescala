@@ -9,7 +9,7 @@ $isReadonly = ($_SESSION['UsuarioNivel'] == 2) ? 'readonly' : '';
 
 <div id="main" class="container-fluid">
 	<br>
-	<h3 class="page-header">Editar registro do Funcionário - <?php echo $id; ?></h3>
+	<h3 class="page-header">Editar Registro do Funcionário(a) - <?php echo $row["nome_func"]; ?></h3>
 
 	<!-- Área de campos do formulário de edição-->
 	<form action="?page=atualiza_func&id_func=<?php echo $row['id_func']; ?>" method="post">

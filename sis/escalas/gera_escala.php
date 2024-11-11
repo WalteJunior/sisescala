@@ -27,7 +27,7 @@
                             $res_funcionarios = mysqli_query($con, $sql_funcionarios);
                             if ($res_funcionarios) {
                                 while ($row = mysqli_fetch_assoc($res_funcionarios)) {
-                                    echo "<option value='{$row['id_func']}'>{$row['nome_func']} - {$row['id_func']}</option>";
+                                    echo "<option value='{$row['id_func']}'>{$row['nome_func']}</option>";
                                 }
                             } else {
                                 echo "<option value=''>Nenhum funcionário cadastrado</option>";

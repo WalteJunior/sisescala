@@ -53,10 +53,6 @@ $css = "
 
     .imgcab {
         width: 90px;
-        background-image: url('/sisescala/assets/logo.jpeg'); /* Caminho absoluto para a imagem */
-        background-size: 90px 90px; /* Tamanho da imagem */
-        background-repeat: no-repeat;
-        padding-left: 100px;
         float: left;
     }
 
@@ -123,7 +119,7 @@ $css = "
 // Cabeçalho do PDF
 $html = $css . "
 <div class='cabecalho'>
-    <div class='imgcab'></div>
+    <div class='imgcab'><img src='../assets/logo.jpeg' alt=''></div>
     <div class='titcab'><strong>Industria Petropolis Ltda.</strong></div>
 </div>
 <div class='titulorel'><strong>Relatório de escala do Funcionário</strong></div>
@@ -171,7 +167,7 @@ while ($escala = $result_escala->fetch_assoc()) {
                         </tr>
                     </thead>
                     <tbody>";
-        
+
         $current_month = $month_year;
         $first_month_table_open = true;
     }
@@ -190,6 +186,38 @@ while ($escala = $result_escala->fetch_assoc()) {
 if ($first_month_table_open) {
     $html .= "</tbody></table>";
 }
+// Consulta para exibir as solicitações de substituição do funcionário
+$sql_substituicoes = "SELECT motivo, data_solic, substituto, ativo_sub FROM substituicao WHERE solicitante = '{$funcionario['nome_func']}'";
+$result_substituicoes = $con->query($sql_substituicoes);
+
+if ($result_substituicoes->num_rows > 0) {
+    $html .= "<h3>Solicitações de Substituição</h3>
+              <table border='1' cellspacing='0' cellpadding='5' class='fontedados'>
+                <thead>
+                    <tr>
+                        <th>Motivo</th>
+                        <th>Data Solicitação</th>
+                        <th>Substituto</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>";
+    
+    while ($substituicao = $result_substituicoes->fetch_assoc()) {
+        $data_solic = date("d/m/Y", strtotime($substituicao['data_solic']));
+        $html .= "<tr>
+                    <td>{$substituicao['motivo']}</td>
+                    <td>{$data_solic}</td>
+                    <td>{$substituicao['substituto']}</td>
+                    <td>{$substituicao['ativo_sub']}</td>
+                  </tr>";
+    }
+    $html .= "</tbody></table><br>";
+}
+
+// Adicionar linha horizontal somente se não for o último funcionário
+if ($contador_funcionarios < $total_funcionarios) {
+    $html .= "<hr style='border: 0; border-top: 1px solid #007bff; margin: 20px 0;'>"; } 
 
 // Rodapé com a data de emissão
 $htmlfooter = "
@@ -208,4 +236,3 @@ $mpdf->SetHTMLFooter($htmlfooter);
 $mpdf->Output("Relatório_{$funcionario['nome_func']}.pdf", "I");
 
 exit;
-?>

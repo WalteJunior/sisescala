@@ -4,7 +4,7 @@
     $row = mysqli_fetch_array($sql);
 ?>
 <div id="main" class="container-fluid">
-    <br><h3 class="page-header">Editar registro da Substituição - <?php echo $id;?></h3>
+    <br><h3 class="page-header">Editar Pedido de Substituição</h3>
 
     <form action="?page=atualiza_sub&id=<?php echo $row['id']; ?>" method="post">
         <div class="row"> 

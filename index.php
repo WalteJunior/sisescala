@@ -21,12 +21,14 @@
             <input type="password" name="senha" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
             <label for="password">Password</label>
         </div>
-
+        
+        <div class="icon" id="eye" onclick="show()"></div>
         <button type="submit" class="btn btn-primary btn-ghost">Login</button><br>
 
         <p>Esqueceu a senha?<a href="sis/senha/novasenha.php"> Redefinir senha</a></p>
 
         <p>Não tem login? <a href="sis/cadastro/funceusu.php">Cadastre-se</a></p>
     </form>
+    <script src="js/login.js"></script>
 </body>
 </html>

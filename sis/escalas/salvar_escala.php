@@ -38,8 +38,18 @@ if (!empty($data)) {
             echo json_encode(["success" => false, "message" => "Erro ao salvar a escala no banco de dados."]);
             exit;
         }
+
+        // Atualiza o turno na tabela funcionario
+        $update_funcionario = "UPDATE funcionario SET turno = '$tipo_turno' WHERE id_func = '$id_func'";
+        $result_update = mysqli_query($con, $update_funcionario);
+
+        if (!$result_update) {
+            file_put_contents('debug.log', "Erro no MySQL ao atualizar turno: " . mysqli_error($con) . "\n", FILE_APPEND);
+            echo json_encode(["success" => false, "message" => "Erro ao atualizar o turno no banco de dados."]);
+            exit;
+        }
     }
-    echo json_encode(["success" => true, "message" => "Escala salva com sucesso!"]);
+    echo json_encode(["success" => true, "message" => "Escala salva e turno atualizado com sucesso!"]);
 } else {
     echo json_encode(["success" => false, "message" => "Nenhuma escala recebida."]);
 }

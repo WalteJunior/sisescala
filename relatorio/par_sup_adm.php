@@ -25,8 +25,9 @@ $result_funcionarios = $con->query($sql_funcionarios);
     <title>Parâmetros de Relatório</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/relatorio.css">
 </head>
-<body class="bg-light">
+<body>
     <div class="container mt-5">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white text-center">

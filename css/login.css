@@ -99,3 +99,19 @@ img {
 .btn:hover {
   background-color: #4682b4;
 }
+.icon{
+  position: absolute;
+  top:49%;
+  right: 42vw;
+  transform: translate(-50%);
+  background: url(../assets/eye-fill.svg);
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.icon.hide{
+  background: url(../assets/eye-slash-fill.svg);
+  background-size: cover;
+}

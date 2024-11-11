@@ -39,7 +39,7 @@ $css ="
     th { background-color: #007bff; color: white; }
     h3 { text-align: center; margin-top: 20px; color: #333; }
     .titcab { font-family: 'Cambo', serif; font-size: 20px; text-align: right; float: right; width: 82%; line-height: 70px; }
-    .imgcab { width: 90px; background-image: url('/sisescala/assets/logo.jpeg'); background-size: 90px 90px; background-repeat: no-repeat; padding-left: 100px; float: left; }
+    .imgcab { width: 90px; }
     .titulorel { background: #eee; padding: 10px; margin: 0; text-align: center; }
     hr { padding: 0 !important; margin: 0 !important; }
     .referencia { padding: 0 10px 5px; font-family: 'Arial'; display:flex; }
@@ -55,10 +55,10 @@ $css ="
 
 // Cabeçalho do PDF
 $html = $css . "<div class='cabecalho'>
-                    <div class='imgcab'></div>
+                    <div class='imgcab'><img src='../assets/logo.jpeg' alt=''></div>
                     <div class='titcab'><strong>Industria Petropolis Ltda.</strong></div>
                 </div>
-                <div class='titulorel'><strong>Relatório de escala</strong></div><br>";
+                <div class='titulorel'><strong>Relatório de Funcionario(os)</strong></div><br>";
 
 // Contador de funcionários
 $total_funcionarios = $result_funcionarios->num_rows;
@@ -143,6 +143,35 @@ while ($funcionario = $result_funcionarios->fetch_assoc()) {
         if ($first_month_table_open) {
             $html .= "</tbody></table><br>";
         }
+
+        // Consulta para exibir as solicitações de substituição do funcionário
+$sql_substituicoes = "SELECT motivo, data_solic, substituto, ativo_sub FROM substituicao WHERE solicitante = '{$funcionario['nome_func']}'";
+$result_substituicoes = $con->query($sql_substituicoes);
+
+if ($result_substituicoes->num_rows > 0) {
+    $html .= "<h3>Solicitações de Substituição de {$funcionario['nome_func']}</h3>
+              <table border='1' cellspacing='0' cellpadding='5' class='fontedados'>
+                <thead>
+                    <tr>
+                        <th>Motivo</th>
+                        <th>Data Solicitação</th>
+                        <th>Substituto</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>";
+    
+    while ($substituicao = $result_substituicoes->fetch_assoc()) {
+        $data_solic = date("d/m/Y", strtotime($substituicao['data_solic']));
+        $html .= "<tr>
+                    <td>{$substituicao['motivo']}</td>
+                    <td>{$data_solic}</td>
+                    <td>{$substituicao['substituto']}</td>
+                    <td>{$substituicao['ativo_sub']}</td>
+                  </tr>";
+    }
+    $html .= "</tbody></table><br>";
+}
 
         // Adicionar linha horizontal somente se não for o último funcionário
         if ($contador_funcionarios < $total_funcionarios) {

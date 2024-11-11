@@ -23,7 +23,7 @@ if (isset($_GET['page'])) {
             include 'sis/escalas/view_escala.php';
             break;
 
-        // ---- Escalas e Horarios ----///
+        // ---- Relatorios ----///
         case 'rel_func':
             include 'relatorio/rel_func.php';
             break;
