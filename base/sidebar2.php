@@ -1,5 +1,5 @@
         <div class="logo-details">
-      <i class="bi bi-buildings-fill"></i>
+        <img src="assets/logo-transparente.png" alt="Logo da Empresa" class="company-logo">
       <span class="logo_name">Petrópolis Ltda</span>
     </div>
     <ul class="nav-links">
@@ -25,10 +25,10 @@
       <li>
         <a href="?page=lista_func">
           <i class="bi bi-person-badge-fill"></i>
-          <span class="link_name">Funcionarios</span>
+          <span class="link_name">Funcionários</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="?page=lista_func">Funcionarios</a></li>
+          <li><a class="link_name" href="?page=lista_func">Funcionários</a></li>
         </ul>
       </li>
       <li>

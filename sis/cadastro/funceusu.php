@@ -62,7 +62,7 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
                 <div class="form-input-material">
                     <label for="cep_end">CEP</label>
                     <input type="text" class="form-control" name="cep_end" id="cep" required>
@@ -74,7 +74,13 @@
                     <input type="text" class="form-control" name="rua_end" id="rua" required>
                 </div>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-2">
+        <div class="form-input-material">
+            <label for="num_end">Número</label>
+            <input type="text" class="form-control" name="num_end" id="num" required>
+        </div>
+    </div>
+            <div class="form-group col-md-3">
                 <div class="form-input-material">
                     <label for="compl_end">Complemento</label>
                     <input type="text" class="form-control" name="compl_end" id="complemento">

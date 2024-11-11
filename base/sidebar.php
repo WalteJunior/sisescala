@@ -26,17 +26,17 @@ if ($result && $result->num_rows > 0) {
 
         
         <div class="logo-details">
-          <i class="bi bi-buildings-fill"></i>
+        <img src="assets/logo-transparente.png" alt="Logo da Empresa" class="company-logo">
           <span class="logo_name">Petrópolis Ltda</span>
         </div>
         <ul class="nav-links">
           <li>
             <a href="?page=view_escala&id_func=<?php echo $info['id_func'] ?>">
               <i class="bi bi-table"></i>
-              <span class="link_name">Horarios</span>
+              <span class="link_name">Horários</span>
             </a>
             <ul class="sub-menu blank">
-              <li><a class="link_name" href="?page=view_escala&id_func=">Horarios</a></li>
+              <li><a class="link_name" href="?page=view_escala&id_func=">Horários</a></li>
             </ul>
           </li>
 

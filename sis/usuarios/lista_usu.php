@@ -67,7 +67,7 @@
 
 		<!-- PAGINAÇÃO -->
 		<div id="bottom" class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 d-flex justify-content-center">
 				<?php
 					$sqlTotal = "select id from usuarios;";
 					$qrTotal = mysqli_query($con, $sqlTotal);

@@ -54,7 +54,7 @@
     </div>
     <!-- PAGINAÇÃO -->
 		<div id="bottom" class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 d-flex justify-content-center">
 				<?php
 					$sqlTotal 		= "select id_func from funcionario;";
 					$qrTotal  		= mysqli_query($con, $sqlTotal);

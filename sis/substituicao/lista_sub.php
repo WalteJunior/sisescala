@@ -5,9 +5,11 @@
 		</div>
 
 		<div class="col-md-2">
-			<!-- Chama o Formulário para adicionar alunos -->
-			<a href="?page=fadd_sub" class="btn btn-primary pull-right h2">Nova substituição</a> 
-		</div>
+            <!-- Verifica se o nível do usuário é 1 antes de exibir o botão -->
+            <?php if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1): ?>
+                <a href="?page=fadd_sub" class="btn btn-primary pull-right h2">Nova substituição</a>
+            <?php endif; ?>
+        </div>
 	</div>
 	<hr/>
 	<div><?php include "mensagens.php"; ?> </div>
@@ -133,7 +135,7 @@
 
 		<!-- PAGINAÇÃO -->
 		<div id="bottom" class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 d-flex justify-content-center">
 				<?php
 					$sqlTotal 		= "select id from substituicao;";
 					$qrTotal  		= mysqli_query($con, $sqlTotal) or die (mysqli_error($con));

@@ -3,6 +3,14 @@ $id		  		= $_POST["id"];
 $nome 			= $_POST["nome"];
 $usuario		= $_POST["usuario"];
 $email			= $_POST["email"];
+$id_end         = $_POST['id_end'];
+$cep_end        = $_POST['cep_end'];
+$rua_end        = $_POST['rua_end'];
+$num_end        = $_POST['num_end'];
+$compl_end      = $_POST['compl_end'];
+$bairro_end     = $_POST['bairro_end'];
+$cidade_end     = $_POST['cidade_end'];
+$estado_end     = $_POST['estado_end'];
 
 // Consulta o nível atual do usuário
 $sql_nivel = "SELECT nivel FROM usuarios WHERE id = '".$id."'";

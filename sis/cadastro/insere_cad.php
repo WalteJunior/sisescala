@@ -17,6 +17,7 @@ $telefone  					= $_POST["telefone"];
 $sexo      					= $_POST["sexo"];
 $cep_end                    = $_POST["cep_end"];
 $rua_end                    = $_POST["rua_end"];
+$num_end                    = $_POST["num_end"];
 $compl_end                  = $_POST["compl_end"];
 $bairro_end                 = $_POST["bairro_end"];
 $cidade_end                 = $_POST["cidade_end"];
@@ -45,8 +46,8 @@ $id_usuario = mysqli_insert_id($con);
 
 
 // Inserção na tabela endereco usando o id_func como chave estrangeira
-$sql_endereco = "INSERT INTO endereco (id_func, rua_end, compl_end, cep_end, bairro_end, cidade_end, estado_end) ";
-$sql_endereco .= "VALUES ('$id_func', '$rua_end', '$compl_end', '$cep_end', '$bairro_end', '$cidade_end', '$estado_end');";
+$sql_endereco = "INSERT INTO endereco (id_func, rua_end, num_end, compl_end, cep_end, bairro_end, cidade_end, estado_end) ";
+$sql_endereco .= "VALUES ('$id_func', '$rua_end', '$num_end', '$compl_end', '$cep_end', '$bairro_end', '$cidade_end', '$estado_end');";
 
 // Executa a inserção na tabela endereco
 $resultado_endereco =  mysqli_query($con, $sql_endereco) or die(mysqli_error($con));

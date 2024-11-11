@@ -285,3 +285,23 @@ button{
     left: 0;
   }
 }
+.company-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.company-logo {
+  width: 40px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+  margin-right: 10px; /* Espaço entre a logo e o nome */
+}
+.company-name {
+  font-size: 18px; /* Ajuste o tamanho da fonte conforme necessário */
+  font-weight: bold;
+}
+.logo-details {
+  background-color: #313131; /* Cor sugerida */
+  padding: 10px;
+  border-radius: 8px; /* Para deixar com bordas arredondadas, opcional */
+}
+

@@ -18,7 +18,14 @@ if (!$con) {
 }
 
 // Consulta para obter as informações do usuário
-$sql = mysqli_query($con, "SELECT * FROM usuarios, funcionario, endereco WHERE id = $id");
+$sql = mysqli_query($con, "
+    SELECT * 
+    FROM usuarios 
+    INNER JOIN funcionario ON usuarios.id_func = funcionario.id_func
+    INNER JOIN endereco ON endereco.id_func = funcionario.id_func
+    WHERE usuarios.id = $id
+");
+
 $row = mysqli_fetch_array($sql);
 
 // Verifica se as informações foram retornadas
@@ -60,6 +67,10 @@ if (!$row) {
         <div class="col-md-2">
             <p><strong>Rua</strong></p>
             <p><?php echo $row['rua_end']; ?></p>
+        </div>
+        <div class="col-md-2">
+            <p><strong>Número</strong></p>
+            <p><?php echo $row['num_end']; ?></p>
         </div>
         <div class="col-md-2">
             <p><strong>Bairro</strong></p>
