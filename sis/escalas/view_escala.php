@@ -52,6 +52,13 @@ echo '
 <div class="container mt-5">
     <h2 class="text-center mb-4">Escala do Funcionário - ' . $nome_funcionario . '</h2>
 ';
+echo '<div class="d-flex justify-content-end mb-3">';
+if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1) {
+    echo '<a href="./relatorio/rel_func.php" target="_blank" class="btn btn-secondary">Relatório</a>';
+} else {
+    echo '<a href="?page=escala" class="btn btn-secondary">Voltar</a>';
+}
+echo '</div>';
 
 if ($result->num_rows > 0) {
     $current_month = "";
@@ -112,11 +119,7 @@ if ($result->num_rows > 0) {
 } else {
     echo '<div class="alert alert-warning">Nenhuma escala encontrada para o funcionário.</div>';
 }
-if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1){
-    echo '<a href="./relatorio/rel_func.php" target="_blank" class="btn btn-secondary mt-3 mb-3">Relatorio</a>';
-}else{
-    echo '<a href="?page=escala" class="btn btn-secondary mt-3 mb-3">Voltar</a>';
-}
+
 $mysqli->close();
 ?>
 

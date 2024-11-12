@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS escala (
   CONSTRAINT FK_escala_funcionario FOREIGN KEY (id_func) REFERENCES funcionario (id_func)
 );
 
-Crie uma escala de trabalho para o funcionário indicado no formato 12x36(12 horas de trabalho e 36horas de descanso, dia sim e dia não) incluindo domingos e feriados(NA ESCALA GERADA FUNCIONÁRIO NUNCA PODE TRABALHAR DOIS DIAS SEGUIDOS), abrangendo todo o mês e do mês seguinte respeitando a escala 12x36 a partir da data de início, terminando no último dia do mês sem avançar para o próximo mês. Cada dia alterna entre 12 horas de trabalho e 36 horas de descanso no mesmo turno, incluindo domingos e feriados. 
+Crie uma escala de trabalho para o funcionário indicado no formato 12x36(12 horas de trabalho e 36horas de descanso, dia sim e dia não) incluindo domingos e feriados(NA ESCALA GERADA FUNCIONÁRIO NUNCA PODE TRABALHAR DOIS DIAS SEGUIDOS), abrangendo todo o mês e do mês seguinte respeitando a escala 12x36 a partir da data de início, terminando no último dia do mês sem avançar para o próximo mês(exemplo se a pessoa começou no mês citado na data de inicio a escala vai ser gerada a partir dessa data até o final do mês consecutivo) tem que. Cada dia alterna entre 12 horas de trabalho e 36 horas de descanso no mesmo turno, incluindo domingos e feriados. 
 
 
 Use as informações a seguir:
