@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "UPDATE usuarios SET senha = '$senha_hash' WHERE usuario = '$usuario'";
     
     if (mysqli_query($con, $query)) {
-        header('Location: /sisescala/index.php?warn=1'); // Redireciona para a página inicial com código de sucesso
+        header('Location: /sisescala/login.php?warn=1'); // Redireciona para a página inicial com código de sucesso
     } else {
         // Exibe erro de SQL e redireciona
-        header('Location: /sisescala/index.php?warn=6&error=' . urlencode(mysqli_error($con)));
+        header('Location: /sisescala/login.php?warn=6&error=' . urlencode(mysqli_error($con)));
     }
 }
 

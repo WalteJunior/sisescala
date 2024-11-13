@@ -58,9 +58,9 @@ if ($resultado_usuario && $resultado_funcionario && $resultado_endereco) {
     $_SESSION['usuario_id'] = $id_usuario;
     
     // Redireciona para a página inicial
-    header('Location: \sisescala/index.php?msg=1');
+    header('Location: \sisescala/login.php?msg=1');
 } else {
-    header('Location: \sisescala/index.php?msg=6');
+    header('Location: \sisescala/login.php?msg=6');
 }
 
 // Fecha a conexão com o banco de dados

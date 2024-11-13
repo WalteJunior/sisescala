@@ -30,7 +30,7 @@ p, span, label {
 }
 
 .login-form {
-  width: 20vw;
+  width: 24vw;
   max-width: 400px; /* Limita o tamanho em telas maiores */
   display: flex;
   flex-direction: column;

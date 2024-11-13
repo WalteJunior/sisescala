@@ -33,7 +33,7 @@ $usuario = htmlspecialchars($_GET['usuario']);
         <div class="icon" id="eye" onclick="show()"></div>
     </div>
     <button type="submit" class="btn btn-primary btn-ghost">Atualizar Senha</button>
-    <a href="../../index.php" class="btn btn-danger">Cancelar</a>
+    <a href="../../login.php" class="btn btn-danger">Cancelar</a>
 
 </form>
 <script src="../../js/login.js"></script>

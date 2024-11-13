@@ -115,7 +115,7 @@
             <div class="col-md-12">
                 <button type="submit" id="submitBtn" class="btn btn-primary">Salvar</button>
                 <button type="button" class="btn btn-secondary" id="btnPesquisar">Consultar Cep</button>
-                <a href="../../index.php" class="btn btn-danger">Cancelar</a>
+                <a href="../../login.php" class="btn btn-danger">Cancelar</a>
             </div>
         </div>
     </form>
