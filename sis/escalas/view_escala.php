@@ -54,7 +54,7 @@ echo '
 ';
 echo '<div class="d-flex justify-content-end mb-3">';
 if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1) {
-    echo '<a href="./relatorio/rel_func.php" target="_blank" class="btn btn-secondary">Relatório</a>';
+    echo '<a href="./relatorio/rel_func.php" target="_blank" class="btn btn-secondary">Gerar Relatório (Últimos 3 Meses)</a>';
 } else {
     echo '<a href="?page=escala" class="btn btn-secondary">Voltar</a>';
 }

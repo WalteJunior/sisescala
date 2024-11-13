@@ -6,6 +6,13 @@
   box-sizing: border-box;
 }
 
+/* Configura o container principal para expandir */
+.container {
+  flex: 1;
+  padding-bottom: 30px; /* Espaço no final para evitar que o conteúdo fique grudado */
+}
+
+
 h1{
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;

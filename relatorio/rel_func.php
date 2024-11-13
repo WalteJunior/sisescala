@@ -143,7 +143,7 @@ $first_month_table_open = false;
 // Gerar tabelas mensais no PDF
 while ($escala = $result_escala->fetch_assoc()) {
     $data = strtotime($escala['data']);
-    $month_year = strftime("%B de %Y", $data);  // Nome do mês em português
+    $month_year = ucfirst(strftime("%B de %Y", $data));  // Nome do mês em português
     $formatted_date = date("d/m/Y", $data);
     $hora_inicio = date("H:i", strtotime($escala['hora_inicio']));
     $hora_fim = date("H:i", strtotime($escala['hora_fim']));

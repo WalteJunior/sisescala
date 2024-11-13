@@ -7,7 +7,7 @@
 		<div class="col-md-2">
             <!-- Verifica se o nível do usuário é 1 antes de exibir o botão -->
             <?php if (isset($_SESSION['UsuarioNivel']) && $_SESSION['UsuarioNivel'] == 1): ?>
-                <a href="?page=fadd_sub" class="btn btn-primary pull-right h2">Nova substituição</a>
+                <a href="?page=fadd_sub" class="btn btn-primary pull-right h2">Pedir substituição</a>
             <?php endif; ?>
         </div>
 	</div>
