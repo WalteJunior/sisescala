@@ -3,33 +3,39 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient( #2394D5 50%, #124D6F);
+  background: linear-gradient(#2394D5 50%, #124D6F);
   margin: 0;
 }
-h1,h2,h3{
+
+h1, h2, h3 {
   color: black;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
+  font-size:medium ;
   font-weight: bold;
 }
-a{
-  width: 310px;
+
+a {
+  width: 100%;
   font-family: "Source Sans 3", sans-serif;
   font-optical-sizing: auto;
-  font-weight:400;
+  font-weight: 400;
 }
-p,span,label{
+
+p, span, label {
   color: black;
   font-family: "Source Sans 3", sans-serif;
   font-optical-sizing: auto;
-  font-weight:400;
+  font-weight: 400;
 }
 
 .login-form {
+  width: 20vw;
+  max-width: 400px; /* Limita o tamanho em telas maiores */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 40px;
+  padding: 40px 30px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
@@ -41,14 +47,13 @@ p,span,label{
 }
 
 img {
-  width: 125px;
+  width: 100px;
 }
 
 .form-input-material {
   margin: 12px 0;
   width: 100%;
   position: relative;
-
 }
 
 .form-input-material input {
@@ -99,19 +104,42 @@ img {
 .btn:hover {
   background-color: #4682b4;
 }
-.icon{
+
+.custom-padding-right {
+  padding-right: 40px;
+}
+
+.icon {
   position: absolute;
-  top:49%;
-  right: 42vw;
-  transform: translate(-50%);
+  top: 50%;
+  right: 10px; /* Posiciona o ícone à direita do campo de input */
+  transform: translateY(-50%);
   background: url(../assets/eye-fill.svg);
   background-size: cover;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 
-.icon.hide{
+.icon.hide {
   background: url(../assets/eye-slash-fill.svg);
   background-size: cover;
+}
+
+/* Media query para dispositivos móveis */
+@media (max-width: 768px) {
+  .login-form {
+    width: 90vw;
+    padding: 30px 20px;
+  }
+
+  .icon {
+    right: 15px;
+    width: 20px;
+    height: 20px;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5em;
+  }
 }

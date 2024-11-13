@@ -42,11 +42,12 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-5 d-flex align-items-center justify-content-center">
                 <div class="form-input-material">
                     <label for="senha">Senha</label>
-                    <input type="password" class="form-control" name="senha" required>
+                    <input type="password" class="form-control custom-padding-right" name="senha" id="password" required>
                 </div>
+                <div class="icon" id="eye" onclick="show()"></div>
             </div>
 
             <div class="form-group col-md-2">
@@ -120,3 +121,4 @@
     </form>
 </div>
 <script src="../../js/cadastro.js" type="text/javascript"></script>
+<script src="../../js/login.js"></script>

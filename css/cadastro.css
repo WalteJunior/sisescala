@@ -62,6 +62,7 @@ h3.page-header {
     color: #1e90ff;
     font-size: 12px;
 }
+
   
 .btn {
     width:120px;
@@ -71,5 +72,22 @@ h3.page-header {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+.custom-padding-right{
+    padding-right: 40px;
+}
+
+.icon{
+    position: relative;
+    right: 20px;
+    transform: translate(-50%);
+    background: url(../assets/eye-fill.svg);
+    background-size: cover;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+  }
   
-  
+.icon.hide{
+    background: url(../assets/eye-slash-fill.svg);
+    background-size: cover;
+}

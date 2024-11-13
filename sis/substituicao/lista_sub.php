@@ -1,4 +1,11 @@
-﻿<div id="main" class="container-fluid">
+﻿<head>
+	<style>
+		.btn-orange{
+			background-color: #f0ad4e;
+		}
+	</style>
+</head>
+<div id="main" class="container-fluid">
 	<div id="top" class="row">
 		<div class="col-md-10">
 			<h2>Substituições</h2>
@@ -115,12 +122,12 @@
 								echo "<a href=?page=excluir_sub&id=".$info['id']." class='btn btn-danger btn-xs '> Excluir </a></td>";
 							} else if ($info['ativo_sub'] == 'Aprovado') {
 								echo "<a class='btn btn-danger btn-xs' href=?page=reprovar_sub&id=".$info['id'].">&nbsp;&nbsp;&nbsp;Reprovar&nbsp;&nbsp;</a>";
-								echo "<a class='btn btn-warning btn-xs' href=?page=analise_sub&id=".$info['id']."> Em Analise </a>";
+								echo "<a class='btn btn-orange btn-xs' href=?page=analise_sub&id=".$info['id']."> Em Analise </a>";
 								echo "<a class='btn btn-warning btn-xs' href=?page=fedita_sub&id=".$info['id']."> Editar </a>"; 
 								echo "<a href=?page=excluir_sub&id=".$info['id']." class='btn btn-danger btn-xs '> Excluir </a></td>";
 							} else {
 								echo "<a class='btn btn-success btn-xs' href=?page=aprovar_sub&id=".$info['id'].">&nbsp;&nbsp;&nbsp;Aprovar&nbsp;&nbsp;</a>";
-								echo "<a class='btn btn-warning btn-xs' href=?page=analise_sub&id=".$info['id']."> Em Analise </a>";
+								echo "<a class='btn btn-orange btn-xs' href=?page=analise_sub&id=".$info['id']."> Em Analise </a>";
 								echo "<a class='btn btn-warning btn-xs' href=?page=fedita_sub&id=".$info['id']."> Editar </a>"; 
 								echo "<a href=?page=excluir_sub&id=".$info['id']." class='btn btn-danger btn-xs '> Excluir </a></td>";
 							}
