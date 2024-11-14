@@ -20,8 +20,10 @@ $query = mysqli_query($con, $sql);
 
 if (mysqli_num_rows($query) != 1) {
     // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
-    header('Content-Type: text/html; charset=utf-8');
-    echo "Login inválido!"; exit;
+    echo "<script>
+        alert('Login inválido!');
+        window.location.href = 'login.php';
+    </script>";
 } else {
     // Salva os dados encontrados na variável $resultado
     $resultado = mysqli_fetch_assoc($query);

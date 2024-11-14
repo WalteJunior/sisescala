@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
     <link rel="stylesheet" href="\sisescala\css\cadastro.css">
+    <title>Cadastro</title>
 </head>
 
 <div id="main" class="container-fluid">
