@@ -2,7 +2,6 @@
 $id_func = $_POST["id_func"];
 $nome_func = $_POST["nome_func"];
 $cargo_func = $_POST["cargo_func"];
-$turno = $_POST["turno"];
 $email_func = $_POST["email_func"];
 $telefone_func = $_POST["telefone_func"];
 
@@ -28,8 +27,7 @@ $estado_end = $_POST["estado_end"];
 // Consulta SQL para atualizar os dados do funcionário
 $sql = "UPDATE funcionario SET 
             nome_func='".$nome_func."', 
-            cargo_func='".$cargo_func."', 
-            turno='".$turno."', 
+            cargo_func='".$cargo_func."',  
             email_func='".$email_func."', 
             telefone_func='".$telefone_func."', 
             sexo_func='".$sexo_func."' 

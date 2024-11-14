@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 //mask de input
 $(document).ready(function(){
-	$('#tel_fixo').inputmask("(99)99999-9999");
+	$('#tel_fixo').inputmask("(99) 99999-9999");
 	$('#data').inputmask("99/99/9999");
   $('#cep').inputmask("99999-999");
 	$('#cpf').inputmask("999.999.999-99");

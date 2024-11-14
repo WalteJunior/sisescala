@@ -79,13 +79,31 @@ if ($result->num_rows > 0) {
             }
             $months[] = $month_key;
             $current_month = $month_year;
-            $tables[$month_key] = "<div class='text-center'><h4>$month_year</h4></div>
-                                   <table class='table table-striped' style='background-color: #e0f7fa;'>
-                                   <thead style='background-color: #007bff; color: white;'>
-                                   <tr><th>Data</th><th>Hora Início</th><th>Hora Fim</th><th>Turno</th></tr>
-                                   </thead><tbody>";
-        }
+           // Geração do botão "Excluir Escala" apenas para níveis de usuário 2 e 3
+if (isset($_SESSION['UsuarioNivel']) && in_array($_SESSION['UsuarioNivel'], [2, 3])) {
+    $tables[$month_key] = '<div class="text-center position-relative mb-4">
+        <h4 class="d-inline-block">' . $month_year . '</h4>
+        <a href="?page=excluir_esc&id_func=' . $id_func . '" 
+           class="btn btn-danger btn-xs position-absolute" 
+           style="right: 0; top: 50%; transform: translateY(-50%);" 
+           onclick="return confirm(\'Tem certeza que deseja excluir esta escala?\');">
+           Excluir Escala
+        </a>
+    </div>
+    <table class="table table-striped" style="background-color: #e0f7fa;">
+        <thead style="background-color: #007bff; color: white;">
+            <tr><th>Data</th><th>Hora Início</th><th>Hora Fim</th><th>Turno</th></tr>
+        </thead><tbody>';
+} else {
+    $tables[$month_key] = '<div class="text-center position-relative">
+        <h4 class="d-inline-block">' . $month_year . '</h4>
+    </div>
+    <table class="table table-striped" style="background-color: #e0f7fa;">
+        <thead style="background-color: #007bff; color: white;">
+            <tr><th>Data</th><th>Hora Início</th><th>Hora Fim</th><th>Turno</th></tr>
+        </thead><tbody>';
         
+}}
         // Adicionar linha à tabela atual
         $tables[$month_key] .= '<tr>';
         $tables[$month_key] .= '<td>' . date("d/m/Y", $data) . '</td>';

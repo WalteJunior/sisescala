@@ -23,6 +23,10 @@ if (isset($_GET['page'])) {
             include 'sis/escalas/view_escala.php';
             break;
 
+        case 'excluir_esc':
+            include 'sis/escalas/excluir_esc.php';
+            break;
+
         // ---- Relatorios ----///
         case 'rel_func':
             include 'relatorio/rel_func.php';

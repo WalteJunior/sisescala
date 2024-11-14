@@ -21,7 +21,8 @@
             $pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
             $inicio = ($quantidade * $pagina) - $quantidade;
 
-            $data = mysqli_query($con, "select * from funcionario, endereco, setor where funcionario.id_func = endereco.id_func limit $inicio, $quantidade;");
+            $data = mysqli_query($con, "select funcionario.*, endereco.*, setor.*, usuarios.dt_cadastro from funcionario, endereco, setor, usuarios where funcionario.id_func = endereco.id_func and funcionario.id_func = usuarios.id_func limit $inicio, $quantidade;");
+
             
             // Tabela com cor de fundo personalizada
             echo "<table class='table table-striped table-bordered' style='background-color: #e0f7fa;' cellspacing='0' cellpadding='0'>"; // Fundo azul claro
@@ -31,6 +32,7 @@
             echo "<td><strong>Sexo</strong></td>";
             echo "<td><strong>Setor</strong></td>";
             echo "<td><strong>Cargo</strong></td>";
+			echo "<td><strong>Data de Cadastro</strong></td>";
             echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
             echo "</tr></thead><tbody>";
 
@@ -40,6 +42,7 @@
                 echo "<td>".$info['sexo_func']."</td>";
                 echo "<td>".$info['nome_st']."</td>";
                 echo "<td>".$info['cargo_func']."</td>";
+				echo "<td>".($info['dt_cadastro'] ? date("d/m/Y", strtotime($info['dt_cadastro'])) : 'N/A')."</td>"; // Formatação de data
                 echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
                 echo "<a class='btn btn-success btn-xs' href='?page=view_func&id_func=".$info['id_func']."'> Visualizar </a>";
                 echo "<a class='btn btn-warning btn-xs' href='?page=fedita_func&id_func=".$info['id_func']."'> Editar </a>"; 
@@ -86,3 +89,4 @@
 </div>
 
 </div>
+
