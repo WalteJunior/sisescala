@@ -14,7 +14,7 @@
       </li>
       <li>
         <a href="?page=gera">
-          <i class="bi bi-table"></i>
+          <i class="bi bi-calendar-week"></i>
           <span class="link_name">Criar escalas</span>
         </a>
         <ul class="sub-menu blank">

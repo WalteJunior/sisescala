@@ -3,6 +3,8 @@ $id           = $_POST["id"];
 $nome         = $_POST["nome"];
 $usuario      = $_POST["usuario"];
 $email        = $_POST["email"];
+$id_func       = $_POST['id_func'];
+$telefone     = $_POST["telefone_func"];
 $id_end       = $_POST['id_end'];
 $cep_end      = $_POST['cep_end'];
 $rua_end      = $_POST['rua_end'];
@@ -27,6 +29,14 @@ $sql_usuario = "UPDATE usuarios SET
     WHERE id = '".$id."';";
 $resultado_usuario = mysqli_query($con, $sql_usuario);
 
+// Atualiza os campos editáveis do usuário
+$sql_func = "UPDATE funcionario SET 
+    nome_func = '".$nome."',
+    telefone_func = '".$telefone."',
+    email_func = '".$email."'
+    WHERE id_func = '".$id_func."';";
+$resultado_func = mysqli_query($con, $sql_func);
+
 // Atualiza os campos de endereço
 $sql_endereco = "UPDATE endereco SET 
     cep_end='".$cep_end."', 
@@ -40,7 +50,7 @@ $sql_endereco = "UPDATE endereco SET
 $resultado_endereco = mysqli_query($con, $sql_endereco);
 
 // Verifica se ambas as atualizações foram bem-sucedidas
-if ($resultado_usuario && $resultado_endereco) {
+if ($resultado_usuario && $resultado_endereco && $resultado_func) {
     header('Location: /sisescala/home.php?page=perfil_func&msg=2');
 } else {
     echo "Erro ao atualizar os dados:<br>";

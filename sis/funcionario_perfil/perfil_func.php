@@ -36,7 +36,7 @@ if (!$row) {
 
 ?>
 <div id="main" class="container-fluid">
-    <h3 class="page-header">Registro do Usuário - <?php echo $row['nome'] ; ?> </h3>
+    <h3 class="page-header">Perfil do Usuário - <?php echo $row['nome'] ; ?> </h3>
     
     <!-- Row 1 -->
     <div class="row" style="background-color: #e0f7fa; padding: 15px; border-radius: 5px;"> <!-- Fundo azul claro -->

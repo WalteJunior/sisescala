@@ -36,8 +36,8 @@
 			<div class="form-group col-md-2">
 				<label for="nivel">Nível</label>
 				<select class="form-control" name="nivel" id="nivel">
-					<option value="1" >Relatórios</option>
-					<option value="2">Cadastros</option>
+					<option value="1" >Funcionario</option>
+					<option value="2">Supervisor</option>
 					<option value="3">Administrador</option>		
 				</select>
 			</div>

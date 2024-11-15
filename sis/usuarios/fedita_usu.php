@@ -15,18 +15,11 @@ $row = mysqli_fetch_array($sql);
 			<div class="form-group col-md-1">
 				<label for="id">ID</label>
 				<input readonly type="text" class="form-control" name="id" value="<?php echo $row["id"]; ?>">
+				<input type="hidden" class="form-control" name="id_func" value="<?php echo $row["id_func"]; ?>">
 			</div>
 			<div class="form-group col-md-5">
 				<label for="nome">Nome do Usuário</label>
 				<input type="text" class="form-control" name="nome" value="<?php echo $row["nome"]; ?>">
-			</div>
-			<div class="form-group col-md-3">
-				<label for="usuario">Usuário</label>
-				<input type="text" class="form-control" name="usuario" value="<?php echo $row["usuario"]; ?>">
-			</div>
-			<div class="form-group col-md-3">
-				<label for="senha">Senha</label>
-				<input readonly type="text" class="form-control" name="senha" value="<?php echo $row["senha"]; ?>">
 			</div>
 		</div>
 
@@ -39,8 +32,8 @@ $row = mysqli_fetch_array($sql);
 			<div class="form-group col-md-2">
 				<label for="nivel">Nível</label>
 				<select class="form-control" id="nivel" name="nivel">
-					<option value="1" <?php if ($row['nivel'] == 1) echo "selected"; ?>>Relatórios</option>
-					<option value="2" <?php if ($row['nivel'] == 2) echo "selected"; ?>>Cadastros</option>
+					<option value="1" <?php if ($row['nivel'] == 1) echo "selected"; ?>>Funcionario</option>
+					<option value="2" <?php if ($row['nivel'] == 2) echo "selected"; ?>>Supervisor</option>
 					<option value="3" <?php if ($row['nivel'] == 3) echo "selected"; ?>>Administrador</option>
 				</select>
 			</div>

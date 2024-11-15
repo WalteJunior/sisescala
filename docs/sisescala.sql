@@ -16,14 +16,16 @@
 
 
 -- Copiando estrutura do banco de dados para sisescala
+DROP DATABASE IF EXISTS `sisescala`;
 CREATE DATABASE IF NOT EXISTS `sisescala` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */;
 USE `sisescala`;
 
 -- Copiando estrutura para tabela sisescala.endereco
+DROP TABLE IF EXISTS `endereco`;
 CREATE TABLE IF NOT EXISTS `endereco` (
   `id_end` int(11) NOT NULL AUTO_INCREMENT,
   `rua_end` varchar(50) DEFAULT NULL,
-  `num_end` varchar(10) DEFAULT NULL,
+  `num_end` int(11) DEFAULT NULL,
   `compl_end` varchar(50) DEFAULT NULL,
   `cep_end` varchar(50) DEFAULT NULL,
   `bairro_end` varchar(50) DEFAULT NULL,
@@ -33,18 +35,20 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   PRIMARY KEY (`id_end`) USING BTREE,
   KEY `endereco_ibfk_1` (`id_func`) USING BTREE,
   CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_func`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- Copiando dados para a tabela sisescala.endereco: ~7 rows (aproximadamente)
 REPLACE INTO `endereco` (`id_end`, `rua_end`, `num_end`, `compl_end`, `cep_end`, `bairro_end`, `cidade_end`, `estado_end`, `id_func`) VALUES
-	(46, 'Rua Mário das Virgens de Lima', 'S/N', '(Cj 6 de Novembro)', '21864410', 'Bangu', 'Rio de Janeiro', 'RJ', 42),
-	(47, 'Rua Mário das Virgens de Lima', '', '(Cj 6 de Novembro)', '21864410', 'Bangu', 'Rio de Janeiro', 'RJ', 44),
-	(48, 'Rua 3', '', '(Cj Res Morada da Lagoa)', '60840-190', 'Messejana', 'Fortaleza', 'CE', 45),
-	(50, 'Avenida Getúlio Vargas', '', 'de 3031/3032 a 3443/3444', '69918-578', 'Vila Ivonete', 'Rio Branco', 'AC', 47),
-	(51, 'Rua Mário das Virgens de Lima', '', '(Cj 6 de Novembro)', '21864-410', 'Bangu', 'Rio de Janeiro', 'RJ', 48),
-	(52, 'Rua Icamiaba', '', 'de 415/416 a 839/840', '76876-484', 'Jardim Jorge Teixeira', 'Ariquemes', 'RO', 49);
+	(46, 'Rua Mário das Virgens de Lima', 90, '(Cj 6 de Novembro)', '21864-410', 'Bangu', 'Rio de Janeiro', 'RJ', 42),
+	(47, 'Rua Mário das Virgens de Lima', 0, '(Cj 6 de Novembro)', '21864410', 'Bangu', 'Rio de Janeiro', 'RJ', 44),
+	(48, 'Rua 3', 0, '(Cj Res Morada da Lagoa)', '60840-190', 'Messejana', 'Fortaleza', 'CE', 45),
+	(49, 'Alameda Cedro', NULL, '', '68742-122', 'Nova Olinda', 'Castanhal', 'PA', 46),
+	(50, 'Avenida Getúlio Vargas', 0, 'de 3031/3032 a 3443/3444', '69918-578', 'Vila Ivonete', 'Rio Branco', 'AC', 47),
+	(51, 'Rua Mário das Virgens de Lima', 0, '(Cj 6 de Novembro)', '21864-410', 'Bangu', 'Rio de Janeiro', 'RJ', 48),
+	(52, 'Rua Icamiaba', 0, 'de 415/416 a 839/840', '76876-484', 'Jardim Jorge Teixeira', 'Ariquemes', 'RO', 49);
 
 -- Copiando estrutura para tabela sisescala.escala
+DROP TABLE IF EXISTS `escala`;
 CREATE TABLE IF NOT EXISTS `escala` (
   `id_esc` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_turno` varchar(50) DEFAULT NULL,
@@ -57,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `escala` (
   CONSTRAINT `FK_escala_funcionario` FOREIGN KEY (`id_func`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1389 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.escala: ~129 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.escala: ~299 rows (aproximadamente)
 REPLACE INTO `escala` (`id_esc`, `tipo_turno`, `hora_inicio`, `hora_fim`, `data`, `id_func`) VALUES
 	(1043, 'diurno', '07:00:00', '19:00:00', '2024-10-15', 42),
 	(1044, 'diurno', '07:00:00', '19:00:00', '2024-10-17', 42),
@@ -83,6 +87,170 @@ REPLACE INTO `escala` (`id_esc`, `tipo_turno`, `hora_inicio`, `hora_fim`, `data`
 	(1064, 'diurno', '07:00:00', '19:00:00', '2024-11-26', 42),
 	(1065, 'diurno', '07:00:00', '19:00:00', '2024-11-28', 42),
 	(1066, 'diurno', '07:00:00', '19:00:00', '2024-11-30', 42),
+	(1067, 'diurno', '07:00:00', '19:00:00', '2024-10-16', 44),
+	(1068, 'diurno', '07:00:00', '19:00:00', '2024-10-18', 44),
+	(1069, 'diurno', '07:00:00', '19:00:00', '2024-10-20', 44),
+	(1070, 'diurno', '07:00:00', '19:00:00', '2024-10-22', 44),
+	(1071, 'diurno', '07:00:00', '19:00:00', '2024-10-24', 44),
+	(1072, 'diurno', '07:00:00', '19:00:00', '2024-10-26', 44),
+	(1073, 'diurno', '07:00:00', '19:00:00', '2024-10-28', 44),
+	(1074, 'diurno', '07:00:00', '19:00:00', '2024-10-30', 44),
+	(1075, 'diurno', '07:00:00', '19:00:00', '2024-11-01', 44),
+	(1076, 'diurno', '07:00:00', '19:00:00', '2024-11-03', 44),
+	(1077, 'diurno', '07:00:00', '19:00:00', '2024-11-05', 44),
+	(1078, 'diurno', '07:00:00', '19:00:00', '2024-11-07', 44),
+	(1079, 'diurno', '07:00:00', '19:00:00', '2024-11-09', 44),
+	(1080, 'diurno', '07:00:00', '19:00:00', '2024-11-11', 44),
+	(1081, 'diurno', '07:00:00', '19:00:00', '2024-11-13', 44),
+	(1082, 'diurno', '07:00:00', '19:00:00', '2024-11-15', 44),
+	(1083, 'diurno', '07:00:00', '19:00:00', '2024-11-17', 44),
+	(1084, 'diurno', '07:00:00', '19:00:00', '2024-11-19', 44),
+	(1085, 'diurno', '07:00:00', '19:00:00', '2024-11-21', 44),
+	(1086, 'diurno', '07:00:00', '19:00:00', '2024-11-23', 44),
+	(1087, 'diurno', '07:00:00', '19:00:00', '2024-11-25', 44),
+	(1088, 'diurno', '07:00:00', '19:00:00', '2024-11-27', 44),
+	(1089, 'diurno', '07:00:00', '19:00:00', '2024-11-29', 44),
+	(1090, 'noturno', '19:00:00', '07:00:00', '2024-10-15', 45),
+	(1091, 'noturno', '19:00:00', '07:00:00', '2024-10-17', 45),
+	(1092, 'noturno', '19:00:00', '07:00:00', '2024-10-19', 45),
+	(1093, 'noturno', '19:00:00', '07:00:00', '2024-10-21', 45),
+	(1094, 'noturno', '19:00:00', '07:00:00', '2024-10-23', 45),
+	(1095, 'noturno', '19:00:00', '07:00:00', '2024-10-25', 45),
+	(1096, 'noturno', '19:00:00', '07:00:00', '2024-10-27', 45),
+	(1097, 'noturno', '19:00:00', '07:00:00', '2024-10-29', 45),
+	(1098, 'noturno', '19:00:00', '07:00:00', '2024-10-31', 45),
+	(1099, 'noturno', '19:00:00', '07:00:00', '2024-11-02', 45),
+	(1100, 'noturno', '19:00:00', '07:00:00', '2024-11-04', 45),
+	(1101, 'noturno', '19:00:00', '07:00:00', '2024-11-06', 45),
+	(1102, 'noturno', '19:00:00', '07:00:00', '2024-11-08', 45),
+	(1103, 'noturno', '19:00:00', '07:00:00', '2024-11-10', 45),
+	(1104, 'noturno', '19:00:00', '07:00:00', '2024-11-12', 45),
+	(1105, 'noturno', '19:00:00', '07:00:00', '2024-11-14', 45),
+	(1106, 'noturno', '19:00:00', '07:00:00', '2024-11-16', 45),
+	(1107, 'noturno', '19:00:00', '07:00:00', '2024-11-18', 45),
+	(1108, 'noturno', '19:00:00', '07:00:00', '2024-11-20', 45),
+	(1109, 'noturno', '19:00:00', '07:00:00', '2024-11-22', 45),
+	(1110, 'noturno', '19:00:00', '07:00:00', '2024-11-24', 45),
+	(1111, 'noturno', '19:00:00', '07:00:00', '2024-11-26', 45),
+	(1112, 'noturno', '19:00:00', '07:00:00', '2024-11-28', 45),
+	(1113, 'noturno', '19:00:00', '07:00:00', '2024-11-30', 45),
+	(1114, 'noturno', '19:00:00', '07:00:00', '2024-10-16', 46),
+	(1115, 'noturno', '19:00:00', '07:00:00', '2024-10-18', 46),
+	(1116, 'noturno', '19:00:00', '07:00:00', '2024-10-20', 46),
+	(1117, 'noturno', '19:00:00', '07:00:00', '2024-10-22', 46),
+	(1118, 'noturno', '19:00:00', '07:00:00', '2024-10-24', 46),
+	(1119, 'noturno', '19:00:00', '07:00:00', '2024-10-26', 46),
+	(1120, 'noturno', '19:00:00', '07:00:00', '2024-10-28', 46),
+	(1121, 'noturno', '19:00:00', '07:00:00', '2024-10-30', 46),
+	(1122, 'noturno', '19:00:00', '07:00:00', '2024-11-01', 46),
+	(1123, 'noturno', '19:00:00', '07:00:00', '2024-11-03', 46),
+	(1124, 'noturno', '19:00:00', '07:00:00', '2024-11-05', 46),
+	(1125, 'noturno', '19:00:00', '07:00:00', '2024-11-07', 46),
+	(1126, 'noturno', '19:00:00', '07:00:00', '2024-11-09', 46),
+	(1127, 'noturno', '19:00:00', '07:00:00', '2024-11-11', 46),
+	(1128, 'noturno', '19:00:00', '07:00:00', '2024-11-13', 46),
+	(1129, 'noturno', '19:00:00', '07:00:00', '2024-11-15', 46),
+	(1130, 'noturno', '19:00:00', '07:00:00', '2024-11-17', 46),
+	(1131, 'noturno', '19:00:00', '07:00:00', '2024-11-19', 46),
+	(1132, 'noturno', '19:00:00', '07:00:00', '2024-11-21', 46),
+	(1133, 'noturno', '19:00:00', '07:00:00', '2024-11-23', 46),
+	(1134, 'noturno', '19:00:00', '07:00:00', '2024-11-25', 46),
+	(1135, 'noturno', '19:00:00', '07:00:00', '2024-11-27', 46),
+	(1136, 'noturno', '19:00:00', '07:00:00', '2024-11-29', 46),
+	(1137, 'diurno', '07:00:00', '19:00:00', '2024-10-30', 47),
+	(1138, 'diurno', '07:00:00', '19:00:00', '2024-11-01', 47),
+	(1139, 'diurno', '07:00:00', '19:00:00', '2024-11-03', 47),
+	(1140, 'diurno', '07:00:00', '19:00:00', '2024-11-05', 47),
+	(1141, 'diurno', '07:00:00', '19:00:00', '2024-11-07', 47),
+	(1142, 'diurno', '07:00:00', '19:00:00', '2024-11-09', 47),
+	(1143, 'diurno', '07:00:00', '19:00:00', '2024-11-11', 47),
+	(1144, 'diurno', '07:00:00', '19:00:00', '2024-11-13', 47),
+	(1145, 'diurno', '07:00:00', '19:00:00', '2024-11-15', 47),
+	(1146, 'diurno', '07:00:00', '19:00:00', '2024-11-17', 47),
+	(1147, 'diurno', '07:00:00', '19:00:00', '2024-11-19', 47),
+	(1148, 'diurno', '07:00:00', '19:00:00', '2024-11-21', 47),
+	(1149, 'diurno', '07:00:00', '19:00:00', '2024-11-23', 47),
+	(1150, 'diurno', '07:00:00', '19:00:00', '2024-11-25', 47),
+	(1151, 'diurno', '07:00:00', '19:00:00', '2024-11-27', 47),
+	(1152, 'diurno', '07:00:00', '19:00:00', '2024-11-29', 47),
+	(1153, 'diurno', '07:00:00', '19:00:00', '2024-12-01', 47),
+	(1154, 'diurno', '07:00:00', '19:00:00', '2024-12-03', 47),
+	(1155, 'diurno', '07:00:00', '19:00:00', '2024-12-05', 47),
+	(1156, 'diurno', '07:00:00', '19:00:00', '2024-12-07', 47),
+	(1157, 'diurno', '07:00:00', '19:00:00', '2024-12-09', 47),
+	(1158, 'diurno', '07:00:00', '19:00:00', '2024-12-11', 47),
+	(1159, 'diurno', '07:00:00', '19:00:00', '2024-12-13', 47),
+	(1160, 'diurno', '07:00:00', '19:00:00', '2024-12-15', 47),
+	(1161, 'diurno', '07:00:00', '19:00:00', '2024-12-17', 47),
+	(1162, 'diurno', '07:00:00', '19:00:00', '2024-12-19', 47),
+	(1163, 'diurno', '07:00:00', '19:00:00', '2024-12-21', 47),
+	(1164, 'diurno', '07:00:00', '19:00:00', '2024-12-23', 47),
+	(1165, 'diurno', '07:00:00', '19:00:00', '2024-12-25', 47),
+	(1166, 'diurno', '07:00:00', '19:00:00', '2024-12-27', 47),
+	(1167, 'diurno', '07:00:00', '19:00:00', '2024-12-29', 47),
+	(1168, 'diurno', '07:00:00', '19:00:00', '2024-12-31', 47),
+	(1169, 'diurno', '07:00:00', '19:00:00', '2024-11-01', 48),
+	(1170, 'diurno', '07:00:00', '19:00:00', '2024-11-03', 48),
+	(1171, 'diurno', '07:00:00', '19:00:00', '2024-11-05', 48),
+	(1172, 'diurno', '07:00:00', '19:00:00', '2024-11-07', 48),
+	(1173, 'diurno', '07:00:00', '19:00:00', '2024-11-09', 48),
+	(1174, 'diurno', '07:00:00', '19:00:00', '2024-11-11', 48),
+	(1175, 'diurno', '07:00:00', '19:00:00', '2024-11-13', 48),
+	(1176, 'diurno', '07:00:00', '19:00:00', '2024-11-15', 48),
+	(1177, 'diurno', '07:00:00', '19:00:00', '2024-11-17', 48),
+	(1178, 'diurno', '07:00:00', '19:00:00', '2024-11-19', 48),
+	(1179, 'diurno', '07:00:00', '19:00:00', '2024-11-21', 48),
+	(1180, 'diurno', '07:00:00', '19:00:00', '2024-11-23', 48),
+	(1181, 'diurno', '07:00:00', '19:00:00', '2024-11-25', 48),
+	(1182, 'diurno', '07:00:00', '19:00:00', '2024-11-27', 48),
+	(1183, 'diurno', '07:00:00', '19:00:00', '2024-11-29', 48),
+	(1184, 'diurno', '07:00:00', '19:00:00', '2024-12-01', 48),
+	(1185, 'diurno', '07:00:00', '19:00:00', '2024-12-03', 48),
+	(1186, 'diurno', '07:00:00', '19:00:00', '2024-12-05', 48),
+	(1187, 'diurno', '07:00:00', '19:00:00', '2024-12-07', 48),
+	(1188, 'diurno', '07:00:00', '19:00:00', '2024-12-09', 48),
+	(1189, 'diurno', '07:00:00', '19:00:00', '2024-12-11', 48),
+	(1190, 'diurno', '07:00:00', '19:00:00', '2024-12-13', 48),
+	(1191, 'diurno', '07:00:00', '19:00:00', '2024-12-15', 48),
+	(1192, 'diurno', '07:00:00', '19:00:00', '2024-12-17', 48),
+	(1193, 'diurno', '07:00:00', '19:00:00', '2024-12-19', 48),
+	(1194, 'diurno', '07:00:00', '19:00:00', '2024-12-21', 48),
+	(1195, 'diurno', '07:00:00', '19:00:00', '2024-12-23', 48),
+	(1196, 'diurno', '07:00:00', '19:00:00', '2024-12-25', 48),
+	(1197, 'diurno', '07:00:00', '19:00:00', '2024-12-27', 48),
+	(1198, 'diurno', '07:00:00', '19:00:00', '2024-12-29', 48),
+	(1199, 'diurno', '07:00:00', '19:00:00', '2024-12-31', 48),
+	(1200, 'noturno', '19:00:00', '07:00:00', '2024-11-01', 49),
+	(1201, 'noturno', '19:00:00', '07:00:00', '2024-11-03', 49),
+	(1202, 'noturno', '19:00:00', '07:00:00', '2024-11-05', 49),
+	(1203, 'noturno', '19:00:00', '07:00:00', '2024-11-07', 49),
+	(1204, 'noturno', '19:00:00', '07:00:00', '2024-11-09', 49),
+	(1205, 'noturno', '19:00:00', '07:00:00', '2024-11-11', 49),
+	(1206, 'noturno', '19:00:00', '07:00:00', '2024-11-13', 49),
+	(1207, 'noturno', '19:00:00', '07:00:00', '2024-11-15', 49),
+	(1208, 'noturno', '19:00:00', '07:00:00', '2024-11-17', 49),
+	(1209, 'noturno', '19:00:00', '07:00:00', '2024-11-19', 49),
+	(1210, 'noturno', '19:00:00', '07:00:00', '2024-11-21', 49),
+	(1211, 'noturno', '19:00:00', '07:00:00', '2024-11-23', 49),
+	(1212, 'noturno', '19:00:00', '07:00:00', '2024-11-25', 49),
+	(1213, 'noturno', '19:00:00', '07:00:00', '2024-11-27', 49),
+	(1214, 'noturno', '19:00:00', '07:00:00', '2024-11-29', 49),
+	(1215, 'noturno', '19:00:00', '07:00:00', '2024-12-01', 49),
+	(1216, 'noturno', '19:00:00', '07:00:00', '2024-12-03', 49),
+	(1217, 'noturno', '19:00:00', '07:00:00', '2024-12-05', 49),
+	(1218, 'noturno', '19:00:00', '07:00:00', '2024-12-07', 49),
+	(1219, 'noturno', '19:00:00', '07:00:00', '2024-12-09', 49),
+	(1220, 'noturno', '19:00:00', '07:00:00', '2024-12-11', 49),
+	(1221, 'noturno', '19:00:00', '07:00:00', '2024-12-13', 49),
+	(1222, 'noturno', '19:00:00', '07:00:00', '2024-12-15', 49),
+	(1223, 'noturno', '19:00:00', '07:00:00', '2024-12-17', 49),
+	(1224, 'noturno', '19:00:00', '07:00:00', '2024-12-19', 49),
+	(1225, 'noturno', '19:00:00', '07:00:00', '2024-12-21', 49),
+	(1226, 'noturno', '19:00:00', '07:00:00', '2024-12-23', 49),
+	(1227, 'noturno', '19:00:00', '07:00:00', '2024-12-25', 49),
+	(1228, 'noturno', '19:00:00', '07:00:00', '2024-12-27', 49),
+	(1229, 'noturno', '19:00:00', '07:00:00', '2024-12-29', 49),
+	(1230, 'noturno', '19:00:00', '07:00:00', '2024-12-31', 49),
 	(1278, 'diurno', '07:00:00', '19:00:00', '2024-11-01', 49),
 	(1279, 'diurno', '07:00:00', '19:00:00', '2024-11-03', 49),
 	(1280, 'diurno', '07:00:00', '19:00:00', '2024-11-05', 49),
@@ -196,6 +364,7 @@ REPLACE INTO `escala` (`id_esc`, `tipo_turno`, `hora_inicio`, `hora_fim`, `data`
 	(1388, 'noturno', '19:00:00', '07:00:00', '2024-11-30', 48);
 
 -- Copiando estrutura para tabela sisescala.funcionario
+DROP TABLE IF EXISTS `funcionario`;
 CREATE TABLE IF NOT EXISTS `funcionario` (
   `id_func` int(11) NOT NULL AUTO_INCREMENT,
   `nome_func` varchar(50) NOT NULL,
@@ -208,29 +377,32 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   PRIMARY KEY (`id_func`) USING BTREE,
   KEY `FK_funcionario_setor` (`id_st`),
   CONSTRAINT `FK_funcionario_setor` FOREIGN KEY (`id_st`) REFERENCES `setor` (`id_st`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.funcionario: ~6 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.funcionario: ~7 rows (aproximadamente)
 REPLACE INTO `funcionario` (`id_func`, `nome_func`, `cargo_func`, `turno`, `telefone_func`, `sexo_func`, `email_func`, `id_st`) VALUES
-	(42, 'walter', 'INSP', 'diurno', '(21) 97233-7489', 'M', 'walt@gmail.com', NULL),
+	(42, 'Walter', 'INSP', 'diurno', '(21) 98002-7289', 'M', 'walt@gmail.com', NULL),
 	(44, 'Jessica', 'OP', 'noturno', '(22) 99831-2310', 'F', 'jess@gmail.com', NULL),
 	(45, 'Marta', 'TC', 'diurno', '(22) 98116-7008', 'F', 'mt@gmail.com', NULL),
+	(46, 'Davi', 'OP', 'diurno', '2190000', 'M', 'dv@gmail.com', NULL),
 	(47, 'Clara', 'TC', 'noturno', '(21)98787-3089', 'F', 'clara@gmail.com', NULL),
 	(48, 'Leticia', 'AX', 'noturno', '(21) 97508-6276', 'F', 'let@gmail.com', NULL),
 	(49, 'Carolina', 'AX', 'diurno', '(21)95432-1598', 'F', 'caca@gmail.com', NULL);
 
 -- Copiando estrutura para tabela sisescala.setor
+DROP TABLE IF EXISTS `setor`;
 CREATE TABLE IF NOT EXISTS `setor` (
   `id_st` int(11) NOT NULL AUTO_INCREMENT,
   `nome_st` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_st`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.setor: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.setor: ~1 rows (aproximadamente)
 REPLACE INTO `setor` (`id_st`, `nome_st`) VALUES
 	(1, 'Produção');
 
 -- Copiando estrutura para tabela sisescala.substituicao
+DROP TABLE IF EXISTS `substituicao`;
 CREATE TABLE IF NOT EXISTS `substituicao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `solicitante` varchar(50) NOT NULL DEFAULT '',
@@ -244,13 +416,16 @@ CREATE TABLE IF NOT EXISTS `substituicao` (
   PRIMARY KEY (`id`),
   KEY `id_esc` (`id_esc`),
   CONSTRAINT `substituicao_ibfk_3` FOREIGN KEY (`id_esc`) REFERENCES `escala` (`id_esc`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.substituicao: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.substituicao: ~2 rows (aproximadamente)
 REPLACE INTO `substituicao` (`id`, `solicitante`, `motivo`, `data_solic`, `substituto`, `data_subs`, `ativo_sub`, `data_aprovacao`, `id_esc`) VALUES
-	(10, 'walter', 'medico', '2024-11-13', 'Davi', '2024-11-15', 'Em analise', NULL, NULL);
+	(10, 'walter', 'medico', '2024-11-13', 'Davi', '2024-11-15', 'Em analise', NULL, NULL),
+	(11, 'Supervisor', 'aaa', '0000-00-00', 'walter', '0000-00-00', 'Reprovado', NULL, NULL),
+	(12, 'Administrador', 'aa', '2024-11-12', 'walter', '2024-11-15', 'Em analise', NULL, NULL);
 
 -- Copiando estrutura para tabela sisescala.usuarios
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
@@ -266,16 +441,17 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   KEY `nivel` (`nivel`),
   KEY `FK_usuarios_funcionario` (`id_func`),
   CONSTRAINT `FK_usuarios_funcionario` FOREIGN KEY (`id_func`) REFERENCES `funcionario` (`id_func`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- Copiando dados para a tabela sisescala.usuarios: ~9 rows (aproximadamente)
+-- Copiando dados para a tabela sisescala.usuarios: ~10 rows (aproximadamente)
 REPLACE INTO `usuarios` (`id`, `nome`, `usuario`, `senha`, `email`, `nivel`, `ativo`, `dt_cadastro`, `id_func`) VALUES
 	(3, 'Funcionario', 'func', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin@demo.com.br', 1, 1, '2024-10-07 21:21:10', NULL),
 	(5, 'Supervisor', 'sup', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin2@mail.com', 2, 1, '2019-04-11 00:00:00', NULL),
 	(6, 'Administrador', 'admin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'admin3@mail.com', 3, 1, '2019-04-11 00:00:00', NULL),
-	(23, 'walter', 'walt', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'walt@gmail.com', 1, 1, '2024-10-14 00:00:00', 42),
-	(25, 'Jessica', 'jess', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'jess@gmail.com', 1, 1, '2024-10-15 00:00:00', 44),
+	(23, 'Walter', 'walt', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'walt@gmail.com', 1, 1, '2024-11-15 13:09:07', 42),
+	(25, 'Jessica', 'jess', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'jess@gmail.com', 1, 1, '2024-11-15 12:48:50', 44),
 	(26, 'Marta', 'mart', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'mt@gmail.com', 1, 1, '2024-10-14 00:00:00', 45),
+	(27, 'Davi', 'dav', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'dv@gmail.com', 1, 1, '2024-10-15 18:58:42', 46),
 	(28, 'Clara', 'clarinha', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'clara@gmail.com', 1, 1, '2024-10-29 16:38:10', 47),
 	(29, 'Leticia', 'let', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'let@gmail.com', 1, 1, '2024-10-31 16:34:42', 48),
 	(30, 'Carolina', 'carol', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'caca@gmail.com', 1, 1, '2024-10-31 17:11:43', 49);

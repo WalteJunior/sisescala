@@ -10,6 +10,12 @@ WHERE usuarios.id = $id
 $row = mysqli_fetch_array($sql);
 ?>
 
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"></script>
+
+</head>
+
 <div id="main" class="container-fluid">
 	<br>
 	<h3 class="page-header">Edição de registro</h3>
@@ -18,25 +24,30 @@ $row = mysqli_fetch_array($sql);
 	<form action="?page=atualiza_usu2&id=<?php echo $row['id']; ?>" method="post">
 		<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 		<input type="hidden" name="id_end" value="<?php echo $row['id_end']; ?>">
+		<input type="hidden" name="id_func" value="<?php echo $row['id_func']; ?>">
 
 		<!-- 1ª LINHA -->
 		<div class="row">
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-2">
 				<label for="nome">Nome do Usuário</label>
-				<input readonly type="text" class="form-control" name="nome" value="<?php echo $row["nome"]; ?>">
+				<input  type="text" class="form-control" name="nome" value="<?php echo $row["nome"]; ?>">
 			</div>
 
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-2">
 				<label for="usuario">Usuário</label>
 				<input type="text" class="form-control" name="usuario" value="<?php echo $row["usuario"]; ?>">
 			</div>
 
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-2">
+				<label for="telefone_func">Telefone</label>
+				<input type="text" class="form-control" name="telefone_func" id="tel_fixo" value="<?php echo $row["telefone_func"]; ?>">
+			</div>
+			<div class="form-group col-md-2">
 				<label for="email">E-mail</label>
 				<input type="email" class="form-control" name="email" value="<?php echo $row["email"]; ?>">
 			</div>
 
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-2">
 				<label for="dt_cad">Data da Edição</label>
 				<input type="text" disabled="disabled" class="form-control" name="dt_cad" value="<?php echo date('d/m/Y'); ?>">
 			</div>
@@ -92,6 +103,14 @@ $row = mysqli_fetch_array($sql);
 </div>
 
 <script>
+	//Mask do input
+	$(document).ready(function() {
+		Inputmask("(99) 99999-9999").mask("#tel_fixo");
+		Inputmask("99999-999").mask("#cep");
+	});
+
+
+	//Consulta cep
 	const btnPesquisarCEP = document.querySelector("#btnPesquisar");
 	btnPesquisarCEP.addEventListener("click", pesquisar);
 

@@ -21,15 +21,6 @@
 			<p><?php echo $row['nome'];?></p>
 		</div>
 
-		<div class="col-md-3">
-			<p><strong>Usuário</strong></p>
-			<p><?php echo $row['usuario']; ?></p>
-		</div>
-
-		<div class="col-md-3">
-			<p><strong>Senha</strong></p>
-			<p><?php echo $row['senha']; ?></p>
-		</div>
 	
 	<!-- 2ª LINHA -->
 	

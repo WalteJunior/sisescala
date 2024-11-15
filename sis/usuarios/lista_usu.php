@@ -28,8 +28,6 @@
 					echo "<tr>";
 					echo "<td><strong>ID</strong></td>";
 					echo "<td><strong>Nome do usuário</strong></td>";
-					echo "<td><strong>Usuário</strong></td>";
-					echo "<td class='d-none d-md-table-cell'><strong>Senha</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>E-mail</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>Nível</strong></td>";
 					echo "<td class='d-none d-md-table-cell'><strong>Ativo</strong></td>";
@@ -41,8 +39,6 @@
 						echo "<tr>";
 						echo "<td>".$info['id']."</td>";
 						echo "<td>".$info['nome']."</td>";
-						echo "<td>".$info['usuario']."</td>";
-						echo "<td class='d-none d-md-table-cell'>".$info['senha']."</td>";
 						echo "<td class='d-none d-md-table-cell'>".$info['email']." </td>";
 						echo "<td class='d-none d-md-table-cell'>".$info['nivel']."</td>";
 						if($info['ativo'] == 1){
