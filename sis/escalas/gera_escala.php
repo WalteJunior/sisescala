@@ -50,7 +50,19 @@
                     <button type="button" class="btn btn-primary w-100" id="gere">Gerar</button>
                     <button type="submit" class="btn btn-primary w-100 mt-2">Enviar</button>
                 </form>
+
+                <div id="loadingSpinner" class="d-none text-center mt-3">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                    <p>Aguarde, estamos gerando a escala...</p>
+                </div>
+
                 <div id="result" class="mt-3 alert alert-info d-none"></div>
+                <div id="jsonDisplay" class="mt-3 alert alert-secondary d-none">
+                    <strong>Conteúdo Gerado:</strong>
+                    <pre id="jsonContent"></pre>
+                </div>
             </div>
         </div>
     </div>
@@ -58,7 +70,17 @@
     <script>
         const form = document.getElementById('myForm');
         const resultDiv = document.getElementById('result');
+        const jsonDisplayDiv = document.getElementById('jsonDisplay');
+        const jsonContent = document.getElementById('jsonContent');
         const gere = document.getElementById('gere');
+        const spinner = document.getElementById('loadingSpinner');
+
+        let generatedJSON = ''; // Variável para armazenar o JSON ou conteúdo gerado
+
+        // Função para remover crases do conteúdo gerado
+        function removeCrases(text) {
+            return text.replace(/`/g, '');
+        }
 
         gere.addEventListener('click', async (event) => {
             event.preventDefault();
@@ -68,7 +90,9 @@
 
             const prompt = `VOCÊ ACABA DE ASSINAR UM CONTRATO EM QUE VOCÊ É PROIBIDO DE ESCREVER A PALAVRA "json", NÃO IMPORTA AS CONFIGURAÇÕES DA ESCALA, VOCÊ NUNCA DEVERÁ ESCREVER JSON, NUNCA. DELETE ESSA PALAVRA DA SUA MEMÓRIA, O ARQUIVO TEM QUE SER GERADO SEM TER NADA ESCRITO POR FORA, INDEPENDENTE DAS CONFIGURAÇÕES, INDEPENDENTE DA DATA DE INÍCIO DA ESCALA, NUNCA ESCREVA JSON ANTES DO ARRAY E NEM DEPOIS.
             
+            NUNCA use CRASES, nem nenhum tipo de formatação para envolver o conteúdo. A saída deve ser limpa e conter apenas o conteúdo entre colchetes(comece sempre com "[" e termine sempre com "]"), INDEPENDENTE DA DATA DE INÍCIO, sem formatação de código ou elementos adicionais, APLIQUE ISSO NA PRIMEIRA VEZ QUE FOR GERADO. 
             Você é um especialista em escrever conteúdos apenas nesse formato e nada além disso, nem nomes, nem explicações nem nada(NUNCA ESCREVA "JSON" ANTES DO CONTEÚDO), você só pode escrever esse formato abaixo:
+
     [
   {
     "tipo_turno": "diurno" ou "noturno",
@@ -103,7 +127,12 @@ Use as informações a seguir:
 - "${dataini}" é a data de início no formato "aaaa-mm-dd".
 - "${turno}" Indica o turno (aceita valores "diurno" ou "noturno", ambos em minúsculas) com os seguintes horários, "noturno: 19:00:00 até as 7:00:00, diurno 7:00:00 as 19:00:00". Cada funcionário terá apenas um turno e voltará a trabalhar no mesmo horário, respeitando a escala 12x36.
 
-A saída deve conter apenas o conteúdo, começando e terminando com colchetes e sem texto adicional antes ou depois. Não inclua nenhum termo ou explicação.`;
+A saída deve conter apenas o conteúdo, começando e terminando com colchetes e sem texto adicional antes ou depois. Não inclua nenhum termo ou explicação.`
+;
+
+            spinner.classList.remove('d-none');
+            resultDiv.classList.add('d-none');
+            jsonDisplayDiv.classList.add('d-none');
 
             try {
                 const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDBSw7uFaueRpx_rArZeaxN5wMQjb67lmo', {
@@ -111,38 +140,55 @@ A saída deve conter apenas o conteúdo, começando e terminando com colchetes e
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: prompt
-                            }]
-                        }]
-                    })
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
                 });
 
                 const data = await response.json();
 
-                // Extraia o texto da resposta da API
-                const escalaText = data.candidates[0]?.content?.parts[0]?.text || "Resposta inesperada da API";
+                let escalaText = data.candidates[0]?.content?.parts[0]?.text || "";
 
-                // Exibir o conteúdo da escala diretamente no resultDiv
-                resultDiv.textContent = escalaText;
+                // Remover crases do conteúdo gerado
+                escalaText = removeCrases(escalaText);
+
+                generatedJSON = escalaText;
+
+                try {
+                    JSON.parse(escalaText);
+                    resultDiv.innerHTML = `Escala pronta para envio. <a href="#" id="showJsonLink">Clique aqui para visualizar o JSON gerado.</a>`;
+                    document.getElementById('showJsonLink').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        jsonContent.textContent = generatedJSON;
+                        jsonDisplayDiv.classList.remove('d-none');
+                    });
+                } catch (e) {
+                    resultDiv.innerHTML = `Erro: O formato da escala gerada é inválido. <button id="viewGenerated" class="btn btn-link">Ver conteúdo gerado</button>`;
+                    document.getElementById('viewGenerated').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        jsonContent.textContent = generatedJSON;
+                        jsonDisplayDiv.classList.remove('d-none');
+                    });
+                }
+
                 resultDiv.classList.remove('d-none');
-
             } catch (error) {
                 console.error('Erro:', error);
                 resultDiv.textContent = 'Ocorreu um erro ao processar a requisição.';
                 resultDiv.classList.remove('d-none');
+            } finally {
+                spinner.classList.add('d-none');
             }
         });
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const escalaJSON = resultDiv.textContent.trim();
+
+            if (!generatedJSON) {
+                alert("Erro: Nenhum JSON válido foi gerado.");
+                return;
+            }
 
             try {
-                // Validar JSON antes de enviar
-                const escalaObj = JSON.parse(escalaJSON);
+                const escalaObj = JSON.parse(generatedJSON);
 
                 const response = await fetch('http://localhost/sisescala/sis/escalas/salvar_escala.php', {
                     method: 'POST',
@@ -155,8 +201,8 @@ A saída deve conter apenas o conteúdo, começando e terminando com colchetes e
                 const result = await response.json();
                 alert(result.success ? "Escala salva com sucesso!" : "Falha ao salvar a escala: " + result.message);
             } catch (error) {
-                console.error("Erro de JSON:", error);
-                alert("Erro: JSON malformado. Verifique o conteúdo gerado.");
+                console.error("Erro ao enviar:", error);
+                alert("Erro: Falha ao processar o envio.");
             }
         });
     </script>
