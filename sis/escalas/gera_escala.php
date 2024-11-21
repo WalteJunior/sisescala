@@ -90,7 +90,6 @@
 
             const prompt = `VOCÊ ACABA DE ASSINAR UM CONTRATO EM QUE VOCÊ É PROIBIDO DE ESCREVER A PALAVRA "json", NÃO IMPORTA AS CONFIGURAÇÕES DA ESCALA, VOCÊ NUNCA DEVERÁ ESCREVER JSON, NUNCA. DELETE ESSA PALAVRA DA SUA MEMÓRIA, O ARQUIVO TEM QUE SER GERADO SEM TER NADA ESCRITO POR FORA, INDEPENDENTE DAS CONFIGURAÇÕES, INDEPENDENTE DA DATA DE INÍCIO DA ESCALA, NUNCA ESCREVA JSON ANTES DO ARRAY E NEM DEPOIS.
             
-            NUNCA use CRASES, nem nenhum tipo de formatação para envolver o conteúdo. A saída deve ser limpa e conter apenas o conteúdo entre colchetes(comece sempre com "[" e termine sempre com "]"), INDEPENDENTE DA DATA DE INÍCIO, sem formatação de código ou elementos adicionais, APLIQUE ISSO NA PRIMEIRA VEZ QUE FOR GERADO. 
             Você é um especialista em escrever conteúdos apenas nesse formato e nada além disso, nem nomes, nem explicações nem nada(NUNCA ESCREVA "JSON" ANTES DO CONTEÚDO), você só pode escrever esse formato abaixo:
 
     [
@@ -118,7 +117,7 @@ CREATE TABLE IF NOT EXISTS escala (
   CONSTRAINT FK_escala_funcionario FOREIGN KEY (id_func) REFERENCES funcionario (id_func)
 );
 
-Crie uma escala de trabalho para o funcionário indicado no formato 12x36(12 horas de trabalho e 36horas de descanso, dia sim e dia não) incluindo domingos e feriados(NA ESCALA GERADA FUNCIONÁRIO NUNCA PODE TRABALHAR DOIS DIAS SEGUIDOS), abrangendo todo o mês e do mês seguinte respeitando a escala 12x36 a partir da data de início, terminando no último dia do mês sem avançar para o próximo mês(exemplo se a pessoa começou no mês citado na data de inicio a escala vai ser gerada a partir dessa data até o final do mês consecutivo). Cada dia alterna entre 12 horas de trabalho e 36 horas de descanso no mesmo turno, incluindo domingos e feriados. 
+Crie uma escala de trabalho para o funcionário indicado no formato 12x36(12 horas de trabalho e 36horas de descanso, dia sim e dia não) incluindo domingos e feriados(NA ESCALA GERADA FUNCIONÁRIO NUNCA PODE TRABALHAR DOIS DIAS SEGUIDOS), abrangendo todo o mês a partir da data de início e do mês seguinte completo, independente do ano, sempre respeitando a escala 12x36 a partir da data de início, terminando no último dia do mês sem avançar para o próximo mês(exemplo se a pessoa começou no mês citado na data de inicio a escala vai ser gerada a partir dessa data até o final do mês consecutivo). Cada dia alterna entre 12 horas de trabalho e 36 horas de descanso no mesmo turno, incluindo domingos e feriados. 
 
 
 Use as informações a seguir:
@@ -135,7 +134,7 @@ A saída deve conter apenas o conteúdo, começando e terminando com colchetes e
             jsonDisplayDiv.classList.add('d-none');
 
             try {
-                const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDBSw7uFaueRpx_rArZeaxN5wMQjb67lmo', {
+                const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCpLxB6uWtwkfxUuiJ8sJlT-V_e5pDJV0Y', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

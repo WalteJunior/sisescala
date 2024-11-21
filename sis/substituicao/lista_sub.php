@@ -38,9 +38,9 @@
 					echo "<td><strong>Nº Registro</strong></td>"; 
 					echo "<td><strong>Solicitante</strong></td>";
 					echo "<td><strong>Motivo</strong></td>";
-					echo "<td><strong>Data da substituição</strong></td>";  
+					echo "<td><strong>Data da Falta</strong></td>";  
 					echo "<td><strong>Substituto</strong></td>";
-					echo "<td><strong>Data do substituto</strong></td>";  
+					echo "<td><strong>Data da Substituição</strong></td>";  
 					echo "<td><strong>Status</strong></td>";  
 
 					// Exibe a coluna Ações no cabeçalho se o usuário logado for o solicitante
@@ -82,6 +82,8 @@
 					echo "<td><strong>Nº Registro</strong></td>"; 
 					echo "<td><strong>Solicitante</strong></td>";
 					echo "<td><strong>Motivo</strong></td>";  
+					echo "<td><strong>Data da Falta</strong></td>"; 
+					echo "<td><strong>Data da Substituição</strong></td>"; 
 					echo "<td><strong>Status</strong></td>";  
 					echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
 					echo "</tr></thead><tbody>";
@@ -91,6 +93,8 @@
 						echo "<td>".$info['id']."</td>";
 						echo "<td>".$info['solicitante']."</td>";
 						echo "<td>".$info['motivo']."</td>";
+						echo "<td class='d-none d-md-table-cell'>".(!empty($info['data_solic']) ? date('d/m/Y', strtotime($info['data_solic'])) : '')."</td>";
+						echo "<td class='d-none d-md-table-cell'>".(!empty($info['data_subs']) ? date('d/m/Y', strtotime($info['data_subs'])) : '')."</td>";
 						echo "<td>".$info['ativo_sub']."</td>";
 						echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
 						echo "<a class='btn btn-info btn-xs' href='?page=view_sub&id=".$info['id']."'> Visualizar </a>";
@@ -115,6 +119,8 @@
 					echo "<td><strong>Nº Registro</strong></td>"; 
 					echo "<td><strong>Solicitante</strong></td>";
 					echo "<td><strong>Motivo</strong></td>";  
+					echo "<td><strong>Data da Falta</strong></td>"; 
+					echo "<td><strong>Data da Substituição</strong></td>";
 					echo "<td><strong>Status</strong></td>";  
 					echo "<td class='actions d-flex justify-content-center'><strong>Ações</strong></td>"; 
 					echo "</tr></thead><tbody>";
@@ -124,6 +130,8 @@
 						echo "<td>".$info['id']."</td>";
 						echo "<td>".$info['solicitante']."</td>";
 						echo "<td>".$info['motivo']."</td>";
+						echo "<td class='d-none d-md-table-cell'>".(!empty($info['data_solic']) ? date('d/m/Y', strtotime($info['data_solic'])) : '')."</td>";
+						echo "<td class='d-none d-md-table-cell'>".(!empty($info['data_subs']) ? date('d/m/Y', strtotime($info['data_subs'])) : '')."</td>";
 						echo "<td>".$info['ativo_sub']."</td>";
 						echo "<td class='actions btn-group-sm d-flex justify-content-center'>";
 						echo "<a class='btn btn-info btn-xs' href='?page=view_sub&id=".$info['id']."'> Visualizar </a>";

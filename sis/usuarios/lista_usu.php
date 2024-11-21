@@ -4,10 +4,6 @@
 			<h2>Usuários</h2>
 		</div>
 
-		<div class="col-md-2">
-			<!-- Chama o Formulário para adicionar alunos -->
-			<a href="?page=fadd_usu" class="btn btn-primary pull-right h2">Novo Usuário</a> 
-		</div>
 	</div>
 	<hr/>
 	<div><?php include "mensagens.php"; ?></div>

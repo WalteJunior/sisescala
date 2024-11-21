@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-3">
-				<label for="data_solic">Data da substituição</label>
+				<label for="data_solic">Data da Falta</label>
 				<input type="date" class="form-control" name="data_solic" id="data_solic">
 			</div>
 
@@ -54,7 +54,7 @@
 
 
 			<div class="form-group col-xs-12 col-sm-6 col-md-3">
-				<label for="data_subs">Data do substituto</label>
+				<label for="data_subs">Data da Substituição</label>
 				<input type="date" class="form-control" name="data_subs" id="data_subs">
 			</div>
 
