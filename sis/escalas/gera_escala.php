@@ -153,14 +153,14 @@ A saída deve conter apenas o conteúdo, começando e terminando com colchetes e
 
                 try {
                     JSON.parse(escalaText);
-                    resultDiv.innerHTML = `Escala pronta para envio. <a href="#" id="showJsonLink">Clique aqui para visualizar o JSON gerado.</a>`;
+                    resultDiv.innerHTML = `<p id="showJsonLink"> Escala pronta para envio.</p> `;
                     document.getElementById('showJsonLink').addEventListener('click', (e) => {
                         e.preventDefault();
                         jsonContent.textContent = generatedJSON;
                         jsonDisplayDiv.classList.remove('d-none');
                     });
                 } catch (e) {
-                    resultDiv.innerHTML = `Erro: O formato da escala gerada é inválido. <button id="viewGenerated" class="btn btn-link">Ver conteúdo gerado</button>`;
+                    resultDiv.innerHTML = `<p id="viewGenerated"> Erro: O formato da escala gerada é inválido.</p> `;
                     document.getElementById('viewGenerated').addEventListener('click', (e) => {
                         e.preventDefault();
                         jsonContent.textContent = generatedJSON;
